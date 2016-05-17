@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.frogoutofwell.yullfrogapplication">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainPagerActivity" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainInterActivity"
+            android:label="@string/title_activity_main_inter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InterMainActivity"
+            android:label="@string/title_activity_inter_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".write.WriteDoActivity"
+            android:label="@string/title_activity_write_do"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".write.WriteTestActivity"
+            android:label="@string/title_activity_write_test"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".history.MyHistoryActivity"
+            android:label="@string/title_activity_my_history"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity
+            android:name=".doreview.DoReviewDetailActivity"
+            android:label="@string/title_activity_do_review_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".testreview.TestReviewDetailActivity"
+            android:label="@string/title_activity_test_review_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".home.EmpActivity" />
+        <activity
+            android:name=".MActivity"
+            android:label="@string/title_activity_m"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>

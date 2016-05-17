@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">YullFrogApplication</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main_inter">MainInterActivity</string>
+    <string name="title_activity_inter_main">InterMainActivity</string>
+    <string name="title_activity_write_do">WriteDoActivity</string>
+    <string name="title_activity_write_test">WriteTestActivity</string>
+    <string name="title_activity_my_history">MyHistoryActivity</string>
+    <string name="title_activity_do_review_detail">DoReviewDetailActivity</string>
+    <string name="title_activity_test_review_detail">TestReviewDetailActivity</string>
+    <string name="title_activity_m">MActivity</string>
+    <string name="comment_good_title">도움이된 점</string>
+    <string name="comment_bad_title">아쉬운 점</string>
+</resources>
