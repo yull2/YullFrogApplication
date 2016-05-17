@@ -51,8 +51,8 @@ public class MainInterViewHolder extends RecyclerView.ViewHolder {
 
         //Glide.with(imageView.getContext()).load(activityDetail.getInstitution().getLogoImgUrl()).into(imageView);
         nameView.setText(activityDetail.getName());
-        companyView.setText("삼성전자");
-        classView.setText(activityDetail.getAct());
+        companyView.setText(activityDetail.getCompanyName());
+        classView.setText(activityDetail.getActClass());
         duedateView.setText(activityDetail.getEndDate());
         rateView.setText(activityDetail.getAverageRate()+" ");
 

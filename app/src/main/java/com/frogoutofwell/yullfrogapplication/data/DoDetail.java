@@ -5,14 +5,13 @@ package com.frogoutofwell.yullfrogapplication.data;
  */
 public class DoDetail {
     public int seq;
-    public int memberSeq;
+    public int writer;
     public int rate;
-    public String writeTime;
+    public String term;
+    public String writeDate;
     public String comment;
     public String commentGood;
     public String commentBad;
-
-    public InterDetail doInter;
 
     public int getSeq() {
         return seq;
@@ -22,12 +21,12 @@ public class DoDetail {
         this.seq = seq;
     }
 
-    public int getMemberSeq() {
-        return memberSeq;
+    public int getWriter() {
+        return writer;
     }
 
-    public void setMemberSeq(int memberSeq) {
-        this.memberSeq = memberSeq;
+    public void setWriter(int writer) {
+        this.writer = writer;
     }
 
     public int getRate() {
@@ -38,12 +37,20 @@ public class DoDetail {
         this.rate = rate;
     }
 
-    public String getWriteTime() {
-        return writeTime;
+    public String getTerm() {
+        return term;
     }
 
-    public void setWriteTime(String writeTime) {
-        this.writeTime = writeTime;
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public String getWriteDate() {
+        return writeDate;
+    }
+
+    public void setWriteDate(String writeDate) {
+        this.writeDate = writeDate;
     }
 
     public String getComment() {
@@ -68,13 +75,5 @@ public class DoDetail {
 
     public void setCommentBad(String commentBad) {
         this.commentBad = commentBad;
-    }
-
-    public InterDetail getDoInter() {
-        return doInter;
-    }
-
-    public void setDoInter(InterDetail doInter) {
-        this.doInter = doInter;
     }
 }

@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
-import com.frogoutofwell.yullfrogapplication.data.InterDetail;
 
 /**
  * Created by Tacademy on 2016-05-17.
@@ -33,10 +32,10 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
 
     public void setDoBest(DoDetail doDetail){
         this.doBest = doDetail;
-        Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
-        nameView.setText(doDetail.getDoInter().getName());
+       // Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
+        nameView.setText(" ");
         rateView.setText(doDetail.getRate());
-        classView.setText("");
+        classView.setText(" ");
         commentView.setText(doDetail.getComment());
         commentGoodView.setText(doDetail.getCommentGood());
         commentBadView.setText(doDetail.getCommentBad());

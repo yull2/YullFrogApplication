@@ -8,16 +8,17 @@ public class ActivityDetail {
     public String name;
     public String endDate;
     public int averageRate;
-    public InterDetail institution;
-    public String act;
+    public String actClass;
     public String indus;
-    public int term;
+    public String term;
     public String region;
     public int totalPostCount;
-    public int totalPostSatisfaction;
+    public int[] totalPostCountStar;
     public int totalInterCount;
     public int totalInterLevel;
-
+    public String recruitImg;
+    public String companyName;
+    public String companyLogo;
 
     public int getSeq() {
         return seq;
@@ -51,20 +52,12 @@ public class ActivityDetail {
         this.averageRate = averageRate;
     }
 
-    public InterDetail getInstitution() {
-        return institution;
+    public String getActClass() {
+        return actClass;
     }
 
-    public void setInstitution(InterDetail institution) {
-        this.institution = institution;
-    }
-
-    public String getAct() {
-        return act;
-    }
-
-    public void setAct(String act) {
-        this.act = act;
+    public void setActClass(String actClass) {
+        this.actClass = actClass;
     }
 
     public String getIndus() {
@@ -75,11 +68,11 @@ public class ActivityDetail {
         this.indus = indus;
     }
 
-    public int getTerm() {
+    public String getTerm() {
         return term;
     }
 
-    public void setTerm(int term) {
+    public void setTerm(String term) {
         this.term = term;
     }
 
@@ -99,12 +92,12 @@ public class ActivityDetail {
         this.totalPostCount = totalPostCount;
     }
 
-    public int getTotalPostSatisfaction() {
-        return totalPostSatisfaction;
+    public int[] getTotalPostCountStar() {
+        return totalPostCountStar;
     }
 
-    public void setTotalPostSatisfaction(int totalPostSatisfaction) {
-        this.totalPostSatisfaction = totalPostSatisfaction;
+    public void setTotalPostCountStar(int[] totalPostCountStar) {
+        this.totalPostCountStar = totalPostCountStar;
     }
 
     public int getTotalInterCount() {
@@ -121,5 +114,29 @@ public class ActivityDetail {
 
     public void setTotalInterLevel(int totalInterLevel) {
         this.totalInterLevel = totalInterLevel;
+    }
+
+    public String getRecruitImg() {
+        return recruitImg;
+    }
+
+    public void setRecruitImg(String recruitImg) {
+        this.recruitImg = recruitImg;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyLogo() {
+        return companyLogo;
+    }
+
+    public void setCompanyLogo(String companyLogo) {
+        this.companyLogo = companyLogo;
     }
 }

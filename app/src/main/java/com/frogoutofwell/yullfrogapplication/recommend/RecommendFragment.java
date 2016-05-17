@@ -70,11 +70,11 @@ public class RecommendFragment extends Fragment {
 
     private void setData() {
         ActivityDetail ad = new ActivityDetail();
-        ad.setName("SK 협업 서포터즈");
-        ad.setEndDate("D-1");
-        ad.setAverageRate(3);
-        ad.setAct("서포터즈");
+        ad.setActClass("서포터즈");
         for (int i = 0; i<20;i++){
+            ad.setName("SK 협업 서포터즈 "+i);
+            ad.setEndDate("D - "+i);
+            ad.setAverageRate(i%5);
             mAdapter.add(ad);
         }
     }

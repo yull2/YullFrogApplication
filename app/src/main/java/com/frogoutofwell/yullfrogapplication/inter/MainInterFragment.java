@@ -76,11 +76,12 @@ public class MainInterFragment extends Fragment {
     }
     private void setData() {
         ActivityDetail ad = new ActivityDetail();
-        ad.setName("삼성전자 서포터즈");
-        ad.setEndDate("D-3");
-        ad.setAverageRate(4);
-        ad.setAct("서포터즈");
+
+        ad.setActClass("서포터즈");
         for (int i = 0; i<20;i++){
+            ad.setName("삼성전자 서포터즈 "+i);
+            ad.setEndDate("D - "+i);
+            ad.setAverageRate(i%5);
             mAdapter.add(ad);
         }
     }

@@ -50,8 +50,8 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder {
 
         //Glide.with(imageView.getContext()).load(activityDetail.getInstitution().getLogoImgUrl()).into(imageView);
         nameView.setText(activityDetail.getName());
-        companyView.setText("SKplanet");
-        classView.setText(activityDetail.getAct());
+        companyView.setText(activityDetail.getCompanyName());
+        classView.setText(activityDetail.getActClass());
         duedateView.setText(activityDetail.getEndDate());
         rateView.setText(activityDetail.getAverageRate()+" ");
 
