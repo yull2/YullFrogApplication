@@ -18,7 +18,6 @@ public class TitleViewHolder extends RecyclerView.ViewHolder {
         titleView = (TextView)itemView;
     }
 
-
     public void setTitle(String title){
         titleView.setText(title);
     }

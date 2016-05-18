@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tabs"
         android:fillViewport="false"
-        app:tabMode="scrollable"
+        app:tabMode="fixed"
         android:layout_below="@+id/image_homemain"
         android:layout_alignParentStart="true" />
 

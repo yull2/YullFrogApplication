@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 
@@ -16,7 +15,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
     ImageView logoImgView;
     TextView nameView, rateView, classView, commentView, commentGoodView,commentBadView;
 
-    DoDetail doBest;
+    DoDetail doDetail;
 
     public DoBestViewHolder(View itemView) {
         super(itemView);
@@ -25,16 +24,16 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         classView = (TextView)itemView.findViewById(R.id.text_class);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
-        commentGoodView = (TextView)itemView.findViewById(R.id.text_commentgood);
+        commentGoodView = (TextView)itemView.findViewById(R.id.text_question);
         commentBadView = (TextView)itemView.findViewById(R.id.text_commentbad);
 
     }
 
     public void setDoBest(DoDetail doDetail){
-        this.doBest = doDetail;
+        this.doDetail = doDetail;
        // Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
         nameView.setText(" ");
-        rateView.setText(doDetail.getRate());
+        rateView.setText(doDetail.getRate()+" ");
         classView.setText(" ");
         commentView.setText(doDetail.getComment());
         commentGoodView.setText(doDetail.getCommentGood());

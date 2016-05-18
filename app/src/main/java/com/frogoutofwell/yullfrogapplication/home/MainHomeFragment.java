@@ -4,12 +4,15 @@ package com.frogoutofwell.yullfrogapplication.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.DoDetail;
+import com.frogoutofwell.yullfrogapplication.data.TestDetail;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,8 +21,10 @@ public class MainHomeFragment extends Fragment {
 
     private static final String ARG_NAME = "param1";
     private String mName;
-    RecyclerView listView;
 
+    RecyclerView listView;
+    MainHomeAdapter mAdapter;
+    LinearLayoutManager mLayoutManager;
 
     public MainHomeFragment() {
         // Required empty public constructor
@@ -40,6 +45,8 @@ public class MainHomeFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
         }
+        mAdapter = new MainHomeAdapter();
+
 
     }
 
@@ -49,8 +56,30 @@ public class MainHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_home, container, false);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
+        listView.setAdapter(mAdapter);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        listView.setLayoutManager(mLayoutManager);
+
+        setData();
 
         return view;
+    }
+
+    private void setData() {
+        DoDetail ad = new DoDetail();
+        ad.setComment("우와아아아아앙 한줄평");
+        ad.setCommentGood("삼성전자 서포터즈 굿굿굿");
+        ad.setCommentBad("삼성전자 서포터즈 baaaaaaaaaaaaad");
+        ad.setRate(4);
+
+        mAdapter.setDoDetail(ad);
+
+        TestDetail at = new TestDetail();
+        at.setLevel(3);
+        at.setQuestion("질문 1 : 왜 지원했죠?");
+        at.setAnswer("ㅇ라어ㅏㅁ렁나러망ㄴ ㅇ라고 대답했어요");
+        mAdapter.setTestDetail(at);
+
     }
 
 }

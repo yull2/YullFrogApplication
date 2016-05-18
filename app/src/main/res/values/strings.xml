@@ -15,4 +15,7 @@
     <string name="title_activity_m">MActivity</string>
     <string name="comment_good_title">도움이된 점</string>
     <string name="comment_bad_title">아쉬운 점</string>
+    <string name="question_title">면접 질문</string>
+    <string name="answer_title">면접 답변</string>
+    <string name="average_rate">평균 만족도</string>
 </resources>
