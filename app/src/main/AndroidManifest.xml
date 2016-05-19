@@ -18,15 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainPagerActivity" />
-        <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MainInterActivity"
-            android:label="@string/title_activity_main_inter"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InterMainActivity"
             android:label="@string/title_activity_inter_main"
@@ -53,11 +44,7 @@
             android:name=".testreview.TestReviewDetailActivity"
             android:label="@string/title_activity_test_review_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".home.EmpActivity" />
-        <activity
-            android:name=".MActivity"
-            android:label="@string/title_activity_m"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".mypage.LikeMoreDetailActivity"></activity>
     </application>
 
 </manifest>

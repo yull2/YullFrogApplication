@@ -6,6 +6,52 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dialog_actclass"
+            android:id="@+id/btn_actclass"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dialog_indus"
+            android:id="@+id/btn_indus"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btn_actclass" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dialog_term"
+            android:id="@+id/btn_term"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btn_indus" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dialog_local"
+            android:id="@+id/btn_local"
+            android:layout_alignBottom="@+id/btn_term"
+            android:layout_toEndOf="@+id/btn_term" />
+    </LinearLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,23 +61,17 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="대외활동"
-        android:layout_gravity="left|bottom"
-        android:id="@+id/textView46"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv_list"
 
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignEnd="@+id/btn_go"
+        android:layout_above="@+id/btn_go">
         </android.support.v7.widget.RecyclerView>
+
+
 
 </RelativeLayout>

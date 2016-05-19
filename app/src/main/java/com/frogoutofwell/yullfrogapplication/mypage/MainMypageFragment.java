@@ -44,10 +44,17 @@ public class MainMypageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new MypageLikeAdapter();
-
+        mAdapter.setOnItemClickListener(new MypageLikeMoreViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view) {
+                Intent intent = new Intent(getContext(), LikeMoreDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -72,12 +79,12 @@ public class MainMypageFragment extends Fragment {
         return view;
     }
     private void setData() {
-        for (int i = 0; i<3;i++){
+        for (int i = 0; i<4;i++){
             ActivityDetail ad = new ActivityDetail();
             ad.setActClass("서포터즈");
             ad.setName("CJ올리브영 서포터즈 "+i);
 
-            mAdapter.add(ad);
+            mAdapter.setLikeItem(ad);
         }
     }
 
