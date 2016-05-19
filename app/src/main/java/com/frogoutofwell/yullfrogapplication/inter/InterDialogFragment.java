@@ -52,8 +52,8 @@ public class InterDialogFragment extends DialogFragment {
         mAdapter = new CategoryDialogAdapter();
         mAdapter.setOnClickListener(new CategoryDialogViewHolder.OnItemClickListener() {
             @Override
-            public void onItemClick(View view) {
-                Toast.makeText(getContext(),"select value : "+view.toString(),Toast.LENGTH_LONG).show();
+            public void onItemClick(View view, String name) {
+                Toast.makeText(getContext(),"select value : "+name,Toast.LENGTH_LONG).show();
                 dismiss();
             }
         });

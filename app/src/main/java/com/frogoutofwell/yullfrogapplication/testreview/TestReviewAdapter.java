@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    public static final int VIEW_TYPE_TEST_LEVEL_IMAGE = 0;
     public static final int VIEW_TYPE_TEST_FIRSTREVIEW = 1;
     public static final int VIEW_TYPE_TEST_SECONDREVIEW = 2;
 
@@ -38,14 +39,19 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) return VIEW_TYPE_TEST_FIRSTREVIEW;
-        if (position != 0) return VIEW_TYPE_TEST_SECONDREVIEW;
+        if (position == 0) return VIEW_TYPE_TEST_LEVEL_IMAGE;
+        if (position == 1) return VIEW_TYPE_TEST_FIRSTREVIEW;
+        if (position > 1) return VIEW_TYPE_TEST_SECONDREVIEW;
         throw new IllegalArgumentException("invalid position");
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case VIEW_TYPE_TEST_LEVEL_IMAGE: {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_inter_level_img, null);
+                return new TestLevelViewHolder(view);
+            }
             case VIEW_TYPE_TEST_FIRSTREVIEW: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_test_review, null);
                 return new TestFirstViewHolder(view);
@@ -61,11 +67,16 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0){
+            TestLevelViewHolder h = (TestLevelViewHolder)holder;
+            h.setLevelImage();
+            return;
+        }
+        if (position == 1){
             TestFirstViewHolder h = (TestFirstViewHolder)holder;
             h.setTestFirst(items.get(position));
             return;
         }
-        if (position != 0){
+        if (position > 1){
             TestSecondViewHolder h = (TestSecondViewHolder)holder;
             h.setTestSecond(items.get(position));
             return;

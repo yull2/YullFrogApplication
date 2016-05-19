@@ -52,16 +52,6 @@
             android:layout_toEndOf="@+id/btn_term" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="대외활동보기"
-        android:id="@+id/btn_go"
-        android:layout_gravity="right|bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +61,5 @@
         android:layout_alignEnd="@+id/btn_go"
         android:layout_above="@+id/btn_go">
         </android.support.v7.widget.RecyclerView>
-
-
 
 </RelativeLayout>

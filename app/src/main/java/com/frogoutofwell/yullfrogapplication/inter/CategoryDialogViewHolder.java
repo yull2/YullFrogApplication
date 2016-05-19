@@ -12,9 +12,10 @@ import com.frogoutofwell.yullfrogapplication.R;
 public class CategoryDialogViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView;
+    String name;
 
     public interface OnItemClickListener {
-        public void onItemClick(View view);
+         public void onItemClick(View view, String name);
     }
 
     OnItemClickListener mListener;
@@ -29,13 +30,14 @@ public class CategoryDialogViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if (mListener != null){
-                    mListener.onItemClick(v);
+                    mListener.onItemClick(v,name);
                 }
             }
         });
     }
 
     public void setDialogItem(String item){
+        this.name = item;
         textView.setText(item);
     }
 }

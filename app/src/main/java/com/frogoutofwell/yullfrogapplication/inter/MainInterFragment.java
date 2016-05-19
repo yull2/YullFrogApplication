@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.frogoutofwell.yullfrogapplication.InterMainActivity;
 import com.frogoutofwell.yullfrogapplication.MainPagerAdapter;
@@ -25,8 +27,8 @@ public class MainInterFragment extends Fragment {
 
     private static final String ARG_NAME = "param1";
     private String mName;
-    RecyclerView listView;
 
+    RecyclerView listView;
     MainInterAdapter mAdapter;
     GridLayoutManager mLayoutManager;
 
@@ -34,7 +36,6 @@ public class MainInterFragment extends Fragment {
     final String[] indus = new String[]{"전체","서비스", "제조, 화학", "의료, 제약, 복지", "유통,무역,운송", "교육", "건설", "IT, 웹, 통신", "미디어, 디자인", "은행, 금융", "기관, 협회"};
     final String[] term = new String[]{"전체", "1개월", "1 ~ 3개월","3 ~ 5개월","6개월~"};
     final String[] local = new String[]{"전체", "서울", "경기", "인천", "부산", "대구", "대전", "광주", "울산", "세종", "강원", "경남"};
-
 
     public MainInterFragment() {
         // Required empty public constructor
@@ -71,6 +72,7 @@ public class MainInterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_inter, container, false);
+
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
@@ -116,6 +118,7 @@ public class MainInterFragment extends Fragment {
         return view;
     }
     private void setData() {
+
         for (int i = 0; i<20;i++){
             ActivityDetail ad = new ActivityDetail();
             ad.setActClass("서포터즈");
