@@ -9,10 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
+import com.frogoutofwell.yullfrogapplication.data.MainHomeResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +73,23 @@ public class MainHomeFragment extends Fragment {
     }
 
     private void setData() {
-        DoDetail ad = new DoDetail();
+        NetworkManager.getInstance().getFrogMainHomeFeed(getContext(), new NetworkManager.OnResultListener<MainHomeResult>() {
+            @Override
+            public void onSuccess(Request request, MainHomeResult result) {
+                mAdapter.setDoDetail(result.doDetail);
+                mAdapter.setTestDetail(result.testDetail);
+               // mAdapter.setActivityImg(result.activityDetail);
+               // mAdapter.clear();
+                //mAdapter.addAll(result.products.productList);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*DoDetail ad = new DoDetail();
         ad.setComment("우와아아아아앙 한줄평");
         ad.setCommentGood("삼성전자 서포터즈 굿굿굿");
         ad.setCommentBad("삼성전자 서포터즈 baaaaaaaaaaaaad");
@@ -78,7 +101,7 @@ public class MainHomeFragment extends Fragment {
         at.setLevel(3);
         at.setQuestion("질문 1 : 왜 지원했죠?");
         at.setAnswer("ㅇ라어ㅏㅁ렁나러망ㄴ ㅇ라고 대답했어요");
-        mAdapter.setTestDetail(at);
+        mAdapter.setTestDetail(at);*/
 
     }
 

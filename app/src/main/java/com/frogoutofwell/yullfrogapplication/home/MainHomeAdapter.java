@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
+
+import java.util.List;
 
 /**
  * Created by Tacademy on 2016-05-16.
@@ -19,8 +22,15 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int VIEW_TYPE_DO_REVIEW = 3;
     public static final int VIEW_TYPE_TEST_REVIEW = 4;
 
+    List<ActivityDetail> activityDetail;
     DoDetail doDetail;
     TestDetail testDetail;
+
+    public void setActivityImg(List<ActivityDetail> activityDetail){
+        this.activityDetail = activityDetail;
+        notifyDataSetChanged();
+    }
+
 
     public void setDoDetail(DoDetail doDetail){
         this.doDetail = doDetail;

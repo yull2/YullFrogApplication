@@ -12,6 +12,9 @@ public class DoDetail {
     public String comment;
     public String commentGood;
     public String commentBad;
+    public String companyName;
+    public String companyLogo;
+    public String activityName;
 
     public int getSeq() {
         return seq;
@@ -75,5 +78,29 @@ public class DoDetail {
 
     public void setCommentBad(String commentBad) {
         this.commentBad = commentBad;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyLogo() {
+        return companyLogo;
+    }
+
+    public void setCompanyLogo(String companyLogo) {
+        this.companyLogo = companyLogo;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 }

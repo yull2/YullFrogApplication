@@ -16,6 +16,7 @@ public class ActivityDetail {
     public int[] totalPostCountStar;
     public int totalInterCount;
     public int totalInterLevel;
+    public String guideImg;
     public String recruitImg;
     public String companyName;
     public String companyLogo;
@@ -138,5 +139,13 @@ public class ActivityDetail {
 
     public void setCompanyLogo(String companyLogo) {
         this.companyLogo = companyLogo;
+    }
+
+    public String getGuideImg() {
+        return guideImg;
+    }
+
+    public void setGuideImg(String guideImg) {
+        this.guideImg = guideImg;
     }
 }

@@ -13,6 +13,9 @@ public class TestDetail {
     public String question;
     public String answer;
     public String way;
+    public String companyName;
+    public String companyLogo;
+    public String activityName;
 
     public int getSeq() {
         return seq;
@@ -84,5 +87,29 @@ public class TestDetail {
 
     public void setWay(String way) {
         this.way = way;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyLogo() {
+        return companyLogo;
+    }
+
+    public void setCompanyLogo(String companyLogo) {
+        this.companyLogo = companyLogo;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 }
