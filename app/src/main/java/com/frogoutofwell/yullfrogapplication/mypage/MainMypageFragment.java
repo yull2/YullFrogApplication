@@ -44,7 +44,6 @@ public class MainMypageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new MypageLikeAdapter();
@@ -67,6 +66,7 @@ public class MainMypageFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
         listView.setLayoutManager(mLayoutManager);
+
         setData();
         Button btn = (Button)view.findViewById(R.id.btn_go);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,8 @@ public class MainMypageFragment extends Fragment {
         return view;
     }
     private void setData() {
-        for (int i = 0; i<4;i++){
+        mAdapter.clear();
+        for (int i = 0; i < 4;i++){
             ActivityDetail ad = new ActivityDetail();
             ad.setActClass("서포터즈");
             ad.setName("CJ올리브영 서포터즈 "+i);

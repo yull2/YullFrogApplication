@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.mypage;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +39,10 @@ public class MypageLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemViewType(int position) {
+        Log.i("position"," position = "+ position);
         if (position >= 0 && position < 3) return VIEW_TYPE_LIKE_ITEM;
         if (position == 3) return VIEW_TYPE_ITEM_MORE;
+
         throw new IllegalArgumentException("invalid position");
     }
 
