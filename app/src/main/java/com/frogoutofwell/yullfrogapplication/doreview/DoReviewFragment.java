@@ -11,11 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
+import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.write.WriteDoActivity;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,7 @@ public class DoReviewFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    TextView countView;
     RecyclerView listView;
     DoReviewAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
@@ -56,6 +64,7 @@ public class DoReviewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_do_review, container, false);
 
+        countView = (TextView)view.findViewById(R.id.text_count);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -75,13 +84,27 @@ public class DoReviewFragment extends Fragment {
     }
 
     private void setData() {
-        for (int i = 1; i<10;i++) {
+        NetworkManager.getInstance().getFrogInterDoReview(getContext(), 2, new NetworkManager.OnResultListener<InterDoReviewResult>() {
+            @Override
+            public void onSuccess(Request request, InterDoReviewResult result) {
+                mAdapter.clear();
+                countView.setText("총 "+result.totalPostCount+" 개의 후기");
+                mAdapter.setCountStar(result.totalPostCountStar);
+                mAdapter.addAll(result.doDetails.doDetail);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+       /* for (int i = 1; i<10;i++) {
             DoDetail at = new DoDetail();
             at.setRate(i%5);
             at.setComment("한줄로 평하면 ㅎ음... "+i);
             at.setCommentGood("이건 ㅓㅈㅇ말정ㅁ라 도움돼요");
             at.setCommentBad("하 정말 아숩아숩아어아앙어워요");
             mAdapter.add(at);
-        }
+        }*/
     }
 }

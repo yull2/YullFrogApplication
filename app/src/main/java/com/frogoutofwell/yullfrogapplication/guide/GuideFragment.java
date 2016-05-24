@@ -4,11 +4,22 @@ package com.frogoutofwell.yullfrogapplication.guide;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
+
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +28,8 @@ public class GuideFragment extends Fragment {
 
     private static final String ARG_NAME = "param1";
     private String mName;
+
+    ImageView guideView;
 
     public GuideFragment() {
         // Required empty public constructor
@@ -43,7 +56,26 @@ public class GuideFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_guide, container, false);
+        guideView = (ImageView)view.findViewById(R.id.img_logo);
+        setData();
         return view;
+    }
+
+    private void setData(){
+       NetworkManager.getInstance().getFrogInterGuide(getContext(), 2,new NetworkManager.OnResultListener<ActivityDetailResult>(){
+
+            @Override
+            public void onSuccess(Request request, ActivityDetailResult result) {
+                String srcImg = result.activityDetail.guideImg;
+                Log.i("Guide Image Url", "Guide Image Url"+srcImg);
+                Glide.with(guideView.getContext()).load(srcImg).into(guideView);
+       }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

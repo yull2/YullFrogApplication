@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 
 /**
@@ -17,7 +18,7 @@ public class TestLevelViewHolder extends RecyclerView.ViewHolder{
         levelView = (ImageView)itemView.findViewById(R.id.img_level);
     }
 
-    public void setLevelImage(){
-
+    public void setLevelImage(String srcImg){
+        Glide.with(levelView.getContext()).load(srcImg).into(levelView);
     }
 }

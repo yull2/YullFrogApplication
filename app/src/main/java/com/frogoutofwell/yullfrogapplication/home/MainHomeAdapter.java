@@ -107,6 +107,10 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 5;
+        int size = 0;
+        if (activityDetail != null) size += activityDetail.size();
+        if (doDetail != null && testDetail != null) return 5;
+
+        return size;
     }
 }

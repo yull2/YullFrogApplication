@@ -6,14 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
-import com.frogoutofwell.yullfrogapplication.data.MainHomeResult;
+
+import com.frogoutofwell.yullfrogapplication.data.MainHomeDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 
@@ -66,18 +69,16 @@ public class MainHomeFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
         listView.setLayoutManager(mLayoutManager);
-
         setData();
-
         return view;
     }
 
     private void setData() {
-        NetworkManager.getInstance().getFrogMainHomeFeed(getContext(), new NetworkManager.OnResultListener<MainHomeResult>() {
+        NetworkManager.getInstance().getFrogMainHomeFeed(getContext(), new NetworkManager.OnResultListener<MainHomeDetailResult>() {
             @Override
-            public void onSuccess(Request request, MainHomeResult result) {
-                mAdapter.setDoDetail(result.doDetail);
-                mAdapter.setTestDetail(result.testDetail);
+            public void onSuccess(Request request, MainHomeDetailResult result) {
+                mAdapter.setDoDetail(result.home.doDetail);
+                mAdapter.setTestDetail(result.home.testDetail);
                // mAdapter.setActivityImg(result.activityDetail);
                // mAdapter.clear();
                 //mAdapter.addAll(result.products.productList);

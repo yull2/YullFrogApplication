@@ -22,10 +22,15 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int VIEW_TYPE_DO_SECONDREVIEW = 3;
 
     List<DoDetail> items = new ArrayList<>();
-
+    int[] counts;
 
     public void clear() {
         items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void setCountStar(int[] star){
+        counts = star;
         notifyDataSetChanged();
     }
 
@@ -43,7 +48,7 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemViewType(int position) {
         if (position == 0) return VIEW_TYPE_DO_RATE;
         if (position == 1) return VIEW_TYPE_DO_FIRSTREVIEW;
-        if (position != 0 && position != 0) return VIEW_TYPE_DO_SECONDREVIEW;
+        if (position > 1 ) return VIEW_TYPE_DO_SECONDREVIEW;
         throw new IllegalArgumentException("invalid position");
     }
 
@@ -78,7 +83,7 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             h.setDoFirst(items.get(position));
             return;
         }
-        if (position != 0 && position != 0){
+        if ( position > 1){
             DoSecondViewHolder h = (DoSecondViewHolder)holder;
             h.setDoSecond(items.get(position));
             return;

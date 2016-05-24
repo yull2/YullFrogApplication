@@ -7,9 +7,18 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class InterMainActivity extends AppCompatActivity {
 
@@ -58,9 +67,23 @@ public class InterMainActivity extends AppCompatActivity {
     }
 
     private void setInterMain(){
-        nameView.setText("삼성전자 마케터");
-        classView.setText("마케터");
-        companyNameView.setText("삼성전자");
+        NetworkManager.getInstance().getFrogInterInfo(this, 20, new NetworkManager.OnResultListener<InterInfoResult>() {
+            @Override
+            public void onSuccess(Request request, InterInfoResult result) {
+               // String srcImg = result.detail.activityDetail.getCompanyLogo();
+                // Log.i("Inter Image Url", "Inter Image Url"+srcImg);
+               // Glide.with(logoView.getContext()).load(srcImg).into(logoView);
+                nameView.setText(result.detail.activityDetail.getName());
+                classView.setText(result.detail.activityDetail.getActClass());
+                companyNameView.setText(result.detail.activityDetail.getCompanyName());
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+
     }
 
 }

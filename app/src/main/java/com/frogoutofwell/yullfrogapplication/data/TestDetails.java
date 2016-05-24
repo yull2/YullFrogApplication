@@ -2,10 +2,12 @@ package com.frogoutofwell.yullfrogapplication.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
- * Created by Tacademy on 2016-05-23.
+ * Created by Tacademy on 2016-05-24.
  */
-public class TestDetailResult {
+public class TestDetails {
     @SerializedName("interview")
-    public TestDetail testDetail;
+    public List<TestDetail> testDetails;
 }

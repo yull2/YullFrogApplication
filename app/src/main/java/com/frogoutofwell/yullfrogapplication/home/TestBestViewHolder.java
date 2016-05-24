@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.home;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
 
     public void setTestBest(TestDetail testDetail){
         this.testDetail = testDetail;
+        Log.i("testDetail","testDetail : "+testDetail);
         // Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
         nameView.setText(" ");
         levelView.setText(testDetail.getLevel()+" ");

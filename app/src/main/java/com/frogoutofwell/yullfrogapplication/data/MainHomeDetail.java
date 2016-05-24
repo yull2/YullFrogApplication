@@ -7,15 +7,15 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-05-23.
  */
-public class MainHomeResult {
+public class MainHomeDetail {
+
     @SerializedName("interview")
     public TestDetail testDetail;
 
     @SerializedName("postscript")
     public DoDetail doDetail;
-
-    @SerializedName("activity")
-    public List<ActivityDetail> activityDetail;
-
+/*
+    @SerializedName("activities")
+    public List<ActivityDetails> activityDetails;*/
 
 }

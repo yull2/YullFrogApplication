@@ -1,5 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.data;
 
+import java.util.Arrays;
+
 /**
  * Created by Tacademy on 2016-05-17.
  */
@@ -147,5 +149,27 @@ public class ActivityDetail {
 
     public void setGuideImg(String guideImg) {
         this.guideImg = guideImg;
+    }
+
+    @Override
+    public String toString() {
+        return "ActivityDetail{" +
+                "seq=" + seq +
+                ", name='" + name + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", averageRate=" + averageRate +
+                ", actClass='" + actClass + '\'' +
+                ", indus='" + indus + '\'' +
+                ", term='" + term + '\'' +
+                ", region='" + region + '\'' +
+                ", totalPostCount=" + totalPostCount +
+                ", totalPostCountStar=" + Arrays.toString(totalPostCountStar) +
+                ", totalInterCount=" + totalInterCount +
+                ", totalInterLevel=" + totalInterLevel +
+                ", guideImg='" + guideImg + '\'' +
+                ", recruitImg='" + recruitImg + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", companyLogo='" + companyLogo + '\'' +
+                '}';
     }
 }

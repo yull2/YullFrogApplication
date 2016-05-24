@@ -11,10 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.InterTestReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.write.WriteTestActivity;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,7 @@ public class TestReviewFragment extends Fragment {
     private String mName;
 
     RecyclerView listView;
+    TextView countView;
     TestReviewAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
 
@@ -54,7 +62,7 @@ public class TestReviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_test_review, container, false);
-
+        countView = (TextView)view.findViewById(R.id.text_count);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -74,7 +82,22 @@ public class TestReviewFragment extends Fragment {
 
 
     private void setData() {
-        for (int i = 0; i<10;i++) {
+        NetworkManager.getInstance().getFrogInterTestReview(getContext(), 2, new NetworkManager.OnResultListener<InterTestReviewResult>() {
+            @Override
+            public void onSuccess(Request request, InterTestReviewResult result) {
+                mAdapter.clear();
+                countView.setText("총 "+result.totalInterCount+" 개의 후기");
+                mAdapter.setLevelImage(result.totalInterLevel);
+                mAdapter.addAll(result.testDetails.testDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+
+        /*for (int i = 0; i<10;i++) {
             TestDetail at = new TestDetail();
             at.setTerm("2015 상반기");
             at.setQuestion("질문 1 왜 지원했죠?---"+i);
@@ -82,7 +105,7 @@ public class TestReviewFragment extends Fragment {
             at.setResult(2);
             at.setAnswer("ㅇ라어ㅏㅁ렁나러망ㄴ ㅇ라고 대답했어요");
             mAdapter.add(at);
-        }
+        }*/
     }
 
 }

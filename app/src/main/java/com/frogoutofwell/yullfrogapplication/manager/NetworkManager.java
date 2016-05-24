@@ -1,12 +1,19 @@
 package com.frogoutofwell.yullfrogapplication.manager;
 
 import android.content.Context;
+import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.MyApplication;
-import com.frogoutofwell.yullfrogapplication.data.MainHomeResult;
+import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
+import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
+import com.frogoutofwell.yullfrogapplication.data.InterTestReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.MainHomeDetailResult;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -98,16 +105,14 @@ public class NetworkManager {
 
     Gson gson = new Gson();
 
-    private static final String FROG_SERVER = "http://52.79.179.176:3000/";
+    private static final String FROG_SERVER = "http://52.79.179.176:3000";
     private static final String FROG_MAIN_HOME = FROG_SERVER+"/homePage";
     public Request getFrogMainHomeFeed(Object tag,
-                                    OnResultListener<MainHomeResult> listener) {
+                                    OnResultListener<MainHomeDetailResult> listener) {
         String url = String.format(FROG_MAIN_HOME);
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        Request request = new Request.Builder().url(url).build();
 
-        final NetworkResult<MainHomeResult> result = new NetworkResult<>();
+        final NetworkResult<MainHomeDetailResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -120,7 +125,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    MainHomeResult data = gson.fromJson(response.body().charStream(), MainHomeResult.class);
+                    String text = response.body().string();
+                    MainHomeDetailResult data = gson.fromJson(text, MainHomeDetailResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -131,5 +137,129 @@ public class NetworkManager {
         return request;
     }
 
+    // 대외활동 상단 정보
+    private static final String FROG_INTER_INFO = FROG_SERVER+"/detailActivity/header/%s";
+    public Request getFrogInterInfo(Object tag, int activitySeq,
+                                          OnResultListener<InterInfoResult> listener) {
+        String url = String.format(FROG_INTER_INFO, activitySeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<InterInfoResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    InterInfoResult data = gson.fromJson(response.body().charStream(), InterInfoResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+
+    // 모집요강
+    private static final String FROG_INTER_GUIDE = FROG_SERVER+"/detailActivity/guide/%s";
+    public Request getFrogInterGuide(Object tag, int activitySeq,
+                                       OnResultListener<ActivityDetailResult> listener) {
+        String url = String.format(FROG_INTER_GUIDE, activitySeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<ActivityDetailResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    ActivityDetailResult data = gson.fromJson(response.body().charStream(), ActivityDetailResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 면접후기
+    private static final String FROG_INTER_TEST_REVIEW = FROG_SERVER+"/detailActivity/interviews/%s";
+    public Request getFrogInterTestReview(Object tag, int activitySeq,
+                                     OnResultListener<InterTestReviewResult> listener) {
+        String url = String.format(FROG_INTER_TEST_REVIEW, activitySeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<InterTestReviewResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    InterTestReviewResult data = gson.fromJson(response.body().charStream(), InterTestReviewResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 활동후기
+    private static final String FROG_INTER_DO_REVIEW = FROG_SERVER+"/detailActivity/postscripts/%s";
+    public Request getFrogInterDoReview(Object tag, int activitySeq,
+                                          OnResultListener<InterDoReviewResult> listener) {
+        String url = String.format(FROG_INTER_DO_REVIEW, activitySeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<InterDoReviewResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    InterDoReviewResult data = gson.fromJson(response.body().charStream(), InterDoReviewResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
 
 }
