@@ -4,9 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
+import com.frogoutofwell.yullfrogapplication.data.MainInterResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class LikeMoreDetailActivity extends AppCompatActivity {
 
@@ -27,13 +34,18 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        for (int i = 0; i < 10;i++){
-            ActivityDetail ad = new ActivityDetail();
-            ad.setActClass("해외봉사");
-            ad.setName("KIV 해외봉사  "+i);
+        NetworkManager.getInstance().getMypageLikeItem(this, 2, new NetworkManager.OnResultListener<MainInterResult>() {
+            @Override
+            public void onSuccess(Request request, MainInterResult result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.activityDetails.activityDetails);
+            }
 
-            mAdapter.add(ad);
-        }
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(LikeMoreDetailActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

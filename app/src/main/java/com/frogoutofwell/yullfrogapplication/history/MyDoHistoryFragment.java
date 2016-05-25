@@ -10,10 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
+import com.frogoutofwell.yullfrogapplication.data.MyDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.doreview.DoReviewDetailActivity;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +31,7 @@ public class MyDoHistoryFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    TextView countView;
     RecyclerView listView;
     MyDoAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
@@ -60,6 +69,8 @@ public class MyDoHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_do_history, container, false);
+
+        countView = (TextView)view.findViewById(R.id.text_count);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -70,14 +81,19 @@ public class MyDoHistoryFragment extends Fragment {
     }
 
     private void setData() {
-        for (int i = 0; i<10;i++){
-            DoDetail ad = new DoDetail();
-            ad.setWriteDate("2016.05." + i);
-            ad.setTerm("2015 하반기");
-            ad.setComment("성장가능성을 높여주고, 많은 경험을 형성할수 있는 기회였어요 .");
-            ad.setRate(i%5);
-            mAdapter.add(ad);
-        }
+        NetworkManager.getInstance().getMyDoReview(getContext(), 1, new NetworkManager.OnResultListener<MyDoReviewResult>() {
+            @Override
+            public void onSuccess(Request request, MyDoReviewResult result) {
+                mAdapter.clear();
+                countView.setText("총 "+result.totalPostCount+"개의 활동후기를 작성하였습니다");
+                mAdapter.addAll(result.doDetails.doDetail);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

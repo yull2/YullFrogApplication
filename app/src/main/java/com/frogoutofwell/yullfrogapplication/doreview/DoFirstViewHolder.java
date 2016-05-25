@@ -17,6 +17,14 @@ public class DoFirstViewHolder extends RecyclerView.ViewHolder {
     RatingBar rateBar;
 
     DoDetail doDetail;
+    public interface OnItemClickListener {
+        public void onItemClick(View view, DoDetail doDetail);
+    }
+
+    OnItemClickListener mListener;
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public DoFirstViewHolder(View itemView) {
         super(itemView);
@@ -25,6 +33,14 @@ public class DoFirstViewHolder extends RecyclerView.ViewHolder {
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
         commentGoodView = (TextView)itemView.findViewById(R.id.text_commentgood);
         commentBadView = (TextView)itemView.findViewById(R.id.text_commentbad);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onItemClick(v,doDetail);
+                }
+            }
+        });
     }
 
     public void setDoFirst(DoDetail doDetail){

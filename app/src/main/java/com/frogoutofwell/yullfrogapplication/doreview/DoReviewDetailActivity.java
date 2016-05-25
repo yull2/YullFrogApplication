@@ -6,11 +6,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.DoDetailResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class DoReviewDetailActivity extends AppCompatActivity {
 
+    TextView commentView, rateView, termView, writeDateView, commentGoodView, commentBadView;
+    RatingBar ratebar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,14 +28,34 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        commentView = (TextView)findViewById(R.id.text_comment);
+        rateView = (TextView)findViewById(R.id.text_rate);
+        termView = (TextView)findViewById(R.id.text_term);
+        writeDateView = (TextView)findViewById(R.id.text_writedate);
+        commentGoodView = (TextView)findViewById(R.id.text_commentgood);
+        commentBadView = (TextView)findViewById(R.id.text_commentbad);
+        ratebar = (RatingBar)findViewById(R.id.ratebar);
+    }
+
+    private void setData() {
+        NetworkManager.getInstance().getInterDoReviewDetail(this, 2, new NetworkManager.OnResultListener<DoDetailResult>() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onSuccess(Request request, DoDetailResult result) {
+                commentView.setText(result.doDetail.getComment());
+                rateView.setText(result.doDetail.getRate() +" ");
+                termView.setText(result.doDetail.getTerm());
+                writeDateView.setText(result.doDetail.getWriteDate());
+                commentGoodView.setText(result.doDetail.getCommentGood());
+                commentBadView.setText(result.doDetail.getCommentBad());
+                ratebar.setRating(result.doDetail.getRate());
             }
-        });*/
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+
     }
 
 }

@@ -11,10 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
+import com.frogoutofwell.yullfrogapplication.data.MainMypageResult;
 import com.frogoutofwell.yullfrogapplication.history.MyHistoryActivity;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +32,7 @@ public class MainMypageFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    TextView pointView;
     RecyclerView listView;
     MypageLikeAdapter mAdapter;
     GridLayoutManager mLayoutManager;
@@ -62,6 +71,7 @@ public class MainMypageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_mypage, container, false);
 
+        pointView = (TextView)view.findViewById(R.id.text_point);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
@@ -79,14 +89,19 @@ public class MainMypageFragment extends Fragment {
         return view;
     }
     private void setData() {
-        mAdapter.clear();
-        for (int i = 0; i < 4;i++){
-            ActivityDetail ad = new ActivityDetail();
-            ad.setActClass("서포터즈");
-            ad.setName("CJ올리브영 서포터즈 "+i);
+        NetworkManager.getInstance().getFrogMainMypage(getContext(), 2, new NetworkManager.OnResultListener<MainMypageResult>() {
+            @Override
+            public void onSuccess(Request request, MainMypageResult result) {
+                mAdapter.clear();
+                pointView.setText("나의 개굴 "+result.point);
+                mAdapter.setLikeItem(result.activityDetails.activityDetails);
+            }
 
-            mAdapter.setLikeItem(ad);
-        }
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

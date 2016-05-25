@@ -14,11 +14,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.InterMainActivity;
 import com.frogoutofwell.yullfrogapplication.MainPagerAdapter;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
+import com.frogoutofwell.yullfrogapplication.data.MainInterResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,56 +84,86 @@ public class MainInterFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
         listView.setLayoutManager(mLayoutManager);
-        setData();
 
-        Button btn_actclass = (Button)view.findViewById(R.id.btn_actclass);
+        final Button btn_actclass = (Button)view.findViewById(R.id.btn_actclass);
         btn_actclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InterDialogFragment f = new InterDialogFragment().newInstance("활동별",actClass);
+                f.setOnItemSelectListener(new InterDialogFragment.OnItemSelectListener() {
+                    @Override
+                    public void onItemSelect(String item) {
+                        btn_actclass.setText(item);
+                    }
+                });
                 f.show(getChildFragmentManager(), "act");
+
             }
         });
 
-        Button btn_indus = (Button)view.findViewById(R.id.btn_indus);
+        final Button btn_indus = (Button)view.findViewById(R.id.btn_indus);
         btn_indus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InterDialogFragment f = new InterDialogFragment().newInstance("산업별",indus);
+                f.setOnItemSelectListener(new InterDialogFragment.OnItemSelectListener() {
+                    @Override
+                    public void onItemSelect(String item) {
+                        btn_indus.setText(item);
+                    }
+                });
                 f.show(getChildFragmentManager(), "indus");
             }
         });
 
-        Button btn_term = (Button)view.findViewById(R.id.btn_term);
+        final Button btn_term = (Button)view.findViewById(R.id.btn_term);
         btn_term.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InterDialogFragment f = new InterDialogFragment().newInstance("기간별",term);
+                f.setOnItemSelectListener(new InterDialogFragment.OnItemSelectListener() {
+                    @Override
+                    public void onItemSelect(String item) {
+                        btn_term.setText(item);
+                    }
+                });
                 f.show(getChildFragmentManager(), "term");
             }
         });
 
-        Button btn_local = (Button)view.findViewById(R.id.btn_local);
+        final Button btn_local = (Button)view.findViewById(R.id.btn_local);
         btn_local.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InterDialogFragment f = new InterDialogFragment().newInstance("지역별",local);
+                f.setOnItemSelectListener(new InterDialogFragment.OnItemSelectListener() {
+                    @Override
+                    public void onItemSelect(String item) {
+                        btn_local.setText(item);
+                    }
+                });
                 f.show(getChildFragmentManager(), "local");
             }
         });
+
+        setData();
 
         return view;
     }
     private void setData() {
 
-        for (int i = 0; i<20;i++){
-            ActivityDetail ad = new ActivityDetail();
-            ad.setActClass("서포터즈");
-            ad.setName("삼성전자 서포터즈 "+i);
-            ad.setEndDate("D - "+i);
-            ad.setAverageRate(i%5);
-            mAdapter.add(ad);
-        }
+        NetworkManager.getInstance().getFrogMainInter(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+            @Override
+            public void onSuccess(Request request, MainInterResult result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.activityDetails.activityDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
@@ -95,7 +96,7 @@ public class DoReviewFragment extends Fragment {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
        /* for (int i = 1; i<10;i++) {

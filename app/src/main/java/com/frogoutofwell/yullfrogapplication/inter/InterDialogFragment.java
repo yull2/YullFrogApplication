@@ -42,6 +42,16 @@ public class InterDialogFragment extends DialogFragment {
     }
 
 
+    public interface OnItemSelectListener {
+        public void onItemSelect(String item);
+    }
+
+    OnItemSelectListener mListener;
+    public void setOnItemSelectListener(OnItemSelectListener listener) {
+        mListener = listener;
+    }
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +64,9 @@ public class InterDialogFragment extends DialogFragment {
             @Override
             public void onItemClick(View view, String name) {
                 Toast.makeText(getContext(),"select value : "+name,Toast.LENGTH_LONG).show();
+                if (mListener != null) {
+                    mListener.onItemSelect(name);
+                }
                 dismiss();
             }
         });

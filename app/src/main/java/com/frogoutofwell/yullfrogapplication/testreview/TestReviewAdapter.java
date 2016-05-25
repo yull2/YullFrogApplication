@@ -42,6 +42,12 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
+    TestFirstViewHolder.OnItemClickListener mListener;
+    public void setOnItemClickListener(TestFirstViewHolder.OnItemClickListener listener){
+        mListener = listener;
+    }
+
+
     @Override
     public int getItemViewType(int position) {
         if (position == 0) return VIEW_TYPE_TEST_LEVEL_IMAGE;
@@ -79,6 +85,7 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (position == 1){
             TestFirstViewHolder h = (TestFirstViewHolder)holder;
             h.setTestFirst(items.get(position));
+            h.setOnItemClickListener(mListener);
             return;
         }
         if (position > 1){

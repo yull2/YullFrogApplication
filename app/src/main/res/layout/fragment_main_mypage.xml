@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="나의 개굴"
-        android:id="@+id/textView41" />
+        android:id="@+id/text_point" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

@@ -10,10 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.InterMainActivity;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
+import com.frogoutofwell.yullfrogapplication.data.MainInterResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,14 +76,18 @@ public class RecommendFragment extends Fragment {
     }
 
     private void setData() {
-        for (int i = 0; i<20;i++){
-            ActivityDetail ad = new ActivityDetail();
-            ad.setActClass("서포터즈");
-            ad.setName("SK 협업 서포터즈 "+i);
-            ad.setEndDate("D - "+i);
-            ad.setAverageRate(i%5);
-            mAdapter.add(ad);
-        }
+        NetworkManager.getInstance().getInterRecommend(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+            @Override
+            public void onSuccess(Request request, MainInterResult result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.activityDetails.activityDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

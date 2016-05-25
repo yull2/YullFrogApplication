@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.InterTestReviewResult;
@@ -55,6 +56,13 @@ public class TestReviewFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new TestReviewAdapter();
+        mAdapter.setOnItemClickListener(new TestFirstViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, TestDetail testDetail) {
+                Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -93,7 +101,7 @@ public class TestReviewFragment extends Fragment {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

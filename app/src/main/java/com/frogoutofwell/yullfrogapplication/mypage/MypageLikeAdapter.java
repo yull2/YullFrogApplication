@@ -27,8 +27,8 @@ public class MypageLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
-    public void setLikeItem(ActivityDetail activityDetail) {
-        items.add(activityDetail);
+    public void setLikeItem(List<ActivityDetail> items) {
+        this.items.addAll(items);
         notifyDataSetChanged();
     }
 
@@ -39,9 +39,8 @@ public class MypageLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemViewType(int position) {
-        Log.i("position"," position = "+ position);
-        if (position >= 0 && position < 3) return VIEW_TYPE_LIKE_ITEM;
-        if (position == 3) return VIEW_TYPE_ITEM_MORE;
+        if (position >= 0 && position != items.size()-1) return VIEW_TYPE_LIKE_ITEM;
+        if (position == items.size()-1) return VIEW_TYPE_ITEM_MORE;
 
         throw new IllegalArgumentException("invalid position");
     }
@@ -63,12 +62,12 @@ public class MypageLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (position >= 0 && position < 3){
+        if (position >= 0 && position != items.size()-1){
             MypageLikeViewHolder h = (MypageLikeViewHolder)holder;
             h.setLikeItem(items.get(position));
             return;
         }
-        if (position == 3){
+        if (position == items.size()-1){
             MypageLikeMoreViewHolder h = (MypageLikeMoreViewHolder)holder;
             h.setOnItemClickListener(mListener);
             return;

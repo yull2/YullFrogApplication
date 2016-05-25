@@ -44,6 +44,11 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    DoFirstViewHolder.OnItemClickListener mListener;
+    public void setOnItemClickListener(DoFirstViewHolder.OnItemClickListener listener){
+        mListener = listener;
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (position == 0) return VIEW_TYPE_DO_RATE;
@@ -81,6 +86,7 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 1){
             DoFirstViewHolder h = (DoFirstViewHolder)holder;
             h.setDoFirst(items.get(position));
+            h.setOnItemClickListener(mListener);
             return;
         }
         if ( position > 1){

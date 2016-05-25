@@ -10,10 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.MyTestReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.testreview.TestReviewDetailActivity;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +31,7 @@ public class MyTestHistoryFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    TextView countView;
     RecyclerView listView;
     MyTestAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
@@ -60,6 +69,7 @@ public class MyTestHistoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_test_history, container, false);
+        countView = (TextView)view.findViewById(R.id.text_count);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -71,14 +81,18 @@ public class MyTestHistoryFragment extends Fragment {
     }
 
     private void setData() {
-        for (int i = 0; i<10;i++){
-            TestDetail ad = new TestDetail();
-            ad.setWriteDate("2016.05." + i);
-            ad.setTerm("2015 하반기");
-            ad.setQuestion("해당 활동을 지원한 동기와 기자단을 통해서 얻고자 하는 것이 무엇입니까?");
-            ad.setLevel(i%5);
-            ad.setResult(i%3);
-            mAdapter.add(ad);
-        }
+        NetworkManager.getInstance().getMyTestReview(getContext(), 1, new NetworkManager.OnResultListener<MyTestReviewResult>() {
+            @Override
+            public void onSuccess(Request request, MyTestReviewResult result) {
+                mAdapter.clear();
+                countView.setText("총 "+result.totalInterCount+"개의 면접후기를 작성하였습니다");
+                mAdapter.addAll(result.testDetails.testDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

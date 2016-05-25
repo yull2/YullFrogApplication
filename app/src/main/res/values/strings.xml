@@ -18,10 +18,12 @@
     <string name="comment_bad_title">아쉬운 점</string>
     <string name="question_title">면접 질문</string>
     <string name="answer_title">면접 답변</string>
+    <string name="test_way">면접 방식</string>
     <string name="average_rate">평균 만족도</string>
     <string name="dialog_actclass">활동</string>
     <string name="dialog_indus">산업</string>
     <string name="dialog_term">기간</string>
     <string name="dialog_local">지역</string>
+
 
 </resources>

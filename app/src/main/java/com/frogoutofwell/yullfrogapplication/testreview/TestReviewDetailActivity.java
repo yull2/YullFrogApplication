@@ -6,10 +6,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class TestReviewDetailActivity extends AppCompatActivity {
+
+    TextView termView, levelView, resultView, questionView, answerView, wayView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +27,33 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        termView = (TextView)findViewById(R.id.text_term);
+        levelView = (TextView)findViewById(R.id.text_level);
+        resultView = (TextView)findViewById(R.id.text_result);
+        questionView = (TextView)findViewById(R.id.text_question);
+        answerView = (TextView)findViewById(R.id.text_answer);
+        wayView = (TextView)findViewById(R.id.text_way);
+
+        setData();
+    }
+    private void setData() {
+        NetworkManager.getInstance().getInterTestReviewDetail(this, 2, new NetworkManager.OnResultListener<TestDetailResult>() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onSuccess(Request request, TestDetailResult result) {
+                termView.setText(result.testDetail.getTerm());
+                levelView.setText(result.testDetail.getLevel() +" ");
+                resultView.setText(result.testDetail.getResult() +" ");
+                questionView.setText(result.testDetail.getQuestion());
+                answerView.setText(result.testDetail.getAnswer());
+                wayView.setText(result.testDetail.getWay());
             }
-        });*/
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+
     }
 
 }
