@@ -6,7 +6,7 @@ package com.frogoutofwell.yullfrogapplication.data;
 public class DoDetail {
     public int seq;
     public int writer;
-    public int rate;
+    public float rate;
     public String term;
     public String writeDate;
     public String comment;
@@ -32,11 +32,11 @@ public class DoDetail {
         this.writer = writer;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 

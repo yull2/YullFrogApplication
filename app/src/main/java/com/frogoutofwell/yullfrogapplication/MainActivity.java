@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(pager);
         tabs.removeAllTabs();
 
-        tabs.addTab(tabs.newTab().setText("홈"));
+        tabs.addTab(tabs.newTab().setText("메인"));
         tabs.addTab(tabs.newTab().setText("대외활동"));
         tabs.addTab(tabs.newTab().setText("마이페이지"));
 

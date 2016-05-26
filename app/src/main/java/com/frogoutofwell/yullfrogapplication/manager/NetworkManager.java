@@ -19,6 +19,7 @@ import com.frogoutofwell.yullfrogapplication.data.MainInterResult;
 import com.frogoutofwell.yullfrogapplication.data.MainMypageResult;
 import com.frogoutofwell.yullfrogapplication.data.MyDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.MyTestReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.ReviewUploadResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
 import com.google.gson.Gson;
 
@@ -32,9 +33,11 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -532,6 +535,143 @@ public class NetworkManager {
                 if (response.isSuccessful()) {
                     MyDoReviewResult data = gson.fromJson(response.body().charStream(), MyDoReviewResult.class);
                     result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 후기작성시 활동 정보 요청
+    private static final String INTER_CLASS_INFO = FROG_SERVER+"/writeFormInfo/%s";
+    public Request getInterClassInfo(Object tag, int activitySeq, OnResultListener<ActivityDetailResult> listener) {
+        String url = String.format(INTER_CLASS_INFO, activitySeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<ActivityDetailResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    ActivityDetailResult data = gson.fromJson(response.body().charStream(), ActivityDetailResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 활동 후기 작성
+    private static final String FROG_DO_REVIEW_POST = FROG_SERVER + "/writePostscript";
+    public Request getFrogDoReviewPost(Object tag,
+                                   int activitySeq,
+                                   int writer,
+                                   float rate,
+                                   String term,
+                                   String comment,
+                                   String commentGood,
+                                   String commentBad,
+                                   OnResultListener<String> listener) {
+        String url = String.format(FROG_DO_REVIEW_POST);
+
+        RequestBody body = new FormBody.Builder()
+                .add("activitySeq", activitySeq+"")
+                .add("writer", writer+"")
+                .add("rate", rate+"")
+                .add("term", term)
+                .add("comment", comment)
+                .add("commentGood", commentGood)
+                .add("commentBad",commentBad)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        final NetworkResult<String> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    ReviewUploadResult data = gson.fromJson(text, ReviewUploadResult.class);
+                    result.result = data.status;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 면접 후기 작성
+    private static final String FROG_TEST_REVIEW_POST = FROG_SERVER + "/writeInterview";
+    public Request getFrogTestReviewPost(Object tag,
+                                       int activitySeq,
+                                       int writer,
+                                       int level, int test_result,
+                                       String term,
+                                       String question,
+                                       String answer,
+                                       String way,
+                                       OnResultListener<String> listener) {
+        String url = String.format(FROG_TEST_REVIEW_POST);
+
+        RequestBody body = new FormBody.Builder()
+                .add("activitySeq", activitySeq+"")
+                .add("writer", writer+"")
+                .add("level", level+"")
+                .add("result", test_result+"")
+                .add("term", term)
+                .add("question", question)
+                .add("answer", answer)
+                .add("way",way)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        final NetworkResult<String> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    ReviewUploadResult data = gson.fromJson(text, ReviewUploadResult.class);
+                    result.result = data.status;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
                     throw new IOException(response.message());
