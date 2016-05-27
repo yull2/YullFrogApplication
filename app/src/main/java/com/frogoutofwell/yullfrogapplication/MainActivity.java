@@ -9,18 +9,28 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabs;
     ViewPager pager;
+    EditText searchView;
+    AutoCompleteTextView searchV;
+    String[] list = {"a","abbbb","adddd","asds","asdssssss","asddddddds","asds","aaaa"};
 
+/*
     private SearchView searchView = null;
-    private SearchView.OnQueryTextListener queryTextListener;
+    private SearchView.OnQueryTextListener queryTextListener;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +59,35 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem searchItem = menu.findItem(R.id.search_item);
+        searchV = (AutoCompleteTextView)searchItem.getActionView().findViewById(R.id.auto_search);
+        searchView = (EditText)searchItem.getActionView().findViewById(R.id.edit_search);
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String keyword = s.toString();
+                Log.i("kkk", "key"+keyword);
+                if (keyword != null){
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        searchV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list));
+
+
+
+
+       /* MenuItem searchItem = menu.findItem(R.id.search_item);
         SearchManager searchManager = (SearchManager) getSystemService(this.SEARCH_SERVICE);
         if (searchItem != null){
             searchView = (SearchView)searchItem.getActionView();
@@ -71,9 +110,10 @@ public class MainActivity extends AppCompatActivity {
             };
             searchView.setOnQueryTextListener(queryTextListener);
 
-        }
+        }*/
 
         return true;
+
     }
 
     @Override
@@ -83,12 +123,16 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.search_item) {
+        if (id == R.id.search_item){
             return false;
         }
 
-        searchView.setOnQueryTextListener(queryTextListener);
+        //noinspection SimplifiableIfStatement
+/*        if (id == R.id.search_item) {
+            return false;
+        }
+
+        searchView.setOnQueryTextListener(queryTextListener);*/
         return super.onOptionsItemSelected(item);
     }
 }

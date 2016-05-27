@@ -13,7 +13,7 @@
     tools:context="com.frogoutofwell.yullfrogapplication.InterMainActivity"
     tools:showIn="@layout/activity_inter_main">
 
-    <RelativeLayout
+<!--    <RelativeLayout
         android:background="@drawable/sample"
         android:layout_width="wrap_content"
         android:layout_height="58dp">
@@ -51,7 +51,7 @@
             android:layout_below="@+id/text_name"
             android:layout_toEndOf="@+id/text_class" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 
     <android.support.design.widget.TabLayout
