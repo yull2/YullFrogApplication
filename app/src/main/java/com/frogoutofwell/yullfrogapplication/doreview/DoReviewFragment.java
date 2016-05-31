@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,8 @@ public class DoReviewFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    int seq;
+
     TextView countView;
     RecyclerView listView;
     DoReviewAdapter mAdapter;
@@ -56,6 +59,10 @@ public class DoReviewFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
         }
+
+        seq = getActivity().getIntent().getIntExtra("seq",1);
+        Log.i("doreviewf","seeeeeeeeeeeq : "+seq );
+
         mAdapter = new DoReviewAdapter();
         mAdapter.setOnItemClickListener(new DoFirstViewHolder.OnFirstItemClickListener() {
             @Override
@@ -99,7 +106,7 @@ public class DoReviewFragment extends Fragment {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getFrogInterDoReview(getContext(), 2, new NetworkManager.OnResultListener<InterDoReviewResult>() {
+        NetworkManager.getInstance().getFrogInterDoReview(getContext(), seq, new NetworkManager.OnResultListener<InterDoReviewResult>() {
             @Override
             public void onSuccess(Request request, InterDoReviewResult result) {
                 mAdapter.clear();

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ public class TestReviewFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    int seq;
+
     RecyclerView listView;
     TextView countView;
     TestReviewAdapter mAdapter;
@@ -55,6 +58,9 @@ public class TestReviewFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
         }
+        seq = getActivity().getIntent().getIntExtra("seq",1);
+        Log.i("testreviewf","seeeeeeeeeeeq : "+seq );
+
         mAdapter = new TestReviewAdapter();
         mAdapter.setOnItemClickListener(new TestFirstViewHolder.OnFirstItemClickListener() {
             @Override
@@ -97,7 +103,7 @@ public class TestReviewFragment extends Fragment {
 
 
     private void setData() {
-        NetworkManager.getInstance().getFrogInterTestReview(getContext(), 2, new NetworkManager.OnResultListener<InterTestReviewResult>() {
+        NetworkManager.getInstance().getFrogInterTestReview(getContext(), seq, new NetworkManager.OnResultListener<InterTestReviewResult>() {
             @Override
             public void onSuccess(Request request, InterTestReviewResult result) {
                 mAdapter.clear();

@@ -57,6 +57,7 @@ public class RecommendFragment extends Fragment {
             @Override
             public void onItemClick(View view, ActivityDetail activityDetail) {
                 Intent intent = new Intent(getContext(), InterMainActivity.class);
+                intent.putExtra("seq",activityDetail.getSeq());
                 startActivity(intent);
             }
         });

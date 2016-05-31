@@ -24,6 +24,8 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("나의 찜 대외활동");
+
         setContentView(R.layout.activity_like_more_detail);
         mAdapter = new LikeMoreAdapter();
         listView = (RecyclerView)findViewById(R.id.rv_list);

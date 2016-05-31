@@ -30,6 +30,8 @@ public class GuideFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
+    int seq;
+
     ImageView guideView;
 
     public GuideFragment() {
@@ -50,8 +52,9 @@ public class GuideFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
         }
+        seq = getActivity().getIntent().getIntExtra("seq",1);
+        Log.i("guidef","seeeeeeeeeeeq : "+seq );
 
-        
     }
 
     @Override
@@ -65,7 +68,7 @@ public class GuideFragment extends Fragment {
     }
 
     private void setData(){
-       NetworkManager.getInstance().getFrogInterGuide(getContext(), 22,new NetworkManager.OnResultListener<ActivityDetailResult>(){
+       NetworkManager.getInstance().getFrogInterGuide(getContext(), seq,new NetworkManager.OnResultListener<ActivityDetailResult>(){
 
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
