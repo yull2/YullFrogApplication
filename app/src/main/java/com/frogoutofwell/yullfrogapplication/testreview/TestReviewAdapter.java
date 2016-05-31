@@ -42,11 +42,15 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
-    TestFirstViewHolder.OnItemClickListener mListener;
-    public void setOnItemClickListener(TestFirstViewHolder.OnItemClickListener listener){
-        mListener = listener;
+    TestFirstViewHolder.OnFirstItemClickListener mfListener;
+    public void setOnItemClickListener(TestFirstViewHolder.OnFirstItemClickListener listener){
+        mfListener = listener;
     }
 
+    TestSecondViewHolder.OnSecondItemClickListener msListener;
+    public void setOnItemClickListener(TestSecondViewHolder.OnSecondItemClickListener listener){
+        msListener = listener;
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -85,12 +89,13 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if (position == 1){
             TestFirstViewHolder h = (TestFirstViewHolder)holder;
             h.setTestFirst(items.get(position));
-            h.setOnItemClickListener(mListener);
+            h.setOnItemClickListener(mfListener);
             return;
         }
         if (position > 1){
             TestSecondViewHolder h = (TestSecondViewHolder)holder;
             h.setTestSecond(items.get(position));
+            h.setOnItemClickListener(msListener);
             return;
         }
     }

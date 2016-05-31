@@ -1,5 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.write;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,7 +32,7 @@ public class WriteTestActivity extends AppCompatActivity {
     Spinner spinner_term, spinner_level;
     RadioGroup radio_result;
     String tmp_term;
-    int tmp_level;
+    int tmp_level,seq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,10 @@ public class WriteTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_write_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        seq = intent.getIntExtra("seq",1);
 
         infoView = (TextView)findViewById(R.id.text_info);
         questionView = (EditText)findViewById(R.id.edit_question);
@@ -102,7 +107,7 @@ public class WriteTestActivity extends AppCompatActivity {
                 if (id == R.id.radio_s) test_result = 0;
                 else test_result = 1;
 
-                reviewUpload(2, 2, level, test_result, term, question, answer, way);
+                reviewUpload(seq, 2, level, test_result, term, question, answer, way);
             }
         });
 
@@ -126,7 +131,7 @@ public class WriteTestActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getInterClassInfo(this, 2, new NetworkManager.OnResultListener<ActivityDetailResult>() {
+        NetworkManager.getInstance().getInterClassInfo(this, seq, new NetworkManager.OnResultListener<ActivityDetailResult>() {
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
                 String actName = result.activityDetail.getName();

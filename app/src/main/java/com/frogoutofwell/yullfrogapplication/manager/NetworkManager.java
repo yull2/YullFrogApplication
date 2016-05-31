@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.MyApplication;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
+import com.frogoutofwell.yullfrogapplication.data.ActivityNameResult;
 import com.frogoutofwell.yullfrogapplication.data.DoDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
@@ -137,6 +138,67 @@ public class NetworkManager {
                 if (response.isSuccessful()) {
                     String text = response.body().string();
                     MainHomeDetailResult data = gson.fromJson(text, MainHomeDetailResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 메인 활동명 리스트
+    private static final String MAIN_ACTIVITY_LIST = FROG_SERVER+"/mainActivityList";
+    public Request getActivityNameList(Object tag, OnResultListener<ActivityNameResult> listener) {
+        String url = String.format(MAIN_ACTIVITY_LIST);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<ActivityNameResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    ActivityNameResult data = gson.fromJson(response.body().charStream(), ActivityNameResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 활동명 검색
+    private static final String MAIN_ACTIVITY_SEARCH = FROG_SERVER+"/homeSearch/%s";
+    public Request getActivitySearch(Object tag, String activityName,
+                                     OnResultListener<ActivityDetailResult> listener) {
+        String url = String.format(MAIN_ACTIVITY_SEARCH, activityName);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<ActivityDetailResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    ActivityDetailResult data = gson.fromJson(response.body().charStream(), ActivityDetailResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {

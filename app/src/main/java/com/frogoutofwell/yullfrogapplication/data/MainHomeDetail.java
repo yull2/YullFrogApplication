@@ -14,8 +14,8 @@ public class MainHomeDetail {
 
     @SerializedName("postscript")
     public DoDetail doDetail;
-/*
+
     @SerializedName("activities")
-    public List<ActivityDetails> activityDetails;*/
+    public ActivityDetails activityDetails;
 
 }

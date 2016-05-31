@@ -11,9 +11,9 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_main_inter">MainInterActivity</string>
     <string name="title_activity_inter_main">InterMainActivity</string>
-    <string name="title_activity_write_do">WriteDoActivity</string>
-    <string name="title_activity_write_test">WriteTestActivity</string>
-    <string name="title_activity_my_history">MyHistoryActivity</string>
+    <string name="title_activity_write_do">활동 후기 작성</string>
+    <string name="title_activity_write_test">면접 후기 작성</string>
+    <string name="title_activity_my_history">활동 내역</string>
     <string name="title_activity_do_review_detail">DoReviewDetailActivity</string>
     <string name="title_activity_test_review_detail">TestReviewDetailActivity</string>
     <string name="title_activity_m">MActivity</string>
@@ -27,6 +27,7 @@
     <string name="test_way">면접 방식</string>
     <string name="test_result">면접 결과</string>
     <string name="test_level">면접 난이도</string>
+    <string name="main_point">메인 알림</string>
     <string name="review_notice">
     안심하세요!
     사용자의 익명성은 철저히 보장됩니다.

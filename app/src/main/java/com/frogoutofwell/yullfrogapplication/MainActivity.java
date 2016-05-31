@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication;
 
 import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,10 +16,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
+import com.frogoutofwell.yullfrogapplication.data.ActivityNameResult;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     EditText searchView;
     AutoCompleteTextView searchV;
-    String[] list = {"a","abbbb","adddd","asds","asdssssss","asddddddds","asds","aaaa"};
+    String[] nameList = {"aa","bb"};
+    String keyword;
 
 /*
     private SearchView searchView = null;
@@ -38,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.main_bi);
 
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);
@@ -49,19 +63,17 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("대외활동"));
         tabs.addTab(tabs.newTab().setText("마이페이지"));
 
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        setActivityList();
 
         MenuItem searchItem = menu.findItem(R.id.search_item);
         searchV = (AutoCompleteTextView)searchItem.getActionView().findViewById(R.id.auto_search);
-        searchView = (EditText)searchItem.getActionView().findViewById(R.id.edit_search);
-        searchView.addTextChangedListener(new TextWatcher() {
+        searchV.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -69,11 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String keyword = s.toString();
-                Log.i("kkk", "key"+keyword);
-                if (keyword != null){
-
-                }
+                keyword = s.toString();
+                Log.i("kkk", "key : " + keyword);
             }
 
             @Override
@@ -82,35 +91,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        searchV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list));
+        Button btn_search = (Button)searchItem.getActionView().findViewById(R.id.btn_search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setActivitySearch(keyword);
+            }
+        });
 
-
-
-
-       /* MenuItem searchItem = menu.findItem(R.id.search_item);
-        SearchManager searchManager = (SearchManager) getSystemService(this.SEARCH_SERVICE);
-        if (searchItem != null){
-            searchView = (SearchView)searchItem.getActionView();
-        }
-        if (searchView != null){
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-            queryTextListener = new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    Log.i("onQueryTextSubmit",query);
-                    return true;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    Log.i("onQueryTextChange",newText);
-                    return true;
-                }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
-
-        }*/
 
         return true;
 
@@ -126,13 +114,38 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.search_item){
             return false;
         }
-
-        //noinspection SimplifiableIfStatement
-/*        if (id == R.id.search_item) {
-            return false;
-        }
-
-        searchView.setOnQueryTextListener(queryTextListener);*/
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setActivityList(){
+        NetworkManager.getInstance().getActivityNameList(this, new NetworkManager.OnResultListener<ActivityNameResult>() {
+            @Override
+            public void onSuccess(Request request, ActivityNameResult result) {
+                nameList = result.activityName;
+                searchV.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, nameList));
+            }
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+    }
+
+    private void setActivitySearch(String keyword){
+        NetworkManager.getInstance().getActivitySearch(this, keyword, new NetworkManager.OnResultListener<ActivityDetailResult>() {
+            @Override
+            public void onSuccess(Request request, ActivityDetailResult result) {
+                int seq = result.activityDetail.getSeq();
+                Intent intent = new Intent(MainActivity.this, InterMainActivity.class);
+                intent.putExtra("seq",seq);
+                //Log.i("mainactivity","seqqqqqqqqqqqq : "+seq);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(MainActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

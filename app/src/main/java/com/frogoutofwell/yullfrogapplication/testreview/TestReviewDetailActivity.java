@@ -26,6 +26,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_review_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         termView = (TextView)findViewById(R.id.text_term);
         levelView = (TextView)findViewById(R.id.text_level);
@@ -40,6 +41,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         NetworkManager.getInstance().getInterTestReviewDetail(this, 2, new NetworkManager.OnResultListener<TestDetailResult>() {
             @Override
             public void onSuccess(Request request, TestDetailResult result) {
+                getSupportActionBar().setTitle(result.testDetail.getActivityName());
                 termView.setText(result.testDetail.getTerm());
                 levelView.setText(result.testDetail.getLevel() +" ");
                 resultView.setText(result.testDetail.getResult() +" ");

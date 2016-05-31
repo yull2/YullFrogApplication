@@ -44,9 +44,14 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    DoFirstViewHolder.OnItemClickListener mListener;
-    public void setOnItemClickListener(DoFirstViewHolder.OnItemClickListener listener){
-        mListener = listener;
+    DoFirstViewHolder.OnFirstItemClickListener mfListener;
+    public void setOnItemClickListener(DoFirstViewHolder.OnFirstItemClickListener listener){
+        mfListener = listener;
+    }
+
+    DoSecondViewHolder.OnSecondItemClickListener msListener;
+    public void setOnItemClickListener(DoSecondViewHolder.OnSecondItemClickListener listener){
+        msListener = listener;
     }
 
     @Override
@@ -86,12 +91,13 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 1){
             DoFirstViewHolder h = (DoFirstViewHolder)holder;
             h.setDoFirst(items.get(position));
-            h.setOnItemClickListener(mListener);
+            h.setOnItemClickListener(mfListener);
             return;
         }
         if ( position > 1){
             DoSecondViewHolder h = (DoSecondViewHolder)holder;
             h.setDoSecond(items.get(position));
+            h.setOnItemClickListener(msListener);
             return;
         }
     }

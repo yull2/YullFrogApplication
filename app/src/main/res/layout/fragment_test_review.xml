@@ -12,14 +12,14 @@
         android:id="@+id/text_count"
         android:text="총 10개 후기" />
 
-    <Button
+  <!--  <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="면접후기작성"
         android:id="@+id/btn_go"
         android:layout_gravity="right"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true" />-->
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

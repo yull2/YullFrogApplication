@@ -42,6 +42,17 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    DoBestViewHolder.OnDetailClickListener doListener;
+    public void setOnDetailClickListener(DoBestViewHolder.OnDetailClickListener listener){
+        doListener = listener;
+    }
+
+    TestBestViewHolder.OnDetailClickListener testListener;
+    public void setOnDetailClickListener(TestBestViewHolder.OnDetailClickListener listener){
+        testListener = listener;
+    }
+
+
 
     @Override
     public int getItemViewType(int position) {
@@ -81,6 +92,7 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         if (position == 0){
             ImageViewHolder h = (ImageViewHolder)holder;
+            h.setHomeImg(activityDetail);
             return;
         }
         if (position == 1){
@@ -91,6 +103,7 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 2){
             DoBestViewHolder h = (DoBestViewHolder)holder;
             h.setDoBest(doDetail);
+            h.setOnDetailClickListener(doListener);
             return;
         }
         if (position == 3){
@@ -101,6 +114,7 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 4){
             TestBestViewHolder h = (TestBestViewHolder)holder;
             h.setTestBest(testDetail);
+            h.setOnDetailClickListener(testListener);
             return;
         }
     }

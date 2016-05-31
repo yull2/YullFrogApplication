@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
-            android:id="@+id/text_class"
+            android:id="@+id/text_result"
             android:layout_below="@+id/text_company"
             android:layout_alignParentStart="true" />
 

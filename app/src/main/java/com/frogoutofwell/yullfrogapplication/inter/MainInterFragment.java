@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class MainInterFragment extends Fragment {
     MainInterAdapter mAdapter;
     GridLayoutManager mLayoutManager;
 
+
     final String[] actClass = new String[]{"전체","해외탐방","국내봉사","해외봉사","강연","멘토링","서포터즈","마케터","홍보대사","기자단","기획단","기타"};
     final String[] indus = new String[]{"전체","서비스", "제조, 화학", "의료, 제약, 복지", "유통,무역,운송", "교육", "건설", "IT, 웹, 통신", "미디어, 디자인", "은행, 금융", "기관, 협회"};
     final String[] term = new String[]{"전체", "1개월", "1 ~ 3개월","3 ~ 5개월","6개월~"};
@@ -62,12 +64,15 @@ public class MainInterFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
         }
+
+
         mAdapter = new MainInterAdapter();
         mAdapter.setOnItemClickListener(new MainInterViewHolder.OnItemClickListener(){
 
             @Override
             public void onItemClick(View view, ActivityDetail activityDetail) {
                 Intent intent = new Intent(getActivity(), InterMainActivity.class);
+                intent.putExtra("seq",activityDetail.getSeq());
                 startActivity(intent);
             }
         });

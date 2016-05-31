@@ -57,6 +57,20 @@ public class DoReviewFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new DoReviewAdapter();
+        mAdapter.setOnItemClickListener(new DoFirstViewHolder.OnFirstItemClickListener() {
+            @Override
+            public void onItemClick(View view, int seq) {
+                Intent intent = new Intent(getContext(), DoReviewDetailActivity.class);
+                intent.putExtra("seq",seq);
+                startActivity(intent);
+            }
+        });
+        mAdapter.setOnItemClickListener(new DoSecondViewHolder.OnSecondItemClickListener() {
+            @Override
+            public void onItemClick(View view, int seq) {
+                Toast.makeText(getContext(), "개굴이 필요합니다",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -73,14 +87,14 @@ public class DoReviewFragment extends Fragment {
         setData();
 
 
-        Button btn = (Button)view.findViewById(R.id.btn_go);
+       /* Button btn = (Button)view.findViewById(R.id.btn_go);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WriteDoActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         return view;
     }
 
@@ -99,13 +113,5 @@ public class DoReviewFragment extends Fragment {
                 Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-       /* for (int i = 1; i<10;i++) {
-            DoDetail at = new DoDetail();
-            at.setRate(i%5);
-            at.setComment("한줄로 평하면 ㅎ음... "+i);
-            at.setCommentGood("이건 ㅓㅈㅇ말정ㅁ라 도움돼요");
-            at.setCommentBad("하 정말 아숩아숩아어아앙어워요");
-            mAdapter.add(at);
-        }*/
     }
 }

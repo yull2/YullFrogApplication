@@ -2,6 +2,7 @@ package com.frogoutofwell.yullfrogapplication.doreview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -17,12 +18,13 @@ public class DoFirstViewHolder extends RecyclerView.ViewHolder {
     RatingBar rateBar;
 
     DoDetail doDetail;
-    public interface OnItemClickListener {
-        public void onItemClick(View view, DoDetail doDetail);
+
+    public interface OnFirstItemClickListener {
+        public void onItemClick(View view, int seq);
     }
 
-    OnItemClickListener mListener;
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    OnFirstItemClickListener mListener;
+    public void setOnItemClickListener(OnFirstItemClickListener listener) {
         mListener = listener;
     }
 
@@ -33,14 +35,16 @@ public class DoFirstViewHolder extends RecyclerView.ViewHolder {
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
         commentGoodView = (TextView)itemView.findViewById(R.id.text_commentgood);
         commentBadView = (TextView)itemView.findViewById(R.id.text_commentbad);
-        itemView.setOnClickListener(new View.OnClickListener() {
+        Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);
+        btn_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onItemClick(v,doDetail);
+                    mListener.onItemClick(v,doDetail.getSeq());
                 }
             }
         });
+
     }
 
     public void setDoFirst(DoDetail doDetail){

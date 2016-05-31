@@ -18,12 +18,12 @@ public class TestFirstViewHolder extends RecyclerView.ViewHolder {
     TextView classInfoView, levelView, resultView, questionView, answerView;
 
     TestDetail testDetail;
-    public interface OnItemClickListener {
-        public void onItemClick(View view, TestDetail testDetail);
+    public interface OnFirstItemClickListener {
+        public void onItemClick(View view, int seq);
     }
 
-    OnItemClickListener mListener;
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    OnFirstItemClickListener mListener;
+    public void setOnItemClickListener(OnFirstItemClickListener listener) {
         mListener = listener;
     }
 
@@ -34,12 +34,12 @@ public class TestFirstViewHolder extends RecyclerView.ViewHolder {
         resultView = (TextView)itemView.findViewById(R.id.text_result);
         questionView = (TextView)itemView.findViewById(R.id.text_question);
         answerView = (TextView)itemView.findViewById(R.id.text_answer);
-        Button btn = (Button)itemView.findViewById(R.id.btn_detail);
-        itemView.setOnClickListener(new View.OnClickListener() {
+        Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);
+        btn_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onItemClick(v,testDetail);
+                    mListener.onItemClick(v,testDetail.getSeq());
                 }
             }
         });

@@ -9,6 +9,12 @@
         android:title="@string/action_search"
         app:showAsAction="always"
         app:actionLayout="@layout/view_toolbar_item"/>
+    <item
+        android:id="@+id/notice"
+        android:icon="@drawable/main_point"
+        android:title="@string/main_point"
+        app:showAsAction="always" />
+
 
   <!--  <item
         android:id="@+id/search_item"

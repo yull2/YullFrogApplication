@@ -22,6 +22,7 @@ public class MyHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_history);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);

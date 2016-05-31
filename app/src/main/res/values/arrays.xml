@@ -9,6 +9,11 @@
         <item>아주 어려움</item>
     </string-array>
 
+    <string-array name="test_result">
+        <item>합격</item>
+        <item>불합격</item>
+    </string-array>
+
     <string-array name="do_term">
         <item></item>
         <item>2016 하반기</item>

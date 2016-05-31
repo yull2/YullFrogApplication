@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ratebar"
+            android:isIndicator="true"
             android:layout_below="@+id/text_rate"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/text_rate" />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="더보기"
-            android:id="@+id/button4"
+            android:id="@+id/btn_detail"
             android:layout_below="@+id/text_commentbad"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>

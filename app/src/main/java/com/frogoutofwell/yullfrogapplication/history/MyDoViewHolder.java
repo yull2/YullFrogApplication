@@ -52,7 +52,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
         this.doDetail = doDetail;
 
         writeDateView.setText(doDetail.getWriteDate());
-        classView.setText("상상 volunteer");
+        classView.setText(doDetail.getCompanyName());
         termView.setText(doDetail.getTerm());
         commentView.setText(doDetail.getComment());
         ratingBar.setRating(doDetail.getRate());

@@ -56,11 +56,18 @@ public class TestReviewFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new TestReviewAdapter();
-        mAdapter.setOnItemClickListener(new TestFirstViewHolder.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new TestFirstViewHolder.OnFirstItemClickListener() {
             @Override
-            public void onItemClick(View view, TestDetail testDetail) {
+            public void onItemClick(View view, int seq) {
                 Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
+                intent.putExtra("seq",seq);
                 startActivity(intent);
+            }
+        });
+        mAdapter.setOnItemClickListener(new TestSecondViewHolder.OnSecondItemClickListener() {
+            @Override
+            public void onItemClick(View view, int seq) {
+                Toast.makeText(getContext(), "개굴이 필요합니다",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -77,14 +84,14 @@ public class TestReviewFragment extends Fragment {
         listView.setLayoutManager(mLayoutManager);
         setData();
 
-        Button btn = (Button)view.findViewById(R.id.btn_go);
+     /*   Button btn = (Button)view.findViewById(R.id.btn_go);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WriteTestActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         return view;
     }
 
@@ -105,15 +112,6 @@ public class TestReviewFragment extends Fragment {
             }
         });
 
-        /*for (int i = 0; i<10;i++) {
-            TestDetail at = new TestDetail();
-            at.setTerm("2015 상반기");
-            at.setQuestion("질문 1 왜 지원했죠?---"+i);
-            at.setLevel(3);
-            at.setResult(2);
-            at.setAnswer("ㅇ라어ㅏㅁ렁나러망ㄴ ㅇ라고 대답했어요");
-            mAdapter.add(at);
-        }*/
     }
 
 }

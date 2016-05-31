@@ -1,5 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.write;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,13 +31,20 @@ public class WriteDoActivity extends AppCompatActivity {
     RatingBar ratebar;
     Spinner spinner_term;
     String tmp_term;
+    int seq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        seq = intent.getIntExtra("seq",1);
+
         setContentView(R.layout.activity_write_do);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Log.i("seeeeeeq","전달되누값 "+ seq);
 
         infoView = (TextView)findViewById(R.id.text_info);
         commentView = (EditText)findViewById(R.id.edit_comment);
@@ -62,7 +70,7 @@ public class WriteDoActivity extends AppCompatActivity {
         ratebar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                Log.i("rating","rating :  "+rating+", ratebar.getRating() :"+ratebar.getRating());
+               // Log.i("rating","rating :  "+rating+", ratebar.getRating() :"+ratebar.getRating());
             }
         });
 
@@ -75,7 +83,7 @@ public class WriteDoActivity extends AppCompatActivity {
                 String commentBad = commentBadView.getText().toString();
                 float rate = ratebar.getRating();
                 String term = tmp_term;
-                reviewUpload(2, 2, rate, term, comment, commentGood, commentBad);
+                reviewUpload(seq, 2, rate, term, comment, commentGood, commentBad);
             }
         });
     }
@@ -85,6 +93,7 @@ public class WriteDoActivity extends AppCompatActivity {
         NetworkManager.getInstance().getFrogDoReviewPost(this, activitySeq, writer, rate, term, comment, commentGood, commentBad, new NetworkManager.OnResultListener<String>() {
             @Override
             public void onSuccess(Request request, String result) {
+                //Log.i("seeeeeeq","전달되누값 "+ seq);
                 String status = result;
                 Toast.makeText(WriteDoActivity.this, "업로드 상태 "+ status, Toast.LENGTH_LONG).show();
             }
@@ -97,7 +106,7 @@ public class WriteDoActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getInterClassInfo(this, 2, new NetworkManager.OnResultListener<ActivityDetailResult>() {
+        NetworkManager.getInstance().getInterClassInfo(this, seq, new NetworkManager.OnResultListener<ActivityDetailResult>() {
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
                 String actName = result.activityDetail.getName();

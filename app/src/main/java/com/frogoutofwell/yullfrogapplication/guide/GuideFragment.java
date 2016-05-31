@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.guide;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,8 @@ public class GuideFragment extends Fragment {
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
         }
+
+        
     }
 
     @Override
@@ -62,7 +65,7 @@ public class GuideFragment extends Fragment {
     }
 
     private void setData(){
-       NetworkManager.getInstance().getFrogInterGuide(getContext(), 2,new NetworkManager.OnResultListener<ActivityDetailResult>(){
+       NetworkManager.getInstance().getFrogInterGuide(getContext(), 22,new NetworkManager.OnResultListener<ActivityDetailResult>(){
 
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {

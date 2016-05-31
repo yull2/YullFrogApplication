@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.frogoutofwell.yullfrogapplication.MyApplication;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 
 import com.frogoutofwell.yullfrogapplication.data.MainHomeDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
+import com.frogoutofwell.yullfrogapplication.doreview.DoReviewDetailActivity;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+import com.frogoutofwell.yullfrogapplication.testreview.TestReviewDetailActivity;
 
 import java.io.IOException;
 
@@ -56,7 +60,24 @@ public class MainHomeFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new MainHomeAdapter();
-
+        mAdapter.setOnDetailClickListener(new DoBestViewHolder.OnDetailClickListener() {
+            @Override
+            public void onItemClick(View view, int seq) {
+                //Log.i("btn","djafkldjlkfa벝ㄴ 22222");
+                Intent intent = new Intent(getContext(), DoReviewDetailActivity.class);
+                intent.putExtra("seq", seq);
+                startActivity(intent);
+            }
+        });
+        mAdapter.setOnDetailClickListener(new TestBestViewHolder.OnDetailClickListener() {
+            @Override
+            public void onItemClick(View view, int seq) {
+                //Log.i("btn","djafkldjlkfa벝ㄴ 22222");
+                Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
+                intent.putExtra("seq", seq);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -79,6 +100,7 @@ public class MainHomeFragment extends Fragment {
             public void onSuccess(Request request, MainHomeDetailResult result) {
                 mAdapter.setDoDetail(result.home.doDetail);
                 mAdapter.setTestDetail(result.home.testDetail);
+                mAdapter.setActivityImg(result.home.activityDetails.activityDetails);
                // mAdapter.setActivityImg(result.activityDetail);
                // mAdapter.clear();
                 //mAdapter.addAll(result.products.productList);
@@ -89,21 +111,6 @@ public class MainHomeFragment extends Fragment {
                 Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        /*DoDetail ad = new DoDetail();
-        ad.setComment("우와아아아아앙 한줄평");
-        ad.setCommentGood("삼성전자 서포터즈 굿굿굿");
-        ad.setCommentBad("삼성전자 서포터즈 baaaaaaaaaaaaad");
-        ad.setRate(4);
-
-        mAdapter.setDoDetail(ad);
-
-        TestDetail at = new TestDetail();
-        at.setLevel(3);
-        at.setQuestion("질문 1 : 왜 지원했죠?");
-        at.setAnswer("ㅇ라어ㅏㅁ렁나러망ㄴ ㅇ라고 대답했어요");
-        mAdapter.setTestDetail(at);*/
-
     }
 
 }

@@ -25,14 +25,14 @@
         android:id="@+id/text_name"
         android:layout_below="@+id/img_logo"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/text_class" />
+        android:layout_toStartOf="@+id/text_result" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/text_class"
+        android:id="@+id/text_result"
         android:layout_below="@+id/img_logo"
         android:layout_alignParentEnd="true" />
     </RelativeLayout>

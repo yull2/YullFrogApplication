@@ -1,7 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.mypage;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ public class MypageLikeViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.img_logo);
         nameView = (TextView) itemView.findViewById(R.id.text_name);
-        classView = (TextView) itemView.findViewById(R.id.text_class);
+        classView = (TextView) itemView.findViewById(R.id.text_result);
     }
 
     public void setLikeItem(ActivityDetail activityDetail) {

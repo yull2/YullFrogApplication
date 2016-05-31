@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1개굴사용"
-            android:id="@+id/button6"
+            android:id="@+id/btn_detail"
             android:layout_below="@+id/text_level"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

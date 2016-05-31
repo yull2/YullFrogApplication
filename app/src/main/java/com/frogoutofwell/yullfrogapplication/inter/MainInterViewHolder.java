@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 
@@ -33,7 +32,7 @@ public class MainInterViewHolder extends RecyclerView.ViewHolder {
         imageView = (ImageView)itemView.findViewById(R.id.img_logo);
         nameView = (TextView)itemView.findViewById(R.id.text_name);
         companyView = (TextView)itemView.findViewById(R.id.text_company);
-        classView = (TextView)itemView.findViewById(R.id.text_class);
+        classView = (TextView)itemView.findViewById(R.id.text_result);
         duedateView = (TextView)itemView.findViewById(R.id.text_due);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         itemView.setOnClickListener(new View.OnClickListener() {
