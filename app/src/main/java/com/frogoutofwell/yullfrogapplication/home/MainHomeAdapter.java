@@ -42,6 +42,11 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    ImageViewHolder.OnItemClickListener mListener;
+    public void setOnItemClickListener(ImageViewHolder.OnItemClickListener listener){
+        mListener = listener;
+    }
+
     DoBestViewHolder.OnDetailClickListener doListener;
     public void setOnDetailClickListener(DoBestViewHolder.OnDetailClickListener listener){
         doListener = listener;
@@ -93,6 +98,7 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 0){
             ImageViewHolder h = (ImageViewHolder)holder;
             h.setHomeImg(activityDetail);
+            h.setOnItemClickListener(mListener);
             return;
         }
         if (position == 1){

@@ -9,12 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
+import com.frogoutofwell.yullfrogapplication.data.LikeStatusResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.write.WriteDoActivity;
 import com.frogoutofwell.yullfrogapplication.write.WriteTestActivity;
@@ -30,6 +33,7 @@ public class InterMainActivity extends AppCompatActivity {
 
     ImageView logoView;
     TextView nameView, classView;
+    MenuItem like_item;
 
     int seq;
 
@@ -118,18 +122,32 @@ public class InterMainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_inter, menu);
 
+        like_item = menu.findItem(R.id.inter_like);
+
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.inter_like :
+                Toast.makeText(this, "interlike click", Toast.LENGTH_SHORT).show();
+                likeStatusChange(seq,2);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setInterMain(){
-        NetworkManager.getInstance().getFrogInterInfo(this, seq, new NetworkManager.OnResultListener<InterInfoResult>() {
+        NetworkManager.getInstance().getFrogInterInfo(this, seq,2, new NetworkManager.OnResultListener<InterInfoResult>() {
             @Override
             public void onSuccess(Request request, InterInfoResult result) {
-               // String srcImg = result.detail.activityDetail.getCompanyLogo();
-                // Log.i("Inter Image Url", "Inter Image Url"+srcImg);
-               // Glide.with(logoView.getContext()).load(srcImg).into(logoView);
+                // Glide.with(InterMainActivity.this).load(result.detail.activityDetail.getCompanyLogo()).into(logoView);
                 nameView.setText(result.detail.activityDetail.getName());
                 classView.setText(result.detail.activityDetail.getActClass()+" / "+result.detail.activityDetail.getCompanyName());
+                if (result.detail.check == 1){
+                    like_item.setIcon(R.drawable.frogicon);
+                }
             }
 
             @Override
@@ -137,7 +155,20 @@ public class InterMainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void likeStatusChange(int activitySeq, int memSeq){
+        NetworkManager.getInstance().getLikeStatusChange(this, activitySeq, memSeq, new NetworkManager.OnResultListener<LikeStatusResult>() {
+            @Override
+            public void onSuccess(Request request, LikeStatusResult result) {
+                // 아이콘 변경 코드 추가 해야 함
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
     }
 
 }

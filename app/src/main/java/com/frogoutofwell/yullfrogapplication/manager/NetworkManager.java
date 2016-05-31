@@ -15,11 +15,13 @@ import com.frogoutofwell.yullfrogapplication.data.DoDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
 import com.frogoutofwell.yullfrogapplication.data.InterTestReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.LikeStatusResult;
 import com.frogoutofwell.yullfrogapplication.data.MainHomeDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.MainInterResult;
 import com.frogoutofwell.yullfrogapplication.data.MainMypageResult;
 import com.frogoutofwell.yullfrogapplication.data.MyDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.MyTestReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.ReviewUploadResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
 import com.google.gson.Gson;
@@ -210,10 +212,10 @@ public class NetworkManager {
     }
 
     // 대외활동 상단 정보
-    private static final String FROG_INTER_INFO = FROG_SERVER+"/detailActivity/header/%s";
-    public Request getFrogInterInfo(Object tag, int activitySeq,
+    private static final String FROG_INTER_INFO = FROG_SERVER+"/detailActivity/header/%s/%s";
+    public Request getFrogInterInfo(Object tag, int activitySeq, int memSeq,
                                           OnResultListener<InterInfoResult> listener) {
-        String url = String.format(FROG_INTER_INFO, activitySeq);
+        String url = String.format(FROG_INTER_INFO, activitySeq, memSeq);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<InterInfoResult> result = new NetworkResult<>();
@@ -457,9 +459,9 @@ public class NetworkManager {
     }
 
     // 대외활동 조건별 검색
-    private static final String FROG_MAIN_INTER_CONDITION = FROG_SERVER+"/conditionsActivity";
-    public Request getFrogMainInterCondition(Object tag, OnResultListener<MainInterResult> listener) {
-        String url = String.format(FROG_MAIN_INTER_CONDITION);
+    private static final String FROG_MAIN_INTER_CONDITION = FROG_SERVER+"/conditionsActivity/%s/%s/%s/%s";
+    public Request getFrogMainInterCondition(Object tag, String actClass, String indus, String term, String local, OnResultListener<MainInterResult> listener) {
+        String url = String.format(FROG_MAIN_INTER_CONDITION, actClass, indus, term, local);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<MainInterResult> result = new NetworkResult<>();
@@ -734,6 +736,66 @@ public class NetworkManager {
                     String text = response.body().string();
                     ReviewUploadResult data = gson.fromJson(text, ReviewUploadResult.class);
                     result.result = data.status;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 나의 개굴 포인트 확인
+    private static final String FROG_POINT_CHECK = FROG_SERVER+"/myPointCheck/%s";
+    public Request getMyPointCheck(Object tag, int memSeq, OnResultListener<PointCheckResult> listener) {
+        String url = String.format(FROG_POINT_CHECK, memSeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<PointCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    PointCheckResult data = gson.fromJson(response.body().charStream(), PointCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 찜한 활동 상태 변경
+    private static final String LIKE_STATUS_CHANGE = FROG_SERVER+"/likeStatusChange/%s/%s";
+    public Request getLikeStatusChange(Object tag, int activitySeq, int memSeq, OnResultListener<LikeStatusResult> listener) {
+        String url = String.format(LIKE_STATUS_CHANGE, activitySeq, memSeq);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<LikeStatusResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    LikeStatusResult data = gson.fromJson(response.body().charStream(), LikeStatusResult.class);
+                    result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
                     throw new IOException(response.message());

@@ -19,6 +19,7 @@ import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.write.WriteDoActivity;
 
@@ -75,7 +76,7 @@ public class DoReviewFragment extends Fragment {
         mAdapter.setOnItemClickListener(new DoSecondViewHolder.OnSecondItemClickListener() {
             @Override
             public void onItemClick(View view, int seq) {
-                Toast.makeText(getContext(), "개굴이 필요합니다",Toast.LENGTH_SHORT).show();
+                getPossible();
             }
         });
     }
@@ -121,4 +122,27 @@ public class DoReviewFragment extends Fragment {
             }
         });
     }
+
+
+    private void getPossible(){
+        NetworkManager.getInstance().getMyPointCheck(getContext(), 2, new NetworkManager.OnResultListener<PointCheckResult>() {
+            @Override
+            public void onSuccess(Request request, PointCheckResult result) {
+                if (!result.status.equals("OK")){
+                    Intent intent = new Intent(getContext(), DoReviewDetailActivity.class);
+                    intent.putExtra("seq",seq);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+    }
+
 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.InterTestReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.write.WriteTestActivity;
@@ -73,7 +74,7 @@ public class TestReviewFragment extends Fragment {
         mAdapter.setOnItemClickListener(new TestSecondViewHolder.OnSecondItemClickListener() {
             @Override
             public void onItemClick(View view, int seq) {
-                Toast.makeText(getContext(), "개굴이 필요합니다",Toast.LENGTH_SHORT).show();
+                getPossible();
             }
         });
     }
@@ -117,7 +118,27 @@ public class TestReviewFragment extends Fragment {
                 Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void getPossible(){
+        NetworkManager.getInstance().getMyPointCheck(getContext(), 2, new NetworkManager.OnResultListener<PointCheckResult>() {
+            @Override
+            public void onSuccess(Request request, PointCheckResult result) {
+                if (result.status.equals("OK")){
+                    Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
+                    intent.putExtra("seq",seq);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
     }
 
 }

@@ -64,15 +64,15 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_TEST_LEVEL_IMAGE: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_inter_level_img, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_inter_level_img, parent, false);
                 return new TestLevelViewHolder(view);
             }
             case VIEW_TYPE_TEST_FIRSTREVIEW: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_test_review, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_test_review,  parent, false);
                 return new TestFirstViewHolder(view);
             }
             case VIEW_TYPE_TEST_SECONDREVIEW: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_test_reviews, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_test_reviews,  parent, false);
                 return new TestSecondViewHolder(view);
             }
         }

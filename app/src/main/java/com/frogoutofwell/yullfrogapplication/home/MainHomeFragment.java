@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.frogoutofwell.yullfrogapplication.InterMainActivity;
 import com.frogoutofwell.yullfrogapplication.MyApplication;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
@@ -60,6 +61,14 @@ public class MainHomeFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         mAdapter = new MainHomeAdapter();
+        mAdapter.setOnItemClickListener(new ImageViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int seq) {
+                Intent intent = new Intent(getContext(), InterMainActivity.class);
+                intent.putExtra("seq",seq);
+                startActivity(intent);
+            }
+        });
         mAdapter.setOnDetailClickListener(new DoBestViewHolder.OnDetailClickListener() {
             @Override
             public void onItemClick(View view, int seq) {

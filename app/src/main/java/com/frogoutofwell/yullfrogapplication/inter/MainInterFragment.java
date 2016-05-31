@@ -46,6 +46,7 @@ public class MainInterFragment extends Fragment {
     final String[] term = new String[]{"전체", "1개월", "1 ~ 3개월","3 ~ 5개월","6개월~"};
     final String[] local = new String[]{"전체", "서울", "경기", "인천", "부산", "대구", "대전", "광주", "울산", "세종", "강원", "경남"};
 
+    String key_act, key_indus, key_term, key_local;
     public MainInterFragment() {
         // Required empty public constructor
     }
@@ -99,6 +100,9 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_actclass.setText(item);
+                        key_act = item;
+                        setConditionData(key_act, key_indus, key_term, key_local);
+
                     }
                 });
                 f.show(getChildFragmentManager(), "act");
@@ -115,6 +119,8 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_indus.setText(item);
+                        key_indus = item;
+                        setConditionData(key_act, key_indus, key_term, key_local);
                     }
                 });
                 f.show(getChildFragmentManager(), "indus");
@@ -130,6 +136,8 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_term.setText(item);
+                        key_term = item;
+                        setConditionData(key_act, key_indus, key_term, key_local);
                     }
                 });
                 f.show(getChildFragmentManager(), "term");
@@ -145,6 +153,8 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_local.setText(item);
+                        key_local = item;
+                        setConditionData(key_act, key_indus, key_term, key_local);
                     }
                 });
                 f.show(getChildFragmentManager(), "local");
@@ -156,8 +166,22 @@ public class MainInterFragment extends Fragment {
         return view;
     }
     private void setData() {
-
         NetworkManager.getInstance().getFrogMainInter(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+            @Override
+            public void onSuccess(Request request, MainInterResult result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.activityDetails.activityDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setConditionData(String key_act, String key_indus, String key_term, String key_local) {
+        NetworkManager.getInstance().getFrogMainInterCondition(getContext(), key_act, key_indus, key_term, key_local, new NetworkManager.OnResultListener<MainInterResult>() {
             @Override
             public void onSuccess(Request request, MainInterResult result) {
                 mAdapter.clear();
