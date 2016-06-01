@@ -5,10 +5,10 @@
     <string name="action_like">찜</string>
     <string name="action_share">공유하기</string>
     <string name="action_info">대외활동 정보</string>
+    <string name="action_save">저장하기</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main2">Main2Activity</string>
+
     <string name="title_activity_main_inter">MainInterActivity</string>
     <string name="title_activity_inter_main">InterMainActivity</string>
     <string name="title_activity_write_do">활동 후기 작성</string>
@@ -16,7 +16,11 @@
     <string name="title_activity_my_history">활동 내역</string>
     <string name="title_activity_do_review_detail">DoReviewDetailActivity</string>
     <string name="title_activity_test_review_detail">TestReviewDetailActivity</string>
-    <string name="title_activity_m">MActivity</string>
+    <string name="title_activity_account">계정</string>
+    <string name="title_activity_setting">환경설정</string>
+    <string name="title_activity_actclass_change">관심 대외활동</string>
+    <string name="title_activity_indus_change">관심 산업군</string>
+
     <string name="do_term">활동 시기</string>
     <string name="do_rate">활동 총 평점</string>
     <string name="comment_title">활동 한 줄 평</string>
@@ -38,6 +42,26 @@
     <string name="dialog_indus">산업</string>
     <string name="dialog_term">기간</string>
     <string name="dialog_local">지역</string>
+    <string name="account_confirm">대학교 이메일 인증</string>
+    <string name="account_pwchange">비밀번호 변경</string>
+    <string name="account_dropout">회원 탈퇴</string>
+    <string name="account_actclass">관심 대외활동</string>
+    <string name="account_indus">관심 산업군</string>
+    <string name="account_logout">로그아웃</string>
+    <string name="cancel">취소</string>
+    <string name="save">저장</string>
+    <string name="current_pw">현재 비밀번호</string>
+    <string name="new_password">새 비밀번호</string>
+    <string name="new_pw_check">새 비밀번호 확인</string>
+    <string name="notice_setting">알림 설정</string>
+    <string name="notice_mobile">모바일 알림</string>
+    <string name="notice_email">이메일 알림</string>
+    <string name="service_guide">서비스 이용안내</string>
+    <string name="notice">공지사항</string>
+    <string name="agreement">약관 및 정책</string>
+    <string name="guide_info">커뮤니티 가이드라인</string>
+    <string name="version_info">버전정보</string>
+
 
 
 </resources>

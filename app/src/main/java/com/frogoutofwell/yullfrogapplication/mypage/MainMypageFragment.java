@@ -15,10 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
-import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
+import com.frogoutofwell.yullfrogapplication.account.AccountActivity;
 import com.frogoutofwell.yullfrogapplication.data.MainMypageResult;
 import com.frogoutofwell.yullfrogapplication.history.MyHistoryActivity;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+import com.frogoutofwell.yullfrogapplication.setting.SettingActivity;
 
 import java.io.IOException;
 
@@ -78,14 +79,33 @@ public class MainMypageFragment extends Fragment {
         listView.setLayoutManager(mLayoutManager);
 
         setData();
-        Button btn = (Button)view.findViewById(R.id.btn_go);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button btn_history = (Button)view.findViewById(R.id.btn_history);
+        btn_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyHistoryActivity.class);
                 startActivity(intent);
             }
         });
+
+        Button btn_account = (Button)view.findViewById(R.id.btn_account);
+        btn_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btn_setting = (Button)view.findViewById(R.id.btn_setting);
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
     private void setData() {

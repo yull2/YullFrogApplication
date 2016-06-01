@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.MyApplication;
@@ -23,6 +24,7 @@ import com.frogoutofwell.yullfrogapplication.data.MyDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.MyTestReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.ReviewUploadResult;
+import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
 import com.google.gson.Gson;
 
@@ -795,6 +797,111 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     LikeStatusResult data = gson.fromJson(response.body().charStream(), LikeStatusResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 관심 대외활동 등록
+    private static final String ACTCLASS_CHANGE = FROG_SERVER + "/actClassChange/%s";
+    public Request getMyActclassChange(Object tag,
+                                       int memSeq,
+                                       SparseBooleanArray array,
+                                       OnResultListener<StatusCheckResult> listener) {
+        String url = String.format(ACTCLASS_CHANGE,memSeq);
+
+        RequestBody body = new FormBody.Builder()
+                .add("all", array.get(0)+"")
+                .add("item", array.get(1)+"")
+                .add("item", array.get(2)+"")
+                .add("item", array.get(3)+"")
+                .add("item", array.get(4)+"")
+                .add("item", array.get(5)+"")
+                .add("item", array.get(6)+"")
+                .add("item", array.get(7)+"")
+                .add("item", array.get(8)+"")
+                .add("item", array.get(9)+"")
+                .add("item", array.get(10)+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+
+    // 관심 산업군 등록
+    private static final String INDUS_CHANGE = FROG_SERVER + "/indusChange/%s";
+    public Request getMyIndusChange(Object tag,
+                                       int memSeq,
+                                       SparseBooleanArray array,
+                                       OnResultListener<StatusCheckResult> listener) {
+        String url = String.format(INDUS_CHANGE,memSeq);
+
+        RequestBody body = new FormBody.Builder()
+                .add("all", array.get(0)+"")
+                .add("item", array.get(1)+"")
+                .add("item", array.get(2)+"")
+                .add("item", array.get(3)+"")
+                .add("item", array.get(4)+"")
+                .add("item", array.get(5)+"")
+                .add("item", array.get(6)+"")
+                .add("item", array.get(7)+"")
+                .add("item", array.get(8)+"")
+                .add("item", array.get(9)+"")
+                .add("item", array.get(10)+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {

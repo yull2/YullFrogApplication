@@ -58,8 +58,8 @@
         android:id="@+id/rv_list"
 
         android:layout_below="@+id/linearLayout"
-        android:layout_alignEnd="@+id/btn_go"
-        android:layout_above="@+id/btn_go">
+        android:layout_alignEnd="@+id/btn_history"
+        android:layout_above="@+id/btn_history">
         </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

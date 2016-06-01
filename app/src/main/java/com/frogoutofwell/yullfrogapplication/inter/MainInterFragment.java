@@ -2,6 +2,7 @@ package com.frogoutofwell.yullfrogapplication.inter;
 
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,11 +42,13 @@ public class MainInterFragment extends Fragment {
     GridLayoutManager mLayoutManager;
 
 
-    final String[] actClass = new String[]{"전체","해외탐방","국내봉사","해외봉사","강연","멘토링","서포터즈","마케터","홍보대사","기자단","기획단","기타"};
+    /*final String[] actClass = new String[]{"전체","해외탐방","국내봉사","해외봉사","강연","멘토링","서포터즈","마케터","홍보대사","기자단","기획단","기타"};
     final String[] indus = new String[]{"전체","서비스", "제조, 화학", "의료, 제약, 복지", "유통,무역,운송", "교육", "건설", "IT, 웹, 통신", "미디어, 디자인", "은행, 금융", "기관, 협회"};
     final String[] term = new String[]{"전체", "1개월", "1 ~ 3개월","3 ~ 5개월","6개월~"};
     final String[] local = new String[]{"전체", "서울", "경기", "인천", "부산", "대구", "대전", "광주", "울산", "세종", "강원", "경남"};
+*/
 
+    String[] actClass, indus, term, local;
     String key_act, key_indus, key_term, key_local;
     public MainInterFragment() {
         // Required empty public constructor
@@ -66,6 +69,11 @@ public class MainInterFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
 
+        Resources res = getResources();
+        actClass = res.getStringArray(R.array.actclass);
+        indus = res.getStringArray(R.array.indus);
+        term = res.getStringArray(R.array.term);
+        local = res.getStringArray(R.array.local);
 
         mAdapter = new MainInterAdapter();
         mAdapter.setOnItemClickListener(new MainInterViewHolder.OnItemClickListener(){

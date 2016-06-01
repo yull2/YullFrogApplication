@@ -43,8 +43,9 @@ public class InterMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inter_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent intent = getIntent();
         seq = intent.getIntExtra("seq",1);
@@ -121,7 +122,6 @@ public class InterMainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_inter, menu);
-
         like_item = menu.findItem(R.id.inter_like);
 
         return true;
@@ -129,12 +129,22 @@ public class InterMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        if (id == R.id.inter_like){
+            Toast.makeText(this, "interlike click", Toast.LENGTH_SHORT).show();
+            likeStatusChange(seq,2);
+            return true;
+        }
+       /* switch (item.getItemId()) {
+            case android.R.id.home : finish(); break;
             case R.id.inter_like :
                 Toast.makeText(this, "interlike click", Toast.LENGTH_SHORT).show();
                 likeStatusChange(seq,2);
                 return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

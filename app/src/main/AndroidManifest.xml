@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.frogoutofwell.yullfrogapplication" >
+    package="com.frogoutofwell.yullfrogapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -47,7 +47,24 @@
             android:name=".testreview.TestReviewDetailActivity"
             android:label="@string/title_activity_test_review_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".mypage.LikeMoreDetailActivity"></activity>
+        <activity android:name=".mypage.LikeMoreDetailActivity" />
+        <activity
+            android:name=".account.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".account.PWChangeActivity" />
+        <activity
+            android:name=".setting.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".account.ActclassChangeActivity"
+            android:label="@string/title_activity_actclass_change"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".account.IndusChangeActivity"
+            android:label="@string/title_activity_indus_change"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
