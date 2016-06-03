@@ -26,10 +26,13 @@ import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.ReviewUploadResult;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
+import com.frogoutofwell.yullfrogapplication.login.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.List;
@@ -972,5 +975,157 @@ public class NetworkManager {
         return request;
     }
 
+    // 로그인
+    private static final String URL_SIGN_IN = FROG_SERVER + "/login";
+    public Request signIn(Object tag, String email, String password, OnResultListener<StatusCheckResult> listener) {
+        RequestBody body = new FormBody.Builder()
+                .add("email", email)
+                .add("password", password)
+                .build();
 
+        Request request = new Request.Builder()
+                .url(URL_SIGN_IN)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 회원가입
+    private static final String URL_SIGN_UP = FROG_SERVER + "/signUp";
+    public Request signUp(Object tag, String email, String password, OnResultListener<StatusCheckResult> listener) {
+        RequestBody body = new FormBody.Builder()
+                .add("email", email)
+                .add("password", password)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(URL_SIGN_UP)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 약관 동의
+    private static final String URL_USER_AGREEMENT = FROG_SERVER + "/quotation";
+    public Request getUserAgreement(Object tag, String email, int res, OnResultListener<StatusCheckResult> listener) {
+
+        RequestBody body = new FormBody.Builder()
+                .add("email", email)
+                .add("res", res+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(URL_USER_AGREEMENT)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 대학생 인증
+    private static final String URL_STUDENT_CONFIRM = FROG_SERVER + "/studentConfirm";
+    public Request getStudentConfirm(Object tag, String email, String sEmail, OnResultListener<StatusCheckResult> listener) {
+
+        RequestBody body = new FormBody.Builder()
+                .add("email", email)
+                .add("studentEmail", sEmail)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(URL_STUDENT_CONFIRM)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
 }

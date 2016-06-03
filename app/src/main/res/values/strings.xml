@@ -20,6 +20,8 @@
     <string name="title_activity_setting">환경설정</string>
     <string name="title_activity_actclass_change">관심 대외활동</string>
     <string name="title_activity_indus_change">관심 산업군</string>
+    <string name="title_activity_agreement">회원가입</string>
+    <string name="title_activity_student_confirm">회원가입</string>
 
     <string name="do_term">활동 시기</string>
     <string name="do_rate">활동 총 평점</string>
@@ -62,6 +64,13 @@
     <string name="guide_info">커뮤니티 가이드라인</string>
     <string name="version_info">버전정보</string>
 
-
+    <string name="agree_essential">이용약관 동의(필수)</string>
+    <string name="agree_look">개인정보 수집 및 이용 동의</string>
+    <string name="agree_look1">필수적 개인정보 수집 및 이용 동의</string>
+    <string name="agree_look2">선택적 개인정보 수집 및 이용 동의</string>
+    <string name="agree_select">광고성 정보 수신 동의 (선택)</string>
+    <string name="agree_select_detail">동의하지 않더라도 우물밖 개구리의 서비스를 정상적으로 이용이 가능합니다.</string>
+    <string name="student_confirm">대학교 이메일 인증</string>
+    <string name="student_confirm_ok">인증확인</string>
 
 </resources>
