@@ -1,65 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:cardElevation="4dp">
+    android:orientation="vertical" android:layout_width="160dp"
+    android:layout_height="240dp"
+    app:cardElevation="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="165dp"
             android:src="@mipmap/ic_launcher"
             android:id="@+id/img_logo"
             android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_alignEnd="@+id/text_name" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/text_name"
             android:layout_below="@+id/img_logo"
+            android:layout_marginStart="14dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="9dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
+            android:text="com"
             android:id="@+id/text_company"
             android:layout_below="@+id/text_name"
-            android:layout_alignParentStart="true" />
+           android:layout_marginStart="14dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="14dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
-            android:id="@+id/text_result"
+            android:text="act"
+            android:id="@+id/text_info"
+            android:layout_marginStart="14dp"
             android:layout_below="@+id/text_company"
             android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="14dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
+            android:text="d"
             android:id="@+id/text_due"
             android:layout_below="@+id/text_company"
             android:layout_centerHorizontal="true" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="3"
             android:id="@+id/text_rate"
+            android:gravity="end"
+            android:paddingEnd="7dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/main_starbox"
             android:layout_alignTop="@+id/text_company"
             android:layout_alignParentEnd="true" />
 

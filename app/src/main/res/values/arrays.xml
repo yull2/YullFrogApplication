@@ -9,6 +9,11 @@
         <item>아주 어려움</item>
     </string-array>
 
+    <string-array name="inter_sort">
+        <item>후기 많은 순</item>
+        <item>별점 높은 순</item>
+    </string-array>
+
     <string-array name="test_result">
         <item>합격</item>
         <item>불합격</item>

@@ -8,12 +8,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +45,8 @@ public class MainInterFragment extends Fragment {
     MainInterAdapter mAdapter;
     GridLayoutManager mLayoutManager;
 
+    ListPopupWindow listPopup;
+
 
     /*final String[] actClass = new String[]{"전체","해외탐방","국내봉사","해외봉사","강연","멘토링","서포터즈","마케터","홍보대사","기자단","기획단","기타"};
     final String[] indus = new String[]{"전체","서비스", "제조, 화학", "의료, 제약, 복지", "유통,무역,운송", "교육", "건설", "IT, 웹, 통신", "미디어, 디자인", "은행, 금융", "기관, 협회"};
@@ -48,8 +54,9 @@ public class MainInterFragment extends Fragment {
     final String[] local = new String[]{"전체", "서울", "경기", "인천", "부산", "대구", "대전", "광주", "울산", "세종", "강원", "경남"};
 */
 
-    String[] actClass, indus, term, local;
+    String[] actClass, indus, term, local, sortList;
     String key_act, key_indus, key_term, key_local;
+
     public MainInterFragment() {
         // Required empty public constructor
     }
@@ -74,6 +81,7 @@ public class MainInterFragment extends Fragment {
         indus = res.getStringArray(R.array.indus);
         term = res.getStringArray(R.array.term);
         local = res.getStringArray(R.array.local);
+        sortList = res.getStringArray(R.array.inter_sort);
 
         mAdapter = new MainInterAdapter();
         mAdapter.setOnItemClickListener(new MainInterViewHolder.OnItemClickListener(){
@@ -85,6 +93,8 @@ public class MainInterFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
 
     }
 
@@ -169,6 +179,30 @@ public class MainInterFragment extends Fragment {
             }
         });
 
+        listPopup = new ListPopupWindow(getContext());
+        Button btn_sort = (Button)view.findViewById(R.id.btn_sort);
+        btn_sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listPopup.show();
+            }
+        });
+        listPopup.setAnchorView(btn_sort);
+        listPopup.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, sortList));
+        listPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    setSortRate();
+                    listPopup.dismiss();
+                }
+                if (position == 1){
+                    setSortStar();
+                    listPopup.dismiss();
+                }
+            }
+        });
+
         setData();
 
         return view;
@@ -203,4 +237,35 @@ public class MainInterFragment extends Fragment {
         });
     }
 
+    private void setSortRate(){
+        Toast.makeText(getContext(),"후기 많은순",Toast.LENGTH_SHORT).show();
+        NetworkManager.getInstance().getSortHighRate(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+            @Override
+            public void onSuccess(Request request, MainInterResult result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.activityDetails.activityDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+    }
+
+    private void setSortStar(){
+        Toast.makeText(getContext(),"별점높은순 ",Toast.LENGTH_SHORT).show();
+        NetworkManager.getInstance().getSortHighStar(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+            @Override
+            public void onSuccess(Request request, MainInterResult result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.activityDetails.activityDetails);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
+    }
 }

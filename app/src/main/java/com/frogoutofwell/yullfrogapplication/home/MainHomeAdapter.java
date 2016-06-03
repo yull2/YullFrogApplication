@@ -77,15 +77,15 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new ImageViewHolder(view);
             }
             case VIEW_TYPE_TITLE : {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_home_title, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_home_title, parent, false);
                 return new TitleViewHolder(view);
             }
             case VIEW_TYPE_DO_REVIEW : {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_best_do_review, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_best_do_review, parent, false);
                 return new DoBestViewHolder(view);
             }
             case VIEW_TYPE_TEST_REVIEW : {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_best_test_review, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_best_test_review, parent, false);
                 return new TestBestViewHolder(view);
             }
         }

@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("대외활동"));
         tabs.addTab(tabs.newTab().setText("마이페이지"));
 
+        tabs.setBackgroundResource(R.color.colorMainTabs);
     }
 
     @Override

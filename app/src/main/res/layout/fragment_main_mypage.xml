@@ -1,44 +1,72 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".mypage.MainMypageFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="나의 개굴"
-        android:id="@+id/text_point" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="328dp"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/individual_bg_01point33"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/text_point" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rv_list">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="찜 대외활동"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="328dp"
+                android:layout_height="448dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
 
+                android:paddingTop="30dp"
+                android:id="@+id/rv_list">
 
-    </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+        <Button
+            android:layout_width="328dp"
+            android:layout_height="48dp"
+            android:text=""
+            android:background="@drawable/individual_bg_03activity33"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_history" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="활동내역"
-        android:id="@+id/btn_history" />
+        <Button
+            android:layout_width="328dp"
+            android:layout_height="48dp"
+            android:text=""
+            android:background="@drawable/individual_bg_04account33"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_account" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="계정"
-        android:id="@+id/btn_account" />
+        <Button
+            android:layout_width="328dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/individual_bg_05setting33"
+            android:id="@+id/btn_setting" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="환경설정"
-        android:id="@+id/btn_setting" />
-
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

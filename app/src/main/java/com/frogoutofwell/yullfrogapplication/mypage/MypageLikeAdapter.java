@@ -49,11 +49,11 @@ public class MypageLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_LIKE_ITEM: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_like_doitem, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_like_doitem, parent, false);
                 return new MypageLikeViewHolder(view);
             }
             case VIEW_TYPE_ITEM_MORE: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_like_item_more, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_like_item_more, parent, false);
                 return new MypageLikeMoreViewHolder(view);
             }
         }

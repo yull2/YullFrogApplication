@@ -3,7 +3,6 @@ package com.frogoutofwell.yullfrogapplication.history;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.frogoutofwell.yullfrogapplication.R;
@@ -36,7 +35,7 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
         termView = (TextView)itemView.findViewById(R.id.text_term);
         questionView = (TextView)itemView.findViewById(R.id.text_question);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
-        resultView = (TextView)itemView.findViewById(R.id.text_result);
+        resultView = (TextView)itemView.findViewById(R.id.text_info);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

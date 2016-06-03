@@ -32,7 +32,7 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder {
         imageView = (ImageView)itemView.findViewById(R.id.img_logo);
         nameView = (TextView)itemView.findViewById(R.id.text_name);
         companyView = (TextView)itemView.findViewById(R.id.text_company);
-        classView = (TextView)itemView.findViewById(R.id.text_result);
+        classView = (TextView)itemView.findViewById(R.id.text_info);
         duedateView = (TextView)itemView.findViewById(R.id.text_due);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         itemView.setOnClickListener(new View.OnClickListener() {

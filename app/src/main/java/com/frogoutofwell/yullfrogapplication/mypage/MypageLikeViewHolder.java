@@ -22,7 +22,7 @@ public class MypageLikeViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.img_logo);
         nameView = (TextView) itemView.findViewById(R.id.text_name);
-        classView = (TextView) itemView.findViewById(R.id.text_result);
+        classView = (TextView) itemView.findViewById(R.id.text_info);
     }
 
     public void setLikeItem(ActivityDetail activityDetail) {

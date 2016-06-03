@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
 import com.frogoutofwell.yullfrogapplication.data.LikeStatusResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
@@ -54,7 +53,7 @@ public class InterMainActivity extends AppCompatActivity {
 
         logoView = (ImageView)findViewById(R.id.img_logo);
         nameView = (TextView)findViewById(R.id.text_name);
-        classView = (TextView)findViewById(R.id.text_result);
+        classView = (TextView)findViewById(R.id.text_info);
 
 
         nameView.setText("대외활동명");
@@ -70,6 +69,7 @@ public class InterMainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("면접후기"));
         tabs.addTab(tabs.newTab().setText("활동후기"));
         tabs.addTab(tabs.newTab().setText("추천"));
+        tabs.setBackgroundResource(R.color.colorMainTabs);
 
         setInterMain();
 

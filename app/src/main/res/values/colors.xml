@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorSingleLine">#d2d2d2</color>
+    <color name="colorBackInfo">#e1f5fe</color>
+    <color name="colorBackNotice">#dcdcdc</color>
+    <color name="colorMainTabs">#434343</color>
+    <color name="colorTabSelected">#68d2ff</color>
+    <color name="colorTabUnSelected">#ffffff</color>
+    <color name="colorToolbarbg">#0090e9</color>
 </resources>

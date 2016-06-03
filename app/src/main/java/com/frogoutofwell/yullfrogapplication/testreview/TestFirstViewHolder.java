@@ -1,7 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.testreview;
 
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +30,7 @@ public class TestFirstViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         classInfoView = (TextView)itemView.findViewById(R.id.text_classinfo);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
-        resultView = (TextView)itemView.findViewById(R.id.text_result);
+        resultView = (TextView)itemView.findViewById(R.id.text_info);
         questionView = (TextView)itemView.findViewById(R.id.text_question);
         answerView = (TextView)itemView.findViewById(R.id.text_answer);
         Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);

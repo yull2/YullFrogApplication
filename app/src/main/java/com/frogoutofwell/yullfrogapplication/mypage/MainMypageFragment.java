@@ -74,6 +74,7 @@ public class MainMypageFragment extends Fragment {
 
         pointView = (TextView)view.findViewById(R.id.text_point);
         listView = (RecyclerView)view.findViewById(R.id.rv_list);
+        listView.setNestedScrollingEnabled(false);
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
         listView.setLayoutManager(mLayoutManager);
@@ -113,7 +114,7 @@ public class MainMypageFragment extends Fragment {
             @Override
             public void onSuccess(Request request, MainMypageResult result) {
                 mAdapter.clear();
-                pointView.setText("나의 개굴 "+result.point);
+                pointView.setText(" "+result.point);
                 mAdapter.setLikeItem(result.activityDetails.activityDetails);
             }
 

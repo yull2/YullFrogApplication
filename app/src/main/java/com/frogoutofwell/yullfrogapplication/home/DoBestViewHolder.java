@@ -1,12 +1,10 @@
 package com.frogoutofwell.yullfrogapplication.home;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
@@ -34,7 +32,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
         logoImgView = (ImageView) itemView.findViewById(R.id.img_logo);
         nameView = (TextView)itemView.findViewById(R.id.text_name);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
-        classView = (TextView)itemView.findViewById(R.id.text_result);
+        classView = (TextView)itemView.findViewById(R.id.text_info);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
         commentGoodView = (TextView)itemView.findViewById(R.id.text_question);
         commentBadView = (TextView)itemView.findViewById(R.id.text_commentbad);

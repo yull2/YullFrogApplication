@@ -1,13 +1,9 @@
 package com.frogoutofwell.yullfrogapplication.doreview;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -37,7 +33,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         rateView = (TextView)findViewById(R.id.text_rate);
         termView = (TextView)findViewById(R.id.text_term);
         writeDateView = (TextView)findViewById(R.id.text_writedate);
-        commentGoodView = (TextView)findViewById(R.id.text_commentgood);
+        commentGoodView = (TextView)findViewById(R.id.text_question);
         commentBadView = (TextView)findViewById(R.id.text_commentbad);
         ratebar = (RatingBar)findViewById(R.id.ratebar);
 

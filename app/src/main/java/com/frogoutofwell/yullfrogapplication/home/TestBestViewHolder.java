@@ -1,7 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.home;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,7 +34,7 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
         logoImgView = (ImageView) itemView.findViewById(R.id.img_logo);
         nameView = (TextView)itemView.findViewById(R.id.text_name);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
-        resultView = (TextView)itemView.findViewById(R.id.text_result);
+        resultView = (TextView)itemView.findViewById(R.id.text_info);
         questionView = (TextView)itemView.findViewById(R.id.text_question);
         answerView = (TextView)itemView.findViewById(R.id.text_answer);
 
