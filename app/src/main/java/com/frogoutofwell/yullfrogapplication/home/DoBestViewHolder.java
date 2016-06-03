@@ -55,7 +55,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
         this.doDetail = doDetail;
        // Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
         nameView.setText(doDetail.getActivityName());
-        rateView.setText(""+doDetail.getRate()+" ");
+        rateView.setText(""+doDetail.getRate());
         classView.setText(doDetail.getCompanyName());
         commentView.setText(doDetail.getComment());
         commentGoodView.setText(doDetail.getCommentGood());

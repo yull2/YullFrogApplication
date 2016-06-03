@@ -21,6 +21,7 @@ public class AccountActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Button btn_pwchange = (Button)findViewById(R.id.btn_pwchange);
         btn_pwchange.setOnClickListener(new View.OnClickListener() {

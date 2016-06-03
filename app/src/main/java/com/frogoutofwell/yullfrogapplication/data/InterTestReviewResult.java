@@ -9,5 +9,5 @@ public class InterTestReviewResult {
     @SerializedName("interviews")
     public TestDetails testDetails;
     public int totalInterCount;
-    public String totalInterLevel;
+    public int totalInterLevel;
 }

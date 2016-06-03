@@ -18,7 +18,17 @@ public class TestLevelViewHolder extends RecyclerView.ViewHolder{
         levelView = (ImageView)itemView.findViewById(R.id.img_level);
     }
 
-    public void setLevelImage(String srcImg){
-        Glide.with(levelView.getContext()).load(srcImg).into(levelView);
+    public void setLevelImage(int src){
+        if (src==1) {
+            levelView.setImageResource(R.drawable.ic_interviewbar01);
+        }else if (src==2) {
+            levelView.setImageResource(R.drawable.ic_interviewbar02);
+        }else if (src==3) {
+            levelView.setImageResource(R.drawable.ic_interviewbar03);
+        }else if (src==4) {
+            levelView.setImageResource(R.drawable.ic_interviewbar04);
+        }else if (src==5) {
+            levelView.setImageResource(R.drawable.ic_interviewbar05);
+        }
     }
 }

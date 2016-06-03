@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardElevation="4dp">
+
+    app:cardElevation="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/text_name"
@@ -32,8 +33,9 @@
             android:gravity="end"
             android:background="@drawable/main_starbox"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
+            android:text="3"
             android:id="@+id/text_rate"
+            android:paddingEnd="7dp"
             android:layout_below="@+id/text_name"
             android:layout_toEndOf="@+id/img_logo" />
 
@@ -45,6 +47,11 @@
             android:id="@+id/text_result"
             android:layout_below="@+id/text_name"
             android:layout_toEndOf="@+id/text_rate" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorSingleLine"/>
 
         <TextView
             android:layout_width="wrap_content"

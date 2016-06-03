@@ -28,6 +28,8 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
 
         termView = (TextView)findViewById(R.id.text_term);
         levelView = (TextView)findViewById(R.id.text_level);

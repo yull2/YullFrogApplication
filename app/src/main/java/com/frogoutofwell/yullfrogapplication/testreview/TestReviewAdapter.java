@@ -20,7 +20,7 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public static final int VIEW_TYPE_TEST_FIRSTREVIEW = 1;
     public static final int VIEW_TYPE_TEST_SECONDREVIEW = 2;
 
-    String levelSrc;
+    int levelSrc;
     List<TestDetail> items = new ArrayList<>();
 
     public void clear() {
@@ -28,7 +28,7 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
-    public void setLevelImage(String src){
+    public void setLevelImage(int src){
         levelSrc = src;
         notifyDataSetChanged();
     }
@@ -102,7 +102,6 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        if (levelSrc!=null) return items.size()+1;
-        return items.size();
+        return items.size()+1;
     }
 }
