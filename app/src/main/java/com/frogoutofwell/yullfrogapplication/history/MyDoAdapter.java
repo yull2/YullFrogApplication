@@ -40,7 +40,7 @@ public class MyDoAdapter extends RecyclerView.Adapter<MyDoViewHolder> {
 
     @Override
     public MyDoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_my_do_history, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_my_do_history, parent, false);
         return new MyDoViewHolder(view);
     }
 

@@ -1128,4 +1128,45 @@ public class NetworkManager {
         });
         return request;
     }
+
+    // 대학생 인증
+    private static final String USER_PASSWORD_CHANGE = FROG_SERVER + "/changePwd";
+    public Request getUserPWChange(Object tag, String email, String current, String newpwd, OnResultListener<StatusCheckResult> listener) {
+
+        RequestBody body = new FormBody.Builder()
+                .add("email", email)
+                .add("currentpwd", current)
+                .add("pwd", newpwd)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(USER_PASSWORD_CHANGE)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
 }

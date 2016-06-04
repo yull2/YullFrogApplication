@@ -35,6 +35,8 @@ public class MyHistoryActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("면접 후기"));
         tabs.addTab(tabs.newTab().setText("활동 후기"));
 
+        tabs.setBackgroundResource(R.color.colorMainTabs);
+
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

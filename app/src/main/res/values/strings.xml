@@ -23,6 +23,12 @@
     <string name="title_activity_agreement">회원가입</string>
     <string name="title_activity_student_confirm">회원가입</string>
 
+    <string name="login_question">아직 회원이 아니세요?</string>
+
+    <string name="signup_email">이메일 주소</string>
+    <string name="signup_pwd">비밀번호 (8자리 이상)</string>
+    <string name="signup_pwd_check">비밀번호 확인</string>
+
     <string name="do_term">활동 시기</string>
     <string name="do_rate">활동 총 평점</string>
     <string name="comment_title">활동 한 줄 평</string>
@@ -63,6 +69,12 @@
     <string name="agreement">약관 및 정책</string>
     <string name="guide_info">커뮤니티 가이드라인</string>
     <string name="version_info">버전정보</string>
+    <string name="push_notice">푸시 알림</string>
+    <string name="push_category">알림 종류</string>
+    <string name="push_likeact">관심 대외활동 추천</string>
+    <string name="push_likeact_detail">설정한 관심 대외활동/산업군으로 추천</string>
+    <string name="push_likenotice">찜한 대외활동 공고</string>
+    <string name="push_likenotice_detail">모집 기간 중인 찜한 대외 활동 알림</string>
 
     <string name="agree_essential">이용약관 동의(필수)</string>
     <string name="agree_look">개인정보 수집 및 이용 동의</string>
@@ -72,5 +84,13 @@
     <string name="agree_select_detail">동의하지 않더라도 우물밖 개구리의 서비스를 정상적으로 이용이 가능합니다.</string>
     <string name="student_confirm">대학교 이메일 인증</string>
     <string name="student_confirm_ok">인증확인</string>
+
+    <string name="mypage_mypoint">나의 개굴</string>
+    <string name="mypage_like">찜 대외활동</string>
+    <string name="mypage_history">활동 내역</string>
+    <string name="mypage_account">계정</string>
+    <string name="mypage_setting">환경설정</string>
+
+
 
 </resources>
