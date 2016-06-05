@@ -28,10 +28,11 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
-    public void setLevelImage(int src){
-        levelSrc = src;
+    public void setLevelImage(int level){
+        levelSrc = level;
         notifyDataSetChanged();
     }
+
     public void add(TestDetail testDetail) {
         items.add(testDetail);
         notifyDataSetChanged();
@@ -102,6 +103,6 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return items.size()+1;
+        return items.size();
     }
 }

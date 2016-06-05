@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.frogoutofwell.yullfrogapplication.testreview.TestReviewDetailActivity"
     tools:showIn="@layout/activity_test_review_detail">
@@ -15,68 +11,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorWhite"
         android:orientation="vertical">
 
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/text_term"
+            android:gravity="center_vertical"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="292dp"
+            android:layout_height="30dp"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center">
+            android:id="@+id/linearLayout3"
+            android:layout_below="@+id/text_name"
+            android:background="@drawable/main_bluebox2"
+            android:layout_alignParentStart="true">
 
-            <LinearLayout
-                android:layout_width="146dp"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/main_bluebox">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/test_level"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="text"
-                    android:id="@+id/text_level"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="146dp"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/main_bluebox">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/test_result"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="text"
-                    android:id="@+id/text_info"/>
-
-            </LinearLayout>
-
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="@string/test_level"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:gravity="center"
+                android:id="@+id/text_level" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="@string/test_result"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:gravity="center"
+                android:id="@+id/text_result"/>
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="35dp"
             android:text="@string/question_title"
@@ -90,7 +84,7 @@
             android:id="@+id/text_question" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="35dp"
@@ -105,7 +99,7 @@
             android:id="@+id/text_answer" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="35dp"
@@ -114,8 +108,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="39dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center_vertical"
             android:text="Medium Text"
             android:id="@+id/text_way" />
 

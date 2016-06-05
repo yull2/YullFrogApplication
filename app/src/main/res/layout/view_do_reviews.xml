@@ -1,50 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:cardElevation="4dp">
-
+    android:orientation="vertical" android:layout_width="328dp"
+    android:layout_height="252dp"
+    android:layout_marginTop="8dp"
+    app:cardElevation="2dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:id="@+id/linearLayout1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="rate text"
-            android:id="@+id/text_rate"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="3.5"
+                android:id="@+id/text_rate" />
 
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratebar"
-            android:isIndicator="true"
-            android:layout_below="@+id/text_rate"
-            android:layout_alignParentStart="true" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratebar"
+                android:isIndicator="true"
+                android:layout_below="@+id/text_rate" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/text_comment"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/ratebar"
-            android:layout_toEndOf="@+id/ratebar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/text_comment"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/text_rate" />
+        </RelativeLayout>
 
-        <Button
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1개굴사용"
-            android:id="@+id/btn_detail"
-            android:layout_below="@+id/text_comment"
-            android:layout_alignParentEnd="true" />
+            android:layout_marginTop="100dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="도움되는 점"
+                android:id="@+id/textView20"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/text_question"
+                android:layout_below="@+id/textView20"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="아쉬운 점"
+                android:id="@+id/textView22"
+                android:layout_below="@+id/text_question"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/text_commentbad"
+                android:layout_below="@+id/textView22"
+                android:layout_alignParentStart="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_2_bg_box">
+
+                <Button
+                    android:layout_width="175dp"
+                    android:layout_height="42dp"
+                    android:text="1개굴사용"
+                    android:id="@+id/btn_detail"
+                    android:background="@drawable/ic_usepoint"
+                    android:layout_marginTop="50dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </FrameLayout>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

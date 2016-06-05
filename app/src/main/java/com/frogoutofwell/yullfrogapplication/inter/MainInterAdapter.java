@@ -40,7 +40,7 @@ public class MainInterAdapter extends RecyclerView.Adapter<MainInterViewHolder> 
 
     @Override
     public MainInterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_recommend_doitem, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_recommend_doitem, parent, false);
         return new MainInterViewHolder(view);
     }
 

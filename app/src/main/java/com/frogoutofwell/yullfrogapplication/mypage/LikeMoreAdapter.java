@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-05-23.
  */
-public class LikeMoreAdapter extends RecyclerView.Adapter<MypageLikeViewHolder> {
+public class LikeMoreAdapter extends RecyclerView.Adapter<LikeMoreViewHolder> {
 
     List<ActivityDetail> items = new ArrayList<>();
 
@@ -33,15 +33,21 @@ public class LikeMoreAdapter extends RecyclerView.Adapter<MypageLikeViewHolder> 
         notifyDataSetChanged();
     }
 
-    @Override
-    public MypageLikeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_like_doitem, null);
-        return new MypageLikeViewHolder(view);
+    LikeMoreViewHolder.OnItemClickListener mListener;
+    public void setOnItemClickListener(LikeMoreViewHolder.OnItemClickListener listener){
+        mListener = listener;
     }
 
     @Override
-    public void onBindViewHolder(MypageLikeViewHolder holder, int position) {
-        holder.setLikeItem(items.get(position));
+    public LikeMoreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_recommend_doitem, parent, false);
+        return new LikeMoreViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(LikeMoreViewHolder holder, int position) {
+        holder.setInterThumb(items.get(position));
+        holder.setOnItemClickListener(mListener);
     }
 
     @Override

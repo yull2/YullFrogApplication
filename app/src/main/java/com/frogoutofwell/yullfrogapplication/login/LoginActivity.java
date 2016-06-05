@@ -11,7 +11,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        getSupportActionBar().hide();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new LoginFragment())
@@ -20,10 +20,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void changeSignUp() {
+        getSupportActionBar().show();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(getString(R.string.title_activity_agreement));
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new SignupFragment())
                 .addToBackStack(null)
                 .commit();
+
     }
 
 

@@ -66,15 +66,15 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_DO_RATE: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_do_rate_item, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_do_rate_item, parent, false);
                 return new DoRateViewHolder(view);
             }
             case VIEW_TYPE_DO_FIRSTREVIEW: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_do_review, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_do_review, parent, false);
                 return new DoFirstViewHolder(view);
             }
             case VIEW_TYPE_DO_SECONDREVIEW: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_do_reviews, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_do_reviews, parent, false);
                 return new DoSecondViewHolder(view);
             }
         }

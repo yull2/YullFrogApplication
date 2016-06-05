@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.MainActivity;
@@ -21,6 +22,8 @@ import okhttp3.Request;
 
 public class StudentConfirmActivity extends AppCompatActivity {
 
+    EditText sEmailView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +31,14 @@ public class StudentConfirmActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        sEmailView = (EditText)findViewById(R.id.edit_email);
+
         Button btn_submit = (Button)findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUserConfirm("yulll91@naver.com", "20102173@ssu.ac.kr");
+                String sEmail = sEmailView.getText().toString();
+                setUserConfirm("yulll91@naver.com", sEmail);
             }
         });
 

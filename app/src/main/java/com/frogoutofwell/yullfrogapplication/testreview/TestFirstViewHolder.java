@@ -30,7 +30,7 @@ public class TestFirstViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         classInfoView = (TextView)itemView.findViewById(R.id.text_classinfo);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
-        resultView = (TextView)itemView.findViewById(R.id.text_info);
+        resultView = (TextView)itemView.findViewById(R.id.text_result);
         questionView = (TextView)itemView.findViewById(R.id.text_question);
         answerView = (TextView)itemView.findViewById(R.id.text_answer);
         Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);
@@ -47,8 +47,8 @@ public class TestFirstViewHolder extends RecyclerView.ViewHolder {
     public void setTestFirst(TestDetail testDetail){
         this.testDetail = testDetail;
         classInfoView.setText(testDetail.getTerm());
-        levelView.setText("면접 난이도 " + testDetail.getLevel());
-        resultView.setText("면접 결과 " + testDetail.getResult());
+        levelView.setText(" " + testDetail.getLevel());
+        resultView.setText(" " + testDetail.getResult());
         questionView.setText(testDetail.getQuestion());
         answerView.setText(testDetail.getAnswer());
 

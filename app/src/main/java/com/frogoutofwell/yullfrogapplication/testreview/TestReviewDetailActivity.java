@@ -30,7 +30,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
 
         termView = (TextView)findViewById(R.id.text_term);
         levelView = (TextView)findViewById(R.id.text_level);
-        resultView = (TextView)findViewById(R.id.text_info);
+        resultView = (TextView)findViewById(R.id.text_result);
         questionView = (TextView)findViewById(R.id.text_question);
         answerView = (TextView)findViewById(R.id.text_answer);
         wayView = (TextView)findViewById(R.id.text_way);

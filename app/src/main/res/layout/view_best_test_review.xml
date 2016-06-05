@@ -23,53 +23,43 @@
             android:layout_alignParentTop="true" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="292dp"
+            android:layout_height="30dp"
             android:orientation="horizontal"
             android:id="@+id/linearLayout3"
             android:layout_below="@+id/text_name"
             android:layout_marginTop="18dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/main_bluebox2"
             android:layout_alignParentStart="true">
-            <LinearLayout
-                android:layout_width="146dp"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:layout_marginStart="18dp"
-                android:background="@drawable/main_bluebox">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:text="@string/test_level"
-                    android:paddingStart="19dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center"/>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Small Text"
                     android:gravity="center"
                     android:id="@+id/text_level" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="146dp"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/main_bluebox">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:text="@string/test_result"
-                    android:paddingStart="19dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center"/>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Small Text"
                     android:gravity="center"
                     android:id="@+id/text_info"/>
-            </LinearLayout>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
