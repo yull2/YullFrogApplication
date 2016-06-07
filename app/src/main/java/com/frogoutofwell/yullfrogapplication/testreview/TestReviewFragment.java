@@ -108,7 +108,7 @@ public class TestReviewFragment extends Fragment {
             @Override
             public void onSuccess(Request request, InterTestReviewResult result) {
                 mAdapter.clear();
-                countView.setText("총 "+result.totalInterCount+" 개의 후기");
+                countView.setText(""+result.totalInterCount);
                 mAdapter.setLevelImage(result.totalInterLevel);
                 mAdapter.addAll(result.testDetails.testDetails);
             }

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 
@@ -51,7 +52,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
 
     public void setDoBest(DoDetail doDetail){
         this.doDetail = doDetail;
-       // Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
+        Glide.with(logoImgView.getContext()).load(doDetail.getCompanyLogo()).into(logoImgView);
         nameView.setText(doDetail.getActivityName());
         rateView.setText(""+doDetail.getRate());
         classView.setText(doDetail.getCompanyName());

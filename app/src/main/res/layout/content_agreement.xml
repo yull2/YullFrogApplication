@@ -25,16 +25,19 @@
             android:text="이용약관보기"
             android:background="@null"
             android:id="@+id/btn_look"
+            android:paddingStart="21dp"
             android:layout_marginEnd="24dp"
             android:layout_alignParentEnd="true" />
 
-        <Button
+        <CheckBox
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:text="@string/agree_essential"
             android:id="@+id/btn_essential"
             android:layout_marginTop="12dp"
-            android:background="@drawable/individual_bg_bar_check_off"
+            android:button="@null"
+            android:paddingStart="21dp"
+            android:background="@drawable/agreement_checkbox_selector"
             android:layout_below="@+id/btn_look"
             android:layout_centerHorizontal="true" />
 
@@ -55,23 +58,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:gravity="center_vertical"
+                    android:paddingStart="21dp"
                     android:text="@string/agree_look"
                     android:id="@+id/textView30" />
 
-                <Button
+                <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/individual_bg_bar_check_off"
+                    android:button="@null"
+                    android:paddingStart="21dp"
+                    android:background="@drawable/agreement_check_selector"
                     android:text="@string/agree_look1"
                     android:id="@+id/btn_agreelook1" />
 
-                <Button
+                <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/individual_bg_bar_check_off"
+                    android:button="@null"
+                    android:paddingStart="21dp"
+                    android:background="@drawable/agreement_check_selector"
                     android:text="@string/agree_look2"
                     android:id="@+id/btn_agreelook2" />
             </LinearLayout>
@@ -87,21 +95,27 @@
             android:id="@+id/linearLayout2"
             android:layout_below="@+id/linearLayout1"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/login_bg_box_bottom"
             android:orientation="vertical">
 
-            <Button
+            <CheckBox
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="41dp"
                 android:text="@string/agree_select"
                 android:id="@+id/btn_select"
-                android:background="@null"
+                android:background="@drawable/agreeselect_check_selector"
+                android:button="@null"
+                android:paddingStart="21dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="21dp"
+                android:paddingStart="21dp"
                 android:text="@string/agree_select_detail"/>
         </LinearLayout>
+
     </RelativeLayout>
 
     <Button

@@ -20,9 +20,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void changeSignUp() {
-        getSupportActionBar().show();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(getString(R.string.title_activity_agreement));
+        //getSupportActionBar().show();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //setTitle(getString(R.string.title_activity_agreement));
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new SignupFragment())
                 .addToBackStack(null)

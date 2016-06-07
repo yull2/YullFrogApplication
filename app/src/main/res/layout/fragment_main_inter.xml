@@ -50,7 +50,7 @@
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@null"
+            android:background="@drawable/btn_more"
             android:text=""
             android:id="@+id/btn_sort" />
     </LinearLayout>

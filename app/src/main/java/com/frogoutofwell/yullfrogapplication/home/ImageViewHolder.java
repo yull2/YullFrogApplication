@@ -31,7 +31,7 @@ public class ImageViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         imageView1 = (ImageView)itemView.findViewById(R.id.image_homemain);
         imageView2 = (ImageView)itemView.findViewById(R.id.image_homestart);
-        imageView3 = (ImageView)itemView.findViewById(R.id.image_homestart);
+        imageView3 = (ImageView)itemView.findViewById(R.id.image_homeend);
 
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override

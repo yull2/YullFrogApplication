@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 
@@ -48,7 +49,7 @@ public class LikeMoreViewHolder extends RecyclerView.ViewHolder{
     public void setInterThumb(ActivityDetail activityDetail){
         this.activityDetail = activityDetail;
 
-        //Glide.with(imageView.getContext()).load(activityDetail.getInstitution().getLogoImgUrl()).into(imageView);
+        Glide.with(imageView.getContext()).load(activityDetail.getGuideImg()).into(imageView);
         nameView.setText(activityDetail.getName());
         companyView.setText(activityDetail.getCompanyName());
         classView.setText(activityDetail.getActClass());

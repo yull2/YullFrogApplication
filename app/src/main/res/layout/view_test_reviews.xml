@@ -12,7 +12,8 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="51dp"
+            android:gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/text_classinfo"
@@ -26,7 +27,6 @@
             android:orientation="horizontal"
             android:id="@+id/linearLayout3"
             android:layout_below="@+id/text_classinfo"
-            android:layout_marginTop="18dp"
             android:layout_marginStart="18dp"
             android:background="@drawable/main_bluebox2"
             android:layout_alignParentStart="true">
@@ -113,7 +113,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/login_2_bg_box">
+                android:background="@drawable/box_white">
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="175dp"
@@ -121,7 +121,7 @@
                 android:text=""
                 android:background="@drawable/ic_usepoint"
                 android:id="@+id/btn_detail"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="76dp"
                 android:layout_centerHorizontal="true"/>
             </RelativeLayout>
         </FrameLayout>

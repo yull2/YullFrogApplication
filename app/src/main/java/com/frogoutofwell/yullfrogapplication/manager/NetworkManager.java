@@ -890,6 +890,7 @@ public class NetworkManager {
                 .add("item", array.get(8)+"")
                 .add("item", array.get(9)+"")
                 .add("item", array.get(10)+"")
+                .add("item", array.get(11)+"")
                 .build();
 
         Request request = new Request.Builder()
@@ -980,7 +981,7 @@ public class NetworkManager {
     public Request signIn(Object tag, String email, String password, OnResultListener<StatusCheckResult> listener) {
         RequestBody body = new FormBody.Builder()
                 .add("email", email)
-                .add("password", password)
+                .add("pwd", password)
                 .build();
 
         Request request = new Request.Builder()
@@ -1018,7 +1019,7 @@ public class NetworkManager {
     public Request signUp(Object tag, String email, String password, OnResultListener<StatusCheckResult> listener) {
         RequestBody body = new FormBody.Builder()
                 .add("email", email)
-                .add("password", password)
+                .add("pwd", password)
                 .build();
 
         Request request = new Request.Builder()
@@ -1129,7 +1130,7 @@ public class NetworkManager {
         return request;
     }
 
-    // 대학생 인증
+    // 비밀번호 변경
     private static final String USER_PASSWORD_CHANGE = FROG_SERVER + "/changePwd";
     public Request getUserPWChange(Object tag, String email, String current, String newpwd, OnResultListener<StatusCheckResult> listener) {
 

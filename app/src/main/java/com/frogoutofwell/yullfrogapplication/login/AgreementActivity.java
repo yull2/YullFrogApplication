@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
@@ -21,7 +23,7 @@ import okhttp3.Request;
 
 public class AgreementActivity extends AppCompatActivity {
 
-    private SparseBooleanArray agreeCheck;
+    boolean agree_e, agree_1, agree_2, agree_s, allChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +32,63 @@ public class AgreementActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button btn_essential = (Button)findViewById(R.id.btn_essential);
+        final CheckBox btn_essential = (CheckBox)findViewById(R.id.btn_essential);
+        btn_essential.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                agree_e = isChecked;
+            }
+        });
 
+        final CheckBox btn_agreelook1 = (CheckBox)findViewById(R.id.btn_agreelook1);
+        btn_agreelook1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                agree_1 = isChecked;
+            }
+        });
 
-        Button btn_agreelook1 = (Button)findViewById(R.id.btn_agreelook1);
+        final CheckBox btn_agreelook2 = (CheckBox)findViewById(R.id.btn_agreelook2);
+        btn_agreelook2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                agree_2 = isChecked;;
+            }
+        });
 
-
-        Button btn_agreelook2 = (Button)findViewById(R.id.btn_agreelook2);
-
+        final CheckBox btn_select = (CheckBox)findViewById(R.id.btn_select);
+        btn_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                agree_s = isChecked;
+            }
+        });
 
         Button btn_allagree = (Button)findViewById(R.id.btn_allagree);
         btn_allagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (allChecked == false) {
+                    btn_essential.setChecked(true);
+                    btn_agreelook1.setChecked(true);
+                    btn_agreelook2.setChecked(true);
+                    btn_select.setChecked(true);
+                    agree_e = true;
+                    agree_1 = true;
+                    agree_2 = true;
+                    agree_s = true;
+                    allChecked = true;
+                }else {
+                    btn_essential.setChecked(false);
+                    btn_agreelook1.setChecked(false);
+                    btn_agreelook2.setChecked(false);
+                    btn_select.setChecked(false);
+                    agree_e = false;
+                    agree_1 = false;
+                    agree_2 = false;
+                    agree_s = false;
+                    allChecked = false;
+                }
             }
         });
 
@@ -51,7 +96,11 @@ public class AgreementActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUserConfirm("yulll91@naver.com", 1);
+                if (agree_e && agree_1 && agree_2) {
+                    setUserConfirm("yulll91@naver.com", 1);
+                }else {
+                    Toast.makeText(AgreementActivity.this, "약관 동의가 필요합니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
 
@@ -52,7 +53,6 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
 
     public void setTestBest(TestDetail testDetail){
         this.testDetail = testDetail;
-        // Glide.with(logoImgView.getContext()).load(doDetail.getDoInter().getLogoImgUrl()).into(logoImgView);
         nameView.setText(testDetail.getActivityName());
         levelView.setText(testDetail.getLevel()+" ");
         resultView.setText(testDetail.getResult()+" ");

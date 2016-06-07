@@ -73,7 +73,7 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType){
             case VIEW_TYPE_IMAGE : {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_home_img, null);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_home_img, parent, false);
                 return new ImageViewHolder(view);
             }
             case VIEW_TYPE_TITLE : {
@@ -128,9 +128,9 @@ public class MainHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         int size = 0;
-        if (activityDetail != null) size += activityDetail.size();
-        if (doDetail != null && testDetail != null) return 5;
-
+        if (activityDetail != null) size += 1;
+        if (doDetail != null)  size += 2;
+        if (testDetail != null) size += 2;
         return size;
     }
 }

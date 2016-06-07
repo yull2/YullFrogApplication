@@ -42,7 +42,7 @@ public class ActclassChangeActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Resources res = getResources();
-        actclass = res.getStringArray(R.array.indus);
+        actclass = res.getStringArray(R.array.actclass);
 
         mAdapter = new ActclassChangeAdapter();
         listView = (RecyclerView)findViewById(R.id.rv_list);
@@ -80,7 +80,7 @@ public class ActclassChangeActivity extends AppCompatActivity {
         }
         if (id == R.id.save){
             SparseBooleanArray result = mAdapter.getCheckedItems();
-            for (int i=0;i<11;i++){
+            for (int i=0;i<12;i++){
                 Log.i("actclassact","과연??? 저장된 값 " +i+" = "+ result.get(i));
             }
             setActclassChange(result);

@@ -34,7 +34,7 @@ public class IndusChangeAdapter extends RecyclerView.Adapter<IndusViewHolder> im
 
     @Override
     public IndusViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_indus_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_indus_item, parent, false);
         return new IndusViewHolder(view);
     }
 

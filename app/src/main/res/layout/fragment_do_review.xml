@@ -9,11 +9,29 @@
     tools:context="com.frogoutofwell.yullfrogapplication.doreview.DoReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_count"
-        android:text="총 0개의 후기" />
+        android:layout_height="11dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="27dp"
+        android:id="@+id/linearLayout4">
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:text="총"
+            android:layout_marginStart="12dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/text_count"
+            android:layout_marginStart="5dp"
+            android:text="1" />
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:text="개의 후기"/>
+    </LinearLayout>
 
    <!-- <Button
         android:layout_width="wrap_content"
@@ -26,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rv_list"
+        android:layout_marginTop="12dp"
         android:layout_gravity="left|center_vertical">
 
     </android.support.v7.widget.RecyclerView>

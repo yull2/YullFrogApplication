@@ -34,7 +34,7 @@ public class ActclassChangeAdapter extends RecyclerView.Adapter<ActclassViewHold
 
     @Override
     public ActclassViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_actclass_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_actclass_item, parent, false);
         return new ActclassViewHolder(view);
     }
 

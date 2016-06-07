@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 
@@ -27,6 +28,7 @@ public class MypageLikeViewHolder extends RecyclerView.ViewHolder {
 
     public void setLikeItem(ActivityDetail activityDetail) {
         this.activityDetail = activityDetail;
+        Glide.with(imageView.getContext()).load(activityDetail.getGuideImg()).into(imageView);
         nameView.setText(activityDetail.getName());
         classView.setText(activityDetail.getActClass());
     }
