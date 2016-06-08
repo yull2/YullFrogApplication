@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 
@@ -50,7 +51,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
 
     public void setMyDo(DoDetail doDetail){
         this.doDetail = doDetail;
-
+        Glide.with(logoView.getContext()).load(doDetail.getCompanyLogo()).into(logoView);
         writeDateView.setText(doDetail.getWriteDate());
         classView.setText(doDetail.getCompanyName());
         termView.setText(doDetail.getTerm());

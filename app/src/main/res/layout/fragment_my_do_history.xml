@@ -8,20 +8,35 @@
     tools:context="com.frogoutofwell.yullfrogapplication.history.MyDoHistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="12dp"
+        android:orientation="horizontal"
         android:layout_marginTop="28dp"
         android:layout_marginStart="12dp"
-        android:text="총 0개의 활동후기를 작성하였습니다"
-        android:id="@+id/text_count" />
-
+        android:id="@+id/linearLayout6">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="총"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:layout_marginStart="5dp"
+            android:id="@+id/text_count" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:text="개의 활동 후기를 작성하였습니다."/>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv_list"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/text_count"
+        android:layout_below="@+id/linearLayout6"
         android:layout_alignParentStart="true">
 
     </android.support.v7.widget.RecyclerView>

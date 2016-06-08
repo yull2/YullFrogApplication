@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
 
@@ -48,7 +49,7 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
 
     public void setMyTest(TestDetail testDetail){
         this.testDetail = testDetail;
-
+        Glide.with(logoView.getContext()).load(testDetail.getCompanyLogo()).into(logoView);
         writeDateView.setText(testDetail.getWriteDate());
         classView.setText(testDetail.getActivityName());
         termView.setText(testDetail.getTerm());

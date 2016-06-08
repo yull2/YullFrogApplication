@@ -30,6 +30,7 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
         setTitle("찜 대외활동");
         setContentView(R.layout.activity_like_more_detail);
 
+
         mAdapter = new LikeMoreAdapter();
         mAdapter.setOnItemClickListener(new LikeMoreViewHolder.OnItemClickListener() {
             @Override

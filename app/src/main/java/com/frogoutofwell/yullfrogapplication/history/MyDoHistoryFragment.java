@@ -85,7 +85,7 @@ public class MyDoHistoryFragment extends Fragment {
             @Override
             public void onSuccess(Request request, MyDoReviewResult result) {
                 mAdapter.clear();
-                countView.setText("총 "+result.totalPostCount+"개의 활동후기를 작성하였습니다");
+                countView.setText(result.totalPostCount+"");
                 mAdapter.addAll(result.doDetails.doDetail);
             }
 

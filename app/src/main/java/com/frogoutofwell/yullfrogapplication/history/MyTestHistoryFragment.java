@@ -85,7 +85,7 @@ public class MyTestHistoryFragment extends Fragment {
             @Override
             public void onSuccess(Request request, MyTestReviewResult result) {
                 mAdapter.clear();
-                countView.setText("총 "+result.totalInterCount+"개의 면접후기를 작성하였습니다");
+                countView.setText(result.totalInterCount+"");
                 mAdapter.addAll(result.testDetails.testDetails);
             }
 
