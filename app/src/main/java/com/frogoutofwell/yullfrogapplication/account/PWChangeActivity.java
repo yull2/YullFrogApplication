@@ -1,5 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.account;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +64,17 @@ public class PWChangeActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if (result.status.equals("OK")){
-                    Toast.makeText(PWChangeActivity.this,"비밀번호가 변경되었습니다."+result,Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(PWChangeActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    });
+                    alert.setMessage("비밀번호가 변경되었습니다.");
+                    alert.show();
+                    //Toast.makeText(PWChangeActivity.this,"비밀번호가 변경되었습니다."+result,Toast.LENGTH_SHORT).show();
                 }else if(result.status.equals("notEqual")) {
                     Toast.makeText(PWChangeActivity.this,"현재 비밀번호를 확인해주세요.",Toast.LENGTH_SHORT).show();
                 }else {

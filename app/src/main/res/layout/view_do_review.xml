@@ -58,6 +58,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="도움되는 점"
+                android:layout_marginTop="9dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/textView20"
                 android:layout_alignParentStart="true" />
 
@@ -67,6 +69,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/text_question"
+                android:layout_marginTop="9dp"
+                android:layout_marginStart="16dp"
                 android:layout_below="@+id/textView20"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true" />
@@ -76,6 +80,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="아쉬운 점"
+                android:layout_marginTop="9dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/textView22"
                 android:layout_below="@+id/text_question"
                 android:layout_alignParentStart="true" />
@@ -85,6 +91,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/text_commentbad"
                 android:layout_below="@+id/textView22"
                 android:layout_alignParentStart="true" />
@@ -94,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="더보기"
+                android:background="@null"
                 android:id="@+id/btn_detail"
                 android:layout_below="@+id/text_commentbad"
                 android:layout_alignParentEnd="true" />

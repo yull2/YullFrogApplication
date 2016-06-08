@@ -111,7 +111,7 @@ public class DoReviewFragment extends Fragment {
             @Override
             public void onSuccess(Request request, InterDoReviewResult result) {
                 mAdapter.clear();
-                countView.setText("총 "+result.totalPostCount+" 개의 후기");
+                countView.setText(result.totalPostCount+"");
                 mAdapter.setCountStar(result.totalPostCountStar);
                 mAdapter.addAll(result.doDetails.doDetail);
             }

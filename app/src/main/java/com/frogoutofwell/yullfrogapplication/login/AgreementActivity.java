@@ -1,10 +1,12 @@
 package com.frogoutofwell.yullfrogapplication.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -106,7 +108,16 @@ public class AgreementActivity extends AppCompatActivity {
                 if (agree_e && agree_1 && agree_2) {
                     setUserConfirm(1);
                 }else {
-                    Toast.makeText(AgreementActivity.this, "약관 동의가 필요합니다.", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(AgreementActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("약관 동의가 필요합니다.");
+                    alert.show();
+                   // Toast.makeText(AgreementActivity.this, "약관 동의가 필요합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,7 +129,7 @@ public class AgreementActivity extends AppCompatActivity {
         NetworkManager.getInstance().getUserAgreement(this, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
-                Toast.makeText(AgreementActivity.this, "약관동의에 성공했습니다", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AgreementActivity.this, "약관동의에 성공했습니다", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AgreementActivity.this, StudentConfirmActivity.class);
                 startActivity(intent);
                 finish();

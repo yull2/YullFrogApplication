@@ -3,10 +3,13 @@
     package="com.frogoutofwell.yullfrogapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <permission android:name="com.frogoutofwell.yullfrogapplication.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
-    <uses-permission android:name="com.frogoutofwell.yullfrogapplication.permission.C2D_MESSAGE"/>
+
+    <permission
+        android:name="com.frogoutofwell.yullfrogapplication.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.frogoutofwell.yullfrogapplication.permission.C2D_MESSAGE" />
 
     <application
         android:name=".MyApplication"
@@ -15,15 +18,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.SplashBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -78,35 +84,38 @@
             android:name=".login.StudentConfirmActivity"
             android:label="@string/title_activity_student_confirm"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".setting.MobileNoticeActivity"></activity>
+        <activity android:name=".setting.MobileNoticeActivity" />
 
-        <receiver android:name="com.google.android.gms.gcm.GcmReceiver"
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="com.example.gcm"/>
+
+                <category android:name="com.example.gcm" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.frogoutofwell.yullfrogapplication.MyGcmListenerService"
+        <service
+            android:name=".MyGcmListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-
-        <service android:name="com.frogoutofwell.yullfrogapplication.MyInstanceIDListenerService"
+        <service
+            android:name=".MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
-
-        <service android:name="com.frogoutofwell.yullfrogapplication.RegistrationIntentService"
+        <service
+            android:name=".RegistrationIntentService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
 

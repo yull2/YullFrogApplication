@@ -12,20 +12,24 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.SplashBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="LightTheme" parent="@android:style/Theme.Light"/>
-    <style name="BlackTheme" parent="@android:style/Theme.Black"/>
+    <style name="LightTheme" parent="@android:style/Theme.Light" />
+
+    <style name="BlackTheme" parent="@android:style/Theme.Black" />
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>
     </style>
+
     <style name="CustomActionBarStyle" parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:background">@color/colorToolbarbg</item>
         <item name="background">@color/colorToolbarbg</item>

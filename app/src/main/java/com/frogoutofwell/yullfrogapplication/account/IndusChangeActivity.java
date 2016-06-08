@@ -1,9 +1,11 @@
 package com.frogoutofwell.yullfrogapplication.account;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -95,7 +97,17 @@ public class IndusChangeActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if (result.status.equals("OK")){
-                    Toast.makeText(IndusChangeActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(IndusChangeActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(IndusChangeActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    });
+                    alert.setMessage("관심 산업군 설정이 완료되었습니다.");
+                    alert.show();
                 }
             }
 

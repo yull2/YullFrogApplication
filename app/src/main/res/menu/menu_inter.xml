@@ -11,6 +11,7 @@
     <item
         android:id="@+id/inter_like"
         android:title="@string/action_like"
-        android:icon="@android:drawable/ic_menu_help"
+        android:checkable="true"
+        android:icon="@drawable/intermain_like"
         app:showAsAction="always"  />
 </menu>

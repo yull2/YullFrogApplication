@@ -47,7 +47,6 @@
             android:id="@+id/linearLayout1"
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
-
             android:layout_below="@id/btn_essential">
 
             <LinearLayout

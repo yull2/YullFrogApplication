@@ -1,6 +1,8 @@
 package com.frogoutofwell.yullfrogapplication;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
 import com.frogoutofwell.yullfrogapplication.data.LikeStatusResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
@@ -35,6 +38,7 @@ public class InterMainActivity extends AppCompatActivity {
     MenuItem like_item;
 
     int seq;
+    boolean likeChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,6 @@ public class InterMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         seq = intent.getIntExtra("seq",1);
-        Log.i("mainactivity","에서 넘어온 seqqqqqqqqqqqq : "+seq);
 
         logoView = (ImageView)findViewById(R.id.img_logo);
         nameView = (TextView)findViewById(R.id.text_name);
@@ -74,6 +77,7 @@ public class InterMainActivity extends AppCompatActivity {
         setInterMain();
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        // fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#0090e9")));
         fab.hide();
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -87,6 +91,7 @@ public class InterMainActivity extends AppCompatActivity {
                     case 0 : fab.hide();break;
                     case 1 :
                         fab.show();
+                        fab.setImageDrawable(getDrawable(R.drawable.btn_interview2));
                         fab.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -99,6 +104,7 @@ public class InterMainActivity extends AppCompatActivity {
                     }); break;
                     case 2 :
                         fab.show();
+                        fab.setImageResource(R.drawable.btn_write2);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -153,11 +159,13 @@ public class InterMainActivity extends AppCompatActivity {
         NetworkManager.getInstance().getFrogInterInfo(this, seq, new NetworkManager.OnResultListener<InterInfoResult>() {
             @Override
             public void onSuccess(Request request, InterInfoResult result) {
-                // Glide.with(InterMainActivity.this).load(result.detail.activityDetail.getCompanyLogo()).into(logoView);
+                Glide.with(InterMainActivity.this).load(result.detail.activityDetail.getCompanyLogo()).into(logoView);
                 nameView.setText(result.detail.activityDetail.getName());
                 classView.setText(result.detail.activityDetail.getActClass()+" / "+result.detail.activityDetail.getCompanyName());
                 if (result.detail.check == 1){
-                    like_item.setIcon(R.drawable.frogicon);
+                    likeChecked = true;
+                    like_item.setChecked(likeChecked);
+
                 }
             }
 
@@ -173,6 +181,12 @@ public class InterMainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, LikeStatusResult result) {
                 // 아이콘 변경 코드 추가 해야 함
+                if (result.status.equals("OK")){
+                    if (likeChecked){
+                        likeChecked = false;
+                    }else likeChecked = true;
+                    like_item.setChecked(likeChecked);
+                }
             }
 
             @Override

@@ -65,15 +65,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linearLayout3">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/question_title"
-                android:id="@+id/textView50"
-                android:layout_marginTop="28dp"
                 android:layout_marginStart="18dp"
-                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="9dp"
+                android:id="@+id/textView50"
                 android:layout_alignParentStart="true" />
 
             <TextView
@@ -95,6 +98,7 @@
                 android:text="@string/answer_title"
                 android:id="@+id/textView52"
                 android:layout_below="@+id/text_question"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="18dp"
                 android:layout_alignParentStart="true" />
 
@@ -109,20 +113,20 @@
                 android:layout_marginTop="9dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true" />
-
+            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/box_white">
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="175dp"
-                android:layout_height="42dp"
-                android:text=""
-                android:background="@drawable/ic_usepoint"
-                android:id="@+id/btn_detail"
-                android:layout_marginTop="76dp"
-                android:layout_centerHorizontal="true"/>
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="175dp"
+                    android:layout_height="42dp"
+                    android:text=""
+                    android:background="@drawable/ic_usepoint"
+                    android:id="@+id/btn_detail"
+                    android:layout_marginTop="76dp"
+                    android:layout_centerHorizontal="true"/>
             </RelativeLayout>
         </FrameLayout>
     </RelativeLayout>

@@ -1,8 +1,11 @@
 package com.frogoutofwell.yullfrogapplication.login;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,8 +52,9 @@ public class SignupFragment extends Fragment {
                 final String checkPassword = passwordCheckView.getText().toString();
 
                 if (password.equals(checkPassword) && password.length()>=8) {
-                    Toast.makeText(getContext(), "이메일 전송", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "이메일 전송", Toast.LENGTH_SHORT).show();
                     signUp(email,password);
+
                 }else if (password.equals(checkPassword) && password.length()<8){
                     Toast.makeText(getContext(), "비밀번호를 8자 이상입력하세요 ", Toast.LENGTH_SHORT).show();
                 }if (!password.equals(checkPassword)){
@@ -67,7 +71,19 @@ public class SignupFragment extends Fragment {
         NetworkManager.getInstance().signUp(getContext(), id, pw, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
-                Toast.makeText(getContext(),"이메일 인증 후 로그인해주세요 : "+result.status,Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                });
+                alert.setMessage("이메일이 전송되었습니다. 인증 후 로그인해주세요.");
+                alert.show();
+                //Toast.makeText(getContext(),"이메일 인증 후 로그인해주세요 : "+result.status,Toast.LENGTH_SHORT).show();
             }
 
             @Override

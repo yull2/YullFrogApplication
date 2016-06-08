@@ -53,7 +53,6 @@ public class GuideFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         seq = getActivity().getIntent().getIntExtra("seq",1);
-        Log.i("guidef","seeeeeeeeeeeq : "+seq );
 
     }
 
@@ -73,7 +72,7 @@ public class GuideFragment extends Fragment {
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
                 String srcImg = result.activityDetail.guideImg;
-                Log.i("Guide Image Url", "Guide Image Url"+srcImg);
+                Log.i("Guide Image Url", "Guide Image Urllllllllllllllllllll :"+srcImg);
                 Glide.with(guideView.getContext()).load(srcImg).into(guideView);
        }
 
