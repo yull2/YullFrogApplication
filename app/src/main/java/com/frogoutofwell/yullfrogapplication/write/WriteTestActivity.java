@@ -108,19 +108,22 @@ public class WriteTestActivity extends AppCompatActivity {
                 if (id == R.id.radio_s) test_result = 0;
                 else test_result = 1;
 
-                reviewUpload(seq, 2, level, test_result, term, question, answer, way);
+                reviewUpload(seq, level, test_result, term, question, answer, way);
             }
         });
 
     }
 
-    private void reviewUpload(int activitySeq, int writer, int level, int test_result,
+    private void reviewUpload(int activitySeq, int level, int test_result,
                               String term, String question, String answer, String way){
-        NetworkManager.getInstance().getFrogTestReviewPost(this, activitySeq, writer, level, test_result, term, question, answer, way, new NetworkManager.OnResultListener<String>() {
+        NetworkManager.getInstance().getFrogTestReviewPost(this, activitySeq, level, test_result, term, question, answer, way, new NetworkManager.OnResultListener<String>() {
             @Override
             public void onSuccess(Request request, String result) {
                 String status = result;
                 Toast.makeText(WriteTestActivity.this, "업로드 상태 "+ status, Toast.LENGTH_LONG).show();
+                if (status.equals("OK")){
+                    finish();
+                }
             }
 
             @Override

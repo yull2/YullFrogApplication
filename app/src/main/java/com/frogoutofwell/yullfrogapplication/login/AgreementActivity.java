@@ -1,11 +1,13 @@
 package com.frogoutofwell.yullfrogapplication.login;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+import com.frogoutofwell.yullfrogapplication.manager.PropertyManager;
 
 import java.io.IOException;
 
@@ -23,7 +26,10 @@ import okhttp3.Request;
 
 public class AgreementActivity extends AppCompatActivity {
 
+    public static final String EXTRA_USER = "user";
     boolean agree_e, agree_1, agree_2, agree_s, allChecked;
+
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,7 @@ public class AgreementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_agreement);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         final CheckBox btn_essential = (CheckBox)findViewById(R.id.btn_essential);
         btn_essential.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -97,7 +104,7 @@ public class AgreementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (agree_e && agree_1 && agree_2) {
-                    setUserConfirm("yulll91@naver.com", 1);
+                    setUserConfirm(1);
                 }else {
                     Toast.makeText(AgreementActivity.this, "약관 동의가 필요합니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -107,8 +114,8 @@ public class AgreementActivity extends AppCompatActivity {
 
     }
 
-    private void setUserConfirm(String email, int result){
-        NetworkManager.getInstance().getUserAgreement(this, email, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
+    private void setUserConfirm(int result){
+        NetworkManager.getInstance().getUserAgreement(this, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 Toast.makeText(AgreementActivity.this, "약관동의에 성공했습니다", Toast.LENGTH_SHORT).show();
@@ -123,5 +130,8 @@ public class AgreementActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 }

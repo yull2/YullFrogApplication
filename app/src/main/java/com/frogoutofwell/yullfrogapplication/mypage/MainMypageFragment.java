@@ -110,7 +110,7 @@ public class MainMypageFragment extends Fragment {
         return view;
     }
     private void setData() {
-        NetworkManager.getInstance().getFrogMainMypage(getContext(), 2, new NetworkManager.OnResultListener<MainMypageResult>() {
+        NetworkManager.getInstance().getFrogMainMypage(getContext(), new NetworkManager.OnResultListener<MainMypageResult>() {
             @Override
             public void onSuccess(Request request, MainMypageResult result) {
                 mAdapter.clear();

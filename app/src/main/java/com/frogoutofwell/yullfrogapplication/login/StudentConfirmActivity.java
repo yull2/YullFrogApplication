@@ -38,22 +38,28 @@ public class StudentConfirmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sEmail = sEmailView.getText().toString();
-                setUserConfirm("yulll91@naver.com", sEmail);
+                setUserConfirm( sEmail);
             }
         });
 
+        Button btn_finish = (Button)findViewById(R.id.btn_finish);
+        btn_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StudentConfirmActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
-    private void setUserConfirm(String email, String sEmail){
-        NetworkManager.getInstance().getStudentConfirm(this, email, sEmail, new NetworkManager.OnResultListener<StatusCheckResult>() {
+    private void setUserConfirm(String sEmail){
+        NetworkManager.getInstance().getStudentConfirm(this, sEmail, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if(result.status.equals("OK")){
-                    Toast.makeText(StudentConfirmActivity.this, "대학생인증에 성공했습니다", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(StudentConfirmActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    Toast.makeText(StudentConfirmActivity.this, "이메일을 전송했습니다", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(StudentConfirmActivity.this,"이메일을 확인해주세요", Toast.LENGTH_SHORT).show();
                 }

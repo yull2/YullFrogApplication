@@ -90,7 +90,7 @@ public class ActclassChangeActivity extends AppCompatActivity {
     }
 
     private void setActclassChange(SparseBooleanArray result){
-        NetworkManager.getInstance().getMyActclassChange(this, 2, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
+        NetworkManager.getInstance().getMyActclassChange(this, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if (result.status.equals("OK")){

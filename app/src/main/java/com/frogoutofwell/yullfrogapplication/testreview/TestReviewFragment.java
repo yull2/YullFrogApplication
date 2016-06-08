@@ -121,7 +121,7 @@ public class TestReviewFragment extends Fragment {
     }
 
     private void getPossible(){
-        NetworkManager.getInstance().getMyPointCheck(getContext(), 2, new NetworkManager.OnResultListener<PointCheckResult>() {
+        NetworkManager.getInstance().getMyPointCheck(getContext(), new NetworkManager.OnResultListener<PointCheckResult>() {
             @Override
             public void onSuccess(Request request, PointCheckResult result) {
                 if (result.status.equals("OK")){

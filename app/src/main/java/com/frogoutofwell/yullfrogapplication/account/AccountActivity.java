@@ -11,6 +11,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
+import com.frogoutofwell.yullfrogapplication.login.LoginActivity;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -50,6 +57,13 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
+        Button btn_logout = (Button)findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getUserLogoutRequest();
+            }
+        });
     }
 
     @Override
@@ -59,5 +73,23 @@ public class AccountActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getUserLogoutRequest(){
+        NetworkManager.getInstance().getUserLogout(this, new NetworkManager.OnResultListener<StatusCheckResult>() {
+            @Override
+            public void onSuccess(Request request, StatusCheckResult result) {
+                if (result.status.equals("OK")){
+                    Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
     }
 }

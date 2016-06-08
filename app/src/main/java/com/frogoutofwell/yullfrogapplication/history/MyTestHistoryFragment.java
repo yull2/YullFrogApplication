@@ -81,7 +81,7 @@ public class MyTestHistoryFragment extends Fragment {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getMyTestReview(getContext(), 2, new NetworkManager.OnResultListener<MyTestReviewResult>() {
+        NetworkManager.getInstance().getMyTestReview(getContext(), new NetworkManager.OnResultListener<MyTestReviewResult>() {
             @Override
             public void onSuccess(Request request, MyTestReviewResult result) {
                 mAdapter.clear();

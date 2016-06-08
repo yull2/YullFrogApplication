@@ -57,8 +57,8 @@ public class PWChangeActivity extends AppCompatActivity {
 
     }
 
-    private void setNewPassword(String email, String current, String newpwd ){
-        NetworkManager.getInstance().getUserPWChange(this, email, current, newpwd, new NetworkManager.OnResultListener<StatusCheckResult>() {
+    private void setNewPassword(String current, String newpwd ){
+        NetworkManager.getInstance().getUserPWChange(this, current, newpwd, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if (result.status.equals("OK")){

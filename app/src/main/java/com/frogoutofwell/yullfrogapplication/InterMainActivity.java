@@ -136,7 +136,7 @@ public class InterMainActivity extends AppCompatActivity {
         }
         if (id == R.id.inter_like){
             Toast.makeText(this, "interlike click", Toast.LENGTH_SHORT).show();
-            likeStatusChange(seq,2);
+            likeStatusChange(seq);
             return true;
         }
        /* switch (item.getItemId()) {
@@ -150,7 +150,7 @@ public class InterMainActivity extends AppCompatActivity {
     }
 
     private void setInterMain(){
-        NetworkManager.getInstance().getFrogInterInfo(this, seq,2, new NetworkManager.OnResultListener<InterInfoResult>() {
+        NetworkManager.getInstance().getFrogInterInfo(this, seq, new NetworkManager.OnResultListener<InterInfoResult>() {
             @Override
             public void onSuccess(Request request, InterInfoResult result) {
                 // Glide.with(InterMainActivity.this).load(result.detail.activityDetail.getCompanyLogo()).into(logoView);
@@ -168,8 +168,8 @@ public class InterMainActivity extends AppCompatActivity {
         });
     }
 
-    private void likeStatusChange(int activitySeq, int memSeq){
-        NetworkManager.getInstance().getLikeStatusChange(this, activitySeq, memSeq, new NetworkManager.OnResultListener<LikeStatusResult>() {
+    private void likeStatusChange(int activitySeq){
+        NetworkManager.getInstance().getLikeStatusChange(this, activitySeq, new NetworkManager.OnResultListener<LikeStatusResult>() {
             @Override
             public void onSuccess(Request request, LikeStatusResult result) {
                 // 아이콘 변경 코드 추가 해야 함

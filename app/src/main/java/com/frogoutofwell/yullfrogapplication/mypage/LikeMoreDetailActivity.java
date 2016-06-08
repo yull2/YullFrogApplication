@@ -47,7 +47,7 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getMypageLikeItem(this, 2, new NetworkManager.OnResultListener<MainInterResult>() {
+        NetworkManager.getInstance().getMypageLikeItem(this, new NetworkManager.OnResultListener<MainInterResult>() {
             @Override
             public void onSuccess(Request request, MainInterResult result) {
                 mAdapter.clear();

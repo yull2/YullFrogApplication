@@ -64,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("마이페이지"));
 
         tabs.setBackgroundResource(R.color.colorMainTabs);
+
+        Intent intent = new Intent(MainActivity.this, RegistrationIntentService.class);
+        startService(intent);
+
+
     }
 
     @Override

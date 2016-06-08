@@ -50,11 +50,11 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
         this.testDetail = testDetail;
 
         writeDateView.setText(testDetail.getWriteDate());
-        classView.setText("삼성전자 마케터");
+        classView.setText(testDetail.getActivityName());
         termView.setText(testDetail.getTerm());
         questionView.setText(testDetail.getQuestion());
-        levelView.setText("면접 난이도 " + testDetail.getLevel());
-        resultView.setText("면접 결과 " + testDetail.getResult());
+        levelView.setText(" " + testDetail.getLevel());
+        resultView.setText(" " + testDetail.getResult());
 
     }
 

@@ -49,7 +49,7 @@ public class SignupFragment extends Fragment {
                 final String checkPassword = passwordCheckView.getText().toString();
 
                 if (password.equals(checkPassword) && password.length()>=8) {
-                    Toast.makeText(getContext(), "회원가입 실행", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "이메일 전송", Toast.LENGTH_SHORT).show();
                     signUp(email,password);
                 }else if (password.equals(checkPassword) && password.length()<8){
                     Toast.makeText(getContext(), "비밀번호를 8자 이상입력하세요 ", Toast.LENGTH_SHORT).show();
@@ -67,7 +67,7 @@ public class SignupFragment extends Fragment {
         NetworkManager.getInstance().signUp(getContext(), id, pw, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
-                Toast.makeText(getContext(),"회원가입 : "+result.status,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"이메일 인증 후 로그인해주세요 : "+result.status,Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -4,6 +4,7 @@ package com.frogoutofwell.yullfrogapplication.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.frogoutofwell.yullfrogapplication.MainActivity;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+import com.frogoutofwell.yullfrogapplication.manager.PropertyManager;
 
 import java.io.IOException;
 
@@ -48,8 +50,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 final String email = emailView.getText().toString();
                 final String password = passwordView.getText().toString();
-
-                login(email, password);
+                String resId = PropertyManager.getInstance().getRegistrationToken();
+                Log.i("loggggggggggggggggi","loggggggggggggggggi : "+resId);
+                login(email, password, resId);
 
             }
         });
@@ -75,8 +78,8 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-    private void login(String id, String pw) {
-        NetworkManager.getInstance().signIn(getContext(), id, pw, new NetworkManager.OnResultListener<StatusCheckResult>() {
+    private void login(String id, String pw, String resId) {
+        NetworkManager.getInstance().signIn(getContext(), id, pw, resId, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
@@ -84,6 +87,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     startActivity(intent);
+                    getActivity().finish();
                 }else if (result.status.equals("notApproval")){
                     Toast.makeText(getContext(),"약관동의가 필요합니다 : "+result.status,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), AgreementActivity.class);

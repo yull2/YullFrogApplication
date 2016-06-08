@@ -217,10 +217,9 @@ public class NetworkManager {
     }
 
     // 대외활동 상단 정보
-    private static final String FROG_INTER_INFO = FROG_SERVER+"/detailActivity/header/%s/%s";
-    public Request getFrogInterInfo(Object tag, int activitySeq, int memSeq,
-                                          OnResultListener<InterInfoResult> listener) {
-        String url = String.format(FROG_INTER_INFO, activitySeq, memSeq);
+    private static final String FROG_INTER_INFO = FROG_SERVER+"/detailActivity/header/%s";
+    public Request getFrogInterInfo(Object tag, int activitySeq, OnResultListener<InterInfoResult> listener) {
+        String url = String.format(FROG_INTER_INFO, activitySeq);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<InterInfoResult> result = new NetworkResult<>();
@@ -554,9 +553,9 @@ public class NetworkManager {
     }
 
     // 마이페이지
-    private static final String FROG_MAIN_MYPAGE = FROG_SERVER+"/myPage/%s";
-    public Request getFrogMainMypage(Object tag, int memSeq, OnResultListener<MainMypageResult> listener) {
-        String url = String.format(FROG_MAIN_MYPAGE, memSeq);
+    private static final String FROG_MAIN_MYPAGE = FROG_SERVER+"/myPage";
+    public Request getFrogMainMypage(Object tag, OnResultListener<MainMypageResult> listener) {
+        String url = String.format(FROG_MAIN_MYPAGE);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<MainMypageResult> result = new NetworkResult<>();
@@ -584,9 +583,9 @@ public class NetworkManager {
     }
 
     // 찜 대외활동
-    private static final String MYPAGE_LIKE_ITEM = FROG_SERVER+"/myPage/moreActivity/%s";
-    public Request getMypageLikeItem(Object tag, int memSeq, OnResultListener<MainInterResult> listener) {
-        String url = String.format(MYPAGE_LIKE_ITEM, memSeq);
+    private static final String MYPAGE_LIKE_ITEM = FROG_SERVER+"/myPage/moreActivity";
+    public Request getMypageLikeItem(Object tag, OnResultListener<MainInterResult> listener) {
+        String url = String.format(MYPAGE_LIKE_ITEM);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<MainInterResult> result = new NetworkResult<>();
@@ -614,9 +613,9 @@ public class NetworkManager {
     }
 
     // 활동내역 나의 면접 후기
-    private static final String MY_TEST_REVIEW = FROG_SERVER+"/myPage/interviews/%s";
-    public Request getMyTestReview(Object tag, int memSeq, OnResultListener<MyTestReviewResult> listener) {
-        String url = String.format(MY_TEST_REVIEW, memSeq);
+    private static final String MY_TEST_REVIEW = FROG_SERVER+"/myPage/interviews";
+    public Request getMyTestReview(Object tag, OnResultListener<MyTestReviewResult> listener) {
+        String url = String.format(MY_TEST_REVIEW);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<MyTestReviewResult> result = new NetworkResult<>();
@@ -644,9 +643,9 @@ public class NetworkManager {
     }
 
     // 활동내역 나의 활동 후기
-    private static final String MY_DO_REVIEW = FROG_SERVER+"/myPage/postscripts/%s";
-    public Request getMyDoReview(Object tag, int memSeq, OnResultListener<MyDoReviewResult> listener) {
-        String url = String.format(MY_DO_REVIEW, memSeq);
+    private static final String MY_DO_REVIEW = FROG_SERVER+"/myPage/postscripts";
+    public Request getMyDoReview(Object tag, OnResultListener<MyDoReviewResult> listener) {
+        String url = String.format(MY_DO_REVIEW);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<MyDoReviewResult> result = new NetworkResult<>();
@@ -707,7 +706,6 @@ public class NetworkManager {
     private static final String FROG_DO_REVIEW_POST = FROG_SERVER + "/writePostscript";
     public Request getFrogDoReviewPost(Object tag,
                                    int activitySeq,
-                                   int writer,
                                    float rate,
                                    String term,
                                    String comment,
@@ -718,7 +716,6 @@ public class NetworkManager {
 
         RequestBody body = new FormBody.Builder()
                 .add("activitySeq", activitySeq+"")
-                .add("writer", writer+"")
                 .add("rate", rate+"")
                 .add("term", term)
                 .add("comment", comment)
@@ -760,7 +757,6 @@ public class NetworkManager {
     private static final String FROG_TEST_REVIEW_POST = FROG_SERVER + "/writeInterview";
     public Request getFrogTestReviewPost(Object tag,
                                        int activitySeq,
-                                       int writer,
                                        int level, int test_result,
                                        String term,
                                        String question,
@@ -771,7 +767,6 @@ public class NetworkManager {
 
         RequestBody body = new FormBody.Builder()
                 .add("activitySeq", activitySeq+"")
-                .add("writer", writer+"")
                 .add("level", level+"")
                 .add("result", test_result+"")
                 .add("term", term)
@@ -811,9 +806,9 @@ public class NetworkManager {
     }
 
     // 나의 개굴 포인트 확인
-    private static final String FROG_POINT_CHECK = FROG_SERVER+"/myPointCheck/%s";
-    public Request getMyPointCheck(Object tag, int memSeq, OnResultListener<PointCheckResult> listener) {
-        String url = String.format(FROG_POINT_CHECK, memSeq);
+    private static final String FROG_POINT_CHECK = FROG_SERVER+"/myPointCheck";
+    public Request getMyPointCheck(Object tag, OnResultListener<PointCheckResult> listener) {
+        String url = String.format(FROG_POINT_CHECK);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<PointCheckResult> result = new NetworkResult<>();
@@ -841,9 +836,9 @@ public class NetworkManager {
     }
 
     // 찜한 활동 상태 변경
-    private static final String LIKE_STATUS_CHANGE = FROG_SERVER+"/likeStatusChange/%s/%s";
-    public Request getLikeStatusChange(Object tag, int activitySeq, int memSeq, OnResultListener<LikeStatusResult> listener) {
-        String url = String.format(LIKE_STATUS_CHANGE, activitySeq, memSeq);
+    private static final String LIKE_STATUS_CHANGE = FROG_SERVER+"/likeStatusChange/%s";
+    public Request getLikeStatusChange(Object tag, int activitySeq, OnResultListener<LikeStatusResult> listener) {
+        String url = String.format(LIKE_STATUS_CHANGE, activitySeq);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<LikeStatusResult> result = new NetworkResult<>();
@@ -871,12 +866,11 @@ public class NetworkManager {
     }
 
     // 관심 대외활동 등록
-    private static final String ACTCLASS_CHANGE = FROG_SERVER + "/actClassChange/%s";
+    private static final String ACTCLASS_CHANGE = FROG_SERVER + "/actClassChange";
     public Request getMyActclassChange(Object tag,
-                                       int memSeq,
                                        SparseBooleanArray array,
                                        OnResultListener<StatusCheckResult> listener) {
-        String url = String.format(ACTCLASS_CHANGE,memSeq);
+        String url = String.format(ACTCLASS_CHANGE);
 
         RequestBody body = new FormBody.Builder()
                 .add("all", array.get(0)+"")
@@ -925,12 +919,11 @@ public class NetworkManager {
 
 
     // 관심 산업군 등록
-    private static final String INDUS_CHANGE = FROG_SERVER + "/indusChange/%s";
+    private static final String INDUS_CHANGE = FROG_SERVER + "/indusChange";
     public Request getMyIndusChange(Object tag,
-                                       int memSeq,
                                        SparseBooleanArray array,
                                        OnResultListener<StatusCheckResult> listener) {
-        String url = String.format(INDUS_CHANGE,memSeq);
+        String url = String.format(INDUS_CHANGE);
 
         RequestBody body = new FormBody.Builder()
                 .add("all", array.get(0)+"")
@@ -978,10 +971,11 @@ public class NetworkManager {
 
     // 로그인
     private static final String URL_SIGN_IN = FROG_SERVER + "/login";
-    public Request signIn(Object tag, String email, String password, OnResultListener<StatusCheckResult> listener) {
+    public Request signIn(Object tag, String email, String password, String resId, OnResultListener<StatusCheckResult> listener) {
         RequestBody body = new FormBody.Builder()
                 .add("email", email)
                 .add("pwd", password)
+                .add("gcmToken", resId)
                 .build();
 
         Request request = new Request.Builder()
@@ -1054,10 +1048,9 @@ public class NetworkManager {
 
     // 약관 동의
     private static final String URL_USER_AGREEMENT = FROG_SERVER + "/quotation";
-    public Request getUserAgreement(Object tag, String email, int res, OnResultListener<StatusCheckResult> listener) {
+    public Request getUserAgreement(Object tag, int res, OnResultListener<StatusCheckResult> listener) {
 
         RequestBody body = new FormBody.Builder()
-                .add("email", email)
                 .add("res", res+"")
                 .build();
 
@@ -1093,10 +1086,9 @@ public class NetworkManager {
 
     // 대학생 인증
     private static final String URL_STUDENT_CONFIRM = FROG_SERVER + "/studentConfirm";
-    public Request getStudentConfirm(Object tag, String email, String sEmail, OnResultListener<StatusCheckResult> listener) {
+    public Request getStudentConfirm(Object tag, String sEmail, OnResultListener<StatusCheckResult> listener) {
 
         RequestBody body = new FormBody.Builder()
-                .add("email", email)
                 .add("studentEmail", sEmail)
                 .build();
 
@@ -1132,10 +1124,9 @@ public class NetworkManager {
 
     // 비밀번호 변경
     private static final String USER_PASSWORD_CHANGE = FROG_SERVER + "/changePwd";
-    public Request getUserPWChange(Object tag, String email, String current, String newpwd, OnResultListener<StatusCheckResult> listener) {
+    public Request getUserPWChange(Object tag, String current, String newpwd, OnResultListener<StatusCheckResult> listener) {
 
         RequestBody body = new FormBody.Builder()
-                .add("email", email)
                 .add("currentpwd", current)
                 .add("pwd", newpwd)
                 .build();
@@ -1169,5 +1160,66 @@ public class NetworkManager {
         });
         return request;
     }
+
+    // 자동로그인 요청
+    private static final String URL_AUTO_USER_LOGIN = FROG_SERVER+"/autoLogin";
+    public Request getAutoUserLogin(Object tag, OnResultListener<StatusCheckResult> listener) {
+        String url = String.format(URL_AUTO_USER_LOGIN);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    StatusCheckResult data = gson.fromJson(response.body().charStream(), StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 로그아웃 요청
+    private static final String URL_USER_LOGOUT = FROG_SERVER+"/logout";
+    public Request getUserLogout(Object tag, OnResultListener<StatusCheckResult> listener) {
+        String url = String.format(URL_USER_LOGOUT);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    StatusCheckResult data = gson.fromJson(response.body().charStream(), StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
 
 }

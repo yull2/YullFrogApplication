@@ -70,5 +70,15 @@ public class PropertyManager {
         return user;
     }
 
+    private static final String FIELD_RAGISTRATION_TOKEN = "regtoken";
+    public String getRegistrationToken() {
+        return mPrefs.getString(FIELD_RAGISTRATION_TOKEN,"");
+    }
+
+    public void setRegistrationToken(String token) {
+        mEditor.putString(FIELD_RAGISTRATION_TOKEN, token);
+        mEditor.commit();
+    }
+
 
 }

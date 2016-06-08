@@ -84,19 +84,22 @@ public class WriteDoActivity extends AppCompatActivity {
                 String commentBad = commentBadView.getText().toString();
                 float rate = ratebar.getRating();
                 String term = tmp_term;
-                reviewUpload(seq, 2, rate, term, comment, commentGood, commentBad);
+                reviewUpload(seq, rate, term, comment, commentGood, commentBad);
             }
         });
     }
 
-    private void reviewUpload( int activitySeq, int writer, float rate, String term, String comment, String commentGood, String commentBad){
+    private void reviewUpload( int activitySeq, float rate, String term, String comment, String commentGood, String commentBad){
         Log.i("reviewUpload", "reviewUpload : "+rate+", comment: "+comment+", commentGood : "+commentGood+", commentBad: "+commentBad);
-        NetworkManager.getInstance().getFrogDoReviewPost(this, activitySeq, writer, rate, term, comment, commentGood, commentBad, new NetworkManager.OnResultListener<String>() {
+        NetworkManager.getInstance().getFrogDoReviewPost(this, activitySeq, rate, term, comment, commentGood, commentBad, new NetworkManager.OnResultListener<String>() {
             @Override
             public void onSuccess(Request request, String result) {
                 //Log.i("seeeeeeq","전달되누값 "+ seq);
                 String status = result;
                 Toast.makeText(WriteDoActivity.this, "업로드 상태 "+ status, Toast.LENGTH_LONG).show();
+                if (status.equals("OK")){
+                    finish();
+                }
             }
 
             @Override

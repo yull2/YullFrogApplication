@@ -81,7 +81,7 @@ public class MyDoHistoryFragment extends Fragment {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getMyDoReview(getContext(), 2, new NetworkManager.OnResultListener<MyDoReviewResult>() {
+        NetworkManager.getInstance().getMyDoReview(getContext(), new NetworkManager.OnResultListener<MyDoReviewResult>() {
             @Override
             public void onSuccess(Request request, MyDoReviewResult result) {
                 mAdapter.clear();

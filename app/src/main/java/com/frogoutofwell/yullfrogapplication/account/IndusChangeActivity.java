@@ -91,7 +91,7 @@ public class IndusChangeActivity extends AppCompatActivity {
     }
 
     private void setIndusChange(SparseBooleanArray result){
-        NetworkManager.getInstance().getMyIndusChange(this, 2, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
+        NetworkManager.getInstance().getMyIndusChange(this, result, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if (result.status.equals("OK")){
