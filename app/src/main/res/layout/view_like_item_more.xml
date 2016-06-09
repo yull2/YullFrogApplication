@@ -7,5 +7,5 @@
         android:layout_width="155dp"
         android:layout_height="199dp"
         android:id="@+id/img_likemore"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/individual_ic_moreposter"/>
 </LinearLayout>

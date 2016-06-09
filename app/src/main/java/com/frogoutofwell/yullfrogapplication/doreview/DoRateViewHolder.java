@@ -2,6 +2,7 @@ package com.frogoutofwell.yullfrogapplication.doreview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,19 +16,19 @@ import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 public class DoRateViewHolder extends RecyclerView.ViewHolder {
 
     TextView rateView;
-    RatingBar rateBar;
+    ImageView rateBar;
 
     ActivityDetail activityDetail;
 
     public DoRateViewHolder(View itemView) {
         super(itemView);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
-        rateBar = (RatingBar)itemView.findViewById(R.id.ratebar);
+        rateBar = (ImageView)itemView.findViewById(R.id.img_rate);
     }
 
     public void setDoRate(ActivityDetail activityDetail){
         this.activityDetail = activityDetail;
         rateView.setText(activityDetail.getAverageRate() + " ");
-        rateBar.setRating(activityDetail.getAverageRate());
+
     }
 }

@@ -3,6 +3,7 @@ package com.frogoutofwell.yullfrogapplication.doreview;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import com.frogoutofwell.yullfrogapplication.data.DoDetail;
 public class DoSecondViewHolder extends RecyclerView.ViewHolder {
 
     TextView rateView, commentView, commentGoodView, commentBadView;
-    RatingBar rateBar;
+    ImageView rateBar;
 
     DoDetail doDetail;
 
@@ -31,7 +32,7 @@ public class DoSecondViewHolder extends RecyclerView.ViewHolder {
 
     public DoSecondViewHolder(View itemView) {
         super(itemView);
-        rateBar = (RatingBar)itemView.findViewById(R.id.ratebar);
+        rateBar = (ImageView)itemView.findViewById(R.id.img_rate);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
         commentGoodView = (TextView)itemView.findViewById(R.id.text_commendgood);
@@ -49,7 +50,7 @@ public class DoSecondViewHolder extends RecyclerView.ViewHolder {
 
     public void setDoSecond(DoDetail doDetail){
         this.doDetail = doDetail;
-        rateBar.setRating(doDetail.getRate());
+
         rateView.setText(doDetail.getRate()+" ");
         commentView.setText(doDetail.getComment());
         commentGoodView.setText(doDetail.getCommentGood());

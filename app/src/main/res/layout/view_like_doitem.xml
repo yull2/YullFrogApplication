@@ -13,6 +13,8 @@
         android:layout_width="145dp"
         android:layout_height="165dp"
         android:id="@+id/img_logo"
+        android:scaleType="fitStart"
+        android:background="@color/colorSingleLine"
         android:src="@mipmap/ic_launcher"
         android:layout_marginTop="6dp"
         android:layout_marginStart="6dp"
@@ -20,26 +22,28 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="9dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="98dp"
+        android:layout_height="17dp"
         android:text="Medium Text"
         android:id="@+id/text_name"
+        android:textSize="13dp"
+        android:textColor="@color/colorBasicTextGray"
         android:layout_below="@+id/img_logo"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/text_info" />
 
     <TextView
-        android:layout_width="34dp"
-        android:layout_height="9dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="47dp"
+        android:layout_height="17dp"
         android:text="Medium Text"
+        android:textSize="13dp"
+        android:textColor="@color/colorActClass"
         android:id="@+id/text_info"
         android:layout_below="@+id/img_logo"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="4dp"
         android:layout_alignParentEnd="true" />
     </RelativeLayout>
 

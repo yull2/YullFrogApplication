@@ -25,6 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
+            android:textSize="11dp"
+            android:textColor="@color/colorBasicTextGray"
             android:paddingStart="37dp"
             android:text="@string/student_confirm"/>
 
@@ -34,6 +36,8 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/edit_email"
             android:hint="대학교 이메일 주소"
+            android:textColor="@color/colorTextPriview"
+            android:textSize="13dp"
             android:layout_marginTop="8dp"
             android:paddingStart="20dp"
             android:background="@drawable/login_4_bg_box"

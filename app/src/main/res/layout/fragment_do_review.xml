@@ -14,13 +14,14 @@
         android:layout_height="18dp"
         android:orientation="horizontal"
         android:layout_marginTop="22dp"
+        android:layout_marginStart="12dp"
         android:id="@+id/linearLayout4">
         <TextView
             android:layout_width="15dp"
             android:layout_height="18dp"
             android:text="총"
             android:textSize="13dp"
-            android:layout_marginStart="12dp"/>
+            android:textColor="@color/colorBasicTextBlack" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="18dp"
@@ -34,6 +35,7 @@
             android:layout_height="18dp"
             android:layout_marginStart="5dp"
             android:textSize="13dp"
+            android:textColor="@color/colorBasicTextBlack"
             android:text="개의 후기"/>
     </LinearLayout>
 

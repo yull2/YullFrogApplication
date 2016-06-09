@@ -15,25 +15,35 @@
             android:id="@+id/linearLayout1">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="52dp"
+                android:layout_height="33dp"
                 android:text="3.5"
+                android:textColor="@color/colorBasicTextBlack"
+                android:textSize="30dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/text_rate" />
 
-            <RatingBar
+            <ImageView
                 android:layout_width="82dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/ratebar"
-                android:isIndicator="true"
+                android:id="@+id/img_rate"
+                android:src="@drawable/star_on"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="12dp"
                 android:layout_below="@+id/text_rate" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="247dp"
+                android:layout_height="46dp"
                 android:text="Large Text"
+                android:textSize="15dp"
+                android:textColor="@color/colorBasicTextBlack"
                 android:id="@+id/text_comment"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/ratebar" />
+                android:layout_toEndOf="@+id/text_rate" />
         </RelativeLayout>
         <View
             android:layout_width="match_parent"

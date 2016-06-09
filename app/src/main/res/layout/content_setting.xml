@@ -14,8 +14,10 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="11dp"
+        android:layout_height="wrap_content"
         android:text="@string/notice_setting"
+        android:textSize="11dp"
+        android:textColor="@color/colorSettingText"
         android:layout_marginTop="29dp"
         android:layout_marginStart="13dp"
         android:id="@+id/textView24" />
@@ -26,14 +28,18 @@
         android:text="@string/notice_mobile"
         android:layout_marginTop="8dp"
         android:paddingStart="13dp"
+        android:textSize="14dp"
+        android:textColor="@color/colorBasicTextBlack"
         android:gravity="center_vertical"
         android:background="@drawable/individual_bg_bar"
         android:id="@+id/btn_mobile" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="11dp"
+        android:layout_height="wrap_content"
         android:text="@string/service_guide"
+        android:textSize="11dp"
+        android:textColor="@color/colorSettingText"
         android:gravity="center_vertical"
         android:layout_marginTop="29dp"
         android:layout_marginStart="13dp"
@@ -43,6 +49,8 @@
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:text="@string/notice"
+        android:textSize="14dp"
+        android:textColor="@color/colorBasicTextBlack"
         android:gravity="center_vertical"
         android:layout_marginTop="8dp"
         android:paddingStart="13dp"
@@ -60,6 +68,8 @@
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:text="@string/agreement"
+        android:textSize="14dp"
+        android:textColor="@color/colorBasicTextBlack"
         android:gravity="center_vertical"
         android:paddingStart="13dp"
         android:background="@color/colorWhite"
@@ -84,6 +94,8 @@
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:text="@string/version_info"
+        android:textSize="14dp"
+        android:textColor="@color/colorBasicTextBlack"
         android:gravity="center_vertical"
         android:layout_marginTop="48dp"
         android:paddingStart="13dp"

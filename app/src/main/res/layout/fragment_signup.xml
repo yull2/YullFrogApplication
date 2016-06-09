@@ -29,6 +29,9 @@
                 android:layout_weight="1"
                 android:inputType="textEmailAddress"
                 android:hint="@string/signup_email"
+                android:paddingStart="21dp"
+                android:textColor="@color/colorTextPriview"
+                android:textSize="13dp"
                 android:ems="10"
                 android:id="@+id/edit_email"
                 android:layout_alignParentTop="true" />
@@ -40,6 +43,9 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:hint="@string/signup_pwd"
+                android:paddingStart="21dp"
+                android:textColor="@color/colorTextPriview"
+                android:textSize="13dp"
                 android:id="@+id/edit_pw"
                 android:layout_below="@+id/edit_email" />
 
@@ -50,6 +56,9 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:hint="@string/signup_pwd_check"
+                android:paddingStart="21dp"
+                android:textColor="@color/colorTextPriview"
+                android:textSize="13dp"
                 android:id="@+id/edit_checkpw"
                 android:layout_below="@+id/edit_pw" />
 

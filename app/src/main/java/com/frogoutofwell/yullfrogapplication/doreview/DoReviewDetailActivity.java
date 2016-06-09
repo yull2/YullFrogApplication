@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import okhttp3.Request;
 public class DoReviewDetailActivity extends AppCompatActivity {
 
     TextView commentView, rateView, termView, writeDateView, commentGoodView, commentBadView;
-    RatingBar ratebar;
+    ImageView ratebar;
 
     int seq;
 
@@ -41,7 +42,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         writeDateView = (TextView)findViewById(R.id.text_writedate);
         commentGoodView = (TextView)findViewById(R.id.text_commendgood);
         commentBadView = (TextView)findViewById(R.id.text_commentbad);
-        ratebar = (RatingBar)findViewById(R.id.ratebar);
+        ratebar = (ImageView)findViewById(R.id.img_rate);
 
         setData();
     }
@@ -57,7 +58,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
                 writeDateView.setText(result.doDetail.getWriteDate());
                 commentGoodView.setText(result.doDetail.getCommentGood());
                 commentBadView.setText(result.doDetail.getCommentBad());
-                ratebar.setRating(result.doDetail.getRate());
+
             }
 
             @Override

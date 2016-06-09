@@ -66,7 +66,7 @@ public class InterMainActivity extends AppCompatActivity {
         nameView.setText("대외활동명");
         classView.setText("활동분류");
 
-        nameView.setTypeface(TypefaceManager.getInstance().getTypeface(getParent(), TypefaceManager.FONT_NAME_NANUM));
+//        nameView.setTypeface(TypefaceManager.getInstance().getTypeface(getParent(), TypefaceManager.FONT_NAME_NANUM));
 
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);
