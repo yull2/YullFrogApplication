@@ -107,12 +107,11 @@ public class MainHomeFragment extends Fragment {
         NetworkManager.getInstance().getFrogMainHomeFeed(getContext(), new NetworkManager.OnResultListener<MainHomeDetailResult>() {
             @Override
             public void onSuccess(Request request, MainHomeDetailResult result) {
+
                 mAdapter.setDoDetail(result.home.doDetail);
                 mAdapter.setTestDetail(result.home.testDetail);
                 mAdapter.setActivityImg(result.home.activityDetails.activityDetails);
-               // mAdapter.setActivityImg(result.activityDetail);
-               // mAdapter.clear();
-                //mAdapter.addAll(result.products.productList);
+
             }
 
             @Override

@@ -22,8 +22,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="55dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
+            android:textSize="15dp"
             android:id="@+id/text_term"
             android:gravity="center_vertical"
             android:layout_marginStart="17dp"
@@ -45,6 +45,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:text="@string/test_level"
+                android:textSize="12dp"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="0dp"
@@ -52,6 +53,8 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
+                android:textSize="12dp"
+                android:textColor="@color/colorTextBluebox"
                 android:gravity="center"
                 android:id="@+id/text_level" />
             <TextView
@@ -59,6 +62,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:text="@string/test_result"
+                android:textSize="12dp"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="0dp"
@@ -66,6 +70,8 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
+                android:textSize="12dp"
+                android:textColor="@color/colorTextBluebox"
                 android:gravity="center"
                 android:id="@+id/text_result"/>
         </LinearLayout>
@@ -77,6 +83,8 @@
             android:layout_marginTop="35dp"
             android:layout_marginStart="17dp"
             android:text="@string/question_title"
+            android:textSize="10dp"
+            android:textColor="@color/colorTextGood"
             android:id="@+id/textView15" />
 
         <TextView
@@ -86,7 +94,8 @@
             android:text="Medium Text"
             android:layout_marginStart="17dp"
             android:layout_marginTop="9dp"
-            android:id="@+id/text_question" />
+            android:textSize="12dp"
+            android:id="@+id/text_commendgood" />
 
         <TextView
             android:layout_width="match_parent"
@@ -95,6 +104,8 @@
             android:layout_marginTop="35dp"
             android:layout_marginStart="17dp"
             android:text="@string/answer_title"
+            android:textSize="10dp"
+            android:textColor="@color/colorTextBluebox"
             android:id="@+id/textView17" />
 
         <TextView
@@ -104,6 +115,7 @@
             android:text="Medium Text"
             android:layout_marginStart="17dp"
             android:layout_marginTop="9dp"
+            android:textSize="12dp"
             android:id="@+id/text_answer" />
 
         <TextView

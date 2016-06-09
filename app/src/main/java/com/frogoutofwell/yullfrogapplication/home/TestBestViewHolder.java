@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.TestDetail;
 
@@ -36,7 +35,7 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
         nameView = (TextView)itemView.findViewById(R.id.text_name);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
         resultView = (TextView)itemView.findViewById(R.id.text_info);
-        questionView = (TextView)itemView.findViewById(R.id.text_question);
+        questionView = (TextView)itemView.findViewById(R.id.text_commendgood);
         answerView = (TextView)itemView.findViewById(R.id.text_answer);
 
         Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);

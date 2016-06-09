@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.ActivityNameResult;
+import com.frogoutofwell.yullfrogapplication.data.NotificationResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 
 import java.io.IOException;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         type = (String)getIntent().getSerializableExtra(EXTRA_TYPE);
-        Log.i("mainnn","main : "+type);
+        Log.i("mainnn","main data ========================== "+type);
 
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);
@@ -188,7 +189,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setUserNotice(String type){
+    private void setUserNotice(){
+        NetworkManager.getInstance().getUserNoticeList(this, new NetworkManager.OnResultListener<NotificationResult>() {
+            @Override
+            public void onSuccess(Request request, NotificationResult result) {
+                listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
+            }
 
+            @Override
+            public void onFail(Request request, IOException exception) {
+
+            }
+        });
     }
 }

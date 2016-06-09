@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class InterMainActivity extends AppCompatActivity {
     MenuItem like_item;
 
     int seq;
+    CheckBox likeCheckBox;
     boolean likeChecked;
 
     @Override
@@ -95,7 +97,7 @@ public class InterMainActivity extends AppCompatActivity {
                     case 0 : fab.hide();break;
                     case 1 :
                         fab.show();
-                        fab.setImageDrawable(getDrawable(R.drawable.btn_interview2));
+                        fab.setImageDrawable(getDrawable(R.drawable.btn_interview3));
                         fab.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -108,7 +110,7 @@ public class InterMainActivity extends AppCompatActivity {
                     }); break;
                     case 2 :
                         fab.show();
-                        fab.setImageResource(R.drawable.btn_write2);
+                        fab.setImageDrawable(getDrawable(R.drawable.btn_write3));
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -135,6 +137,17 @@ public class InterMainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_inter, menu);
         like_item = menu.findItem(R.id.inter_like);
 
+        likeCheckBox = (CheckBox)like_item.getActionView().findViewById(R.id.like_item);
+        likeCheckBox.setChecked(likeChecked);
+        likeCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                likeStatusChange(seq);
+                //Toast.makeText(InterMainActivity.this,"찜활동에 추가되었습니다",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         return true;
     }
 
@@ -145,17 +158,8 @@ public class InterMainActivity extends AppCompatActivity {
             finish();
         }
         if (id == R.id.inter_like){
-            Toast.makeText(this, "interlike click", Toast.LENGTH_SHORT).show();
-            likeStatusChange(seq);
-            return true;
+            return false;
         }
-       /* switch (item.getItemId()) {
-            case android.R.id.home : finish(); break;
-            case R.id.inter_like :
-                Toast.makeText(this, "interlike click", Toast.LENGTH_SHORT).show();
-                likeStatusChange(seq,2);
-                return true;
-        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -168,7 +172,7 @@ public class InterMainActivity extends AppCompatActivity {
                 classView.setText(result.detail.activityDetail.getActClass()+" / "+result.detail.activityDetail.getCompanyName());
                 if (result.detail.check == 1){
                     likeChecked = true;
-                    like_item.setChecked(likeChecked);
+                    likeCheckBox.setChecked(likeChecked);
 
                 }
             }
@@ -189,7 +193,7 @@ public class InterMainActivity extends AppCompatActivity {
                     if (likeChecked){
                         likeChecked = false;
                     }else likeChecked = true;
-                    like_item.setChecked(likeChecked);
+                    likeCheckBox.setChecked(likeChecked);
                 }
             }
 

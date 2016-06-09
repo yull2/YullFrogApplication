@@ -1,5 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.testreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,8 @@ public class TestReviewDetailActivity extends AppCompatActivity {
 
     TextView termView, levelView, resultView, questionView, answerView, wayView;
 
+    int seq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +30,20 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
+        Intent intent = getIntent();
+        seq = intent.getIntExtra("seq",1);
 
         termView = (TextView)findViewById(R.id.text_term);
         levelView = (TextView)findViewById(R.id.text_level);
         resultView = (TextView)findViewById(R.id.text_result);
-        questionView = (TextView)findViewById(R.id.text_question);
+        questionView = (TextView)findViewById(R.id.text_commendgood);
         answerView = (TextView)findViewById(R.id.text_answer);
         wayView = (TextView)findViewById(R.id.text_way);
 
         setData();
     }
     private void setData() {
-        NetworkManager.getInstance().getInterTestReviewDetail(this, 2, new NetworkManager.OnResultListener<TestDetailResult>() {
+        NetworkManager.getInstance().getInterTestReviewDetail(this, seq, new NetworkManager.OnResultListener<TestDetailResult>() {
             @Override
             public void onSuccess(Request request, TestDetailResult result) {
                 getSupportActionBar().setTitle(result.testDetail.getActivityName());

@@ -9,6 +9,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
 
+    <string name="font_name_nanumgothic">nanumgothic</string>
+    <string name="font_name_light">light</string>
+    <string name="font_name_regular">regular</string>
+
+
     <string name="title_activity_main_inter">MainInterActivity</string>
     <string name="title_activity_inter_main">InterMainActivity</string>
     <string name="title_activity_write_do">활동 후기 작성</string>
@@ -90,8 +95,8 @@
     <string name="mypage_history">활동 내역</string>
     <string name="mypage_account">계정</string>
     <string name="mypage_setting">환경설정</string>
-    <string name="title_activity_initail_act">InitailActActivity</string>
-    <string name="title_activity_initial_indus">InitialIndusActivity</string>
+    <string name="inter_test_more">더 보기></string>
+    <string name="inter_do_more">대외 활동 후기 더 보기></string>
 
 
 </resources>

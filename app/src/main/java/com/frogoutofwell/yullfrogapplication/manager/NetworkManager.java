@@ -22,6 +22,7 @@ import com.frogoutofwell.yullfrogapplication.data.MainInterResult;
 import com.frogoutofwell.yullfrogapplication.data.MainMypageResult;
 import com.frogoutofwell.yullfrogapplication.data.MyDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.MyTestReviewResult;
+import com.frogoutofwell.yullfrogapplication.data.NotificationResult;
 import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.ReviewUploadResult;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
@@ -184,6 +185,37 @@ public class NetworkManager {
         });
         return request;
     }
+
+    // 메인 USER 알림 lIST
+    private static final String USER_NOTICE_LIST = FROG_SERVER+"/userNoticeList";
+    public Request getUserNoticeList(Object tag, OnResultListener<NotificationResult> listener) {
+        String url = String.format(MAIN_ACTIVITY_LIST);
+        Request request = new Request.Builder().url(url).build();
+
+        final NetworkResult<NotificationResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    NotificationResult data = gson.fromJson(response.body().charStream(), NotificationResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
 
     // 활동명 검색
     private static final String MAIN_ACTIVITY_SEARCH = FROG_SERVER+"/homeSearch/%s";

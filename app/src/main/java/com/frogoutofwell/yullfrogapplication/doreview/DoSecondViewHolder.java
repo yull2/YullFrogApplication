@@ -34,7 +34,7 @@ public class DoSecondViewHolder extends RecyclerView.ViewHolder {
         rateBar = (RatingBar)itemView.findViewById(R.id.ratebar);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
-        commentGoodView = (TextView)itemView.findViewById(R.id.text_question);
+        commentGoodView = (TextView)itemView.findViewById(R.id.text_commendgood);
         commentBadView = (TextView)itemView.findViewById(R.id.text_commentbad);
         Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);
         btn_detail.setOnClickListener(new View.OnClickListener() {

@@ -12,7 +12,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.frogoutofwell.yullfrogapplication.data.UserNotice;
 import com.frogoutofwell.yullfrogapplication.login.MyResult;
 import com.frogoutofwell.yullfrogapplication.login.User;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
@@ -35,8 +34,8 @@ public class MyGcmListenerService extends GcmListenerService{
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String type = data.getString("data1");
-        String message = data.getString("data2");
+        String type = data.getString("type");
+        String message = data.getString("message");
         Log.e("message",message+", "+type);
 
         sendNotification(message, type);

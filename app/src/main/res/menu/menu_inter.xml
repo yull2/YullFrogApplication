@@ -2,17 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.frogoutofwell.yullfrogapplication.InterMainActivity">
-<!--    <item
-        android:id="@+id/inter_share"
-        android:title="@string/action_share"
-        android:icon="@android:drawable/ic_menu_share"
-        app:showAsAction="always"  />-->
 
     <item
         android:id="@+id/inter_like"
         android:title="@string/action_like"
-        android:checkable="true"
-        android:icon="@drawable/intermain_like"
-        android:actionLayout="@layout/view_inter_like_item"
+        android:icon="@android:drawable/ic_input_add"
+        app:actionLayout="@layout/view_inter_like_item"
         app:showAsAction="always"  />
 </menu>

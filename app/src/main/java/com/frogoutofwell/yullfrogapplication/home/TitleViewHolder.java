@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.frogoutofwell.yullfrogapplication.TypefaceManager;
+
 import org.w3c.dom.Text;
 
 /**

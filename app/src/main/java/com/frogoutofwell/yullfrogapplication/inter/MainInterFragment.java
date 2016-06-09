@@ -3,6 +3,7 @@ package com.frogoutofwell.yullfrogapplication.inter;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -118,6 +119,7 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_actclass.setText(item);
+                        btn_actclass.setTextColor(Color.parseColor("#0090e9"));
                         key_act = item;
                         setConditionData(key_act, key_indus, key_term, key_local);
 
@@ -137,6 +139,7 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_indus.setText(item);
+                        btn_indus.setTextColor(Color.parseColor("#0090e9"));
                         key_indus = item;
                         setConditionData(key_act, key_indus, key_term, key_local);
                     }
@@ -154,6 +157,7 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_term.setText(item);
+                        btn_term.setTextColor(Color.parseColor("#0090e9"));
                         key_term = item;
                         setConditionData(key_act, key_indus, key_term, key_local);
                     }
@@ -171,6 +175,7 @@ public class MainInterFragment extends Fragment {
                     @Override
                     public void onItemSelect(String item) {
                         btn_local.setText(item);
+                        btn_local.setTextColor(Color.parseColor("#0090e9"));
                         key_local = item;
                         setConditionData(key_act, key_indus, key_term, key_local);
                     }

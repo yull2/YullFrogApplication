@@ -59,6 +59,7 @@ public class MyDoHistoryFragment extends Fragment {
             @Override
             public void onItemClick(View view, DoDetail doDetail) {
                 Intent intent = new Intent(getContext(), DoReviewDetailActivity.class);
+                intent.putExtra("seq",doDetail.getSeq());
                 startActivity(intent);
             }
         });

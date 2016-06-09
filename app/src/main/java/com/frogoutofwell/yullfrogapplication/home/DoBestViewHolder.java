@@ -35,7 +35,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         classView = (TextView)itemView.findViewById(R.id.text_info);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
-        commentGoodView = (TextView)itemView.findViewById(R.id.text_question);
+        commentGoodView = (TextView)itemView.findViewById(R.id.text_commendgood);
         commentBadView = (TextView)itemView.findViewById(R.id.text_commentbad);
 
         Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);
@@ -56,7 +56,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
         nameView.setText(doDetail.getActivityName());
         rateView.setText(""+doDetail.getRate());
         classView.setText(doDetail.getCompanyName());
-        commentView.setText(doDetail.getComment());
+        commentView.setText(" "+doDetail.getComment()+"");
         commentGoodView.setText(doDetail.getCommentGood());
         commentBadView.setText(doDetail.getCommentBad());
     }

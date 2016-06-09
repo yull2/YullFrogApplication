@@ -14,5 +14,15 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorFloatingBg">#0090e9</color>
     <color name="colorDoRatebar">#c9c9c9</color>
+    <color name="colorTextGood">#283593</color>
+    <color name="colorTextBad">#ff5722</color>
+    <color name="colorTextBluebox">#0090e9</color>
+    <color name="colorTextTitle">#252525</color>
+    <color name="colorMoreDetail">#0091e1</color>
+    <color name="colorActClass">#ff5722</color>
+    <color name="colorBasicTextBlack">#252525</color>
+    <color name="colorBasicTextGray">#707070</color>
+    <color name="colorTextPriview">#d2d2d2</color>
+    <color name="colorNumberPoint">#ff7e19</color>
 
 </resources>

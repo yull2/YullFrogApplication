@@ -1,5 +1,6 @@
 package com.frogoutofwell.yullfrogapplication.doreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,9 @@ public class DoReviewDetailActivity extends AppCompatActivity {
 
     TextView commentView, rateView, termView, writeDateView, commentGoodView, commentBadView;
     RatingBar ratebar;
+
+    int seq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +32,14 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
+        Intent intent = getIntent();
+        seq = intent.getIntExtra("seq",1);
 
         commentView = (TextView)findViewById(R.id.text_comment);
         rateView = (TextView)findViewById(R.id.text_rate);
         termView = (TextView)findViewById(R.id.text_term);
         writeDateView = (TextView)findViewById(R.id.text_writedate);
-        commentGoodView = (TextView)findViewById(R.id.text_question);
+        commentGoodView = (TextView)findViewById(R.id.text_commendgood);
         commentBadView = (TextView)findViewById(R.id.text_commentbad);
         ratebar = (RatingBar)findViewById(R.id.ratebar);
 
@@ -41,7 +47,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        NetworkManager.getInstance().getInterDoReviewDetail(this, 2, new NetworkManager.OnResultListener<DoDetailResult>() {
+        NetworkManager.getInstance().getInterDoReviewDetail(this, seq, new NetworkManager.OnResultListener<DoDetailResult>() {
             @Override
             public void onSuccess(Request request, DoDetailResult result) {
                 getSupportActionBar().setTitle(result.doDetail.getActivityName());

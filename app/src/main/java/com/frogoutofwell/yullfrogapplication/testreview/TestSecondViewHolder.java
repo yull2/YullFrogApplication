@@ -31,7 +31,7 @@ public class TestSecondViewHolder extends RecyclerView.ViewHolder {
         classInfoView = (TextView)itemView.findViewById(R.id.text_classinfo);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
         resultView = (TextView)itemView.findViewById(R.id.text_result);
-        questionView = (TextView)itemView.findViewById(R.id.text_question);
+        questionView = (TextView)itemView.findViewById(R.id.text_commendgood);
         answerView = (TextView)itemView.findViewById(R.id.text_answer);
 
         Button btn_detail = (Button)itemView.findViewById(R.id.btn_detail);

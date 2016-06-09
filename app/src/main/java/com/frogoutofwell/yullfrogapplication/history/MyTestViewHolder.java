@@ -34,7 +34,7 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
         writeDateView = (TextView)itemView.findViewById(R.id.text_writedate);
         classView = (TextView)itemView.findViewById(R.id.text_classinfo);
         termView = (TextView)itemView.findViewById(R.id.text_term);
-        questionView = (TextView)itemView.findViewById(R.id.text_question);
+        questionView = (TextView)itemView.findViewById(R.id.text_commendgood);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
         resultView = (TextView)itemView.findViewById(R.id.text_info);
         itemView.setOnClickListener(new View.OnClickListener() {

@@ -9,4 +9,5 @@
         android:text=""
         android:background="@drawable/main_point"
         android:id="@+id/user_notice" />
+
 </LinearLayout>
