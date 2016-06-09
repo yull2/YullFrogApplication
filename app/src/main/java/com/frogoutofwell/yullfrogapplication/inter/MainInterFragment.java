@@ -189,6 +189,7 @@ public class MainInterFragment extends Fragment {
         });
         listPopup.setAnchorView(btn_sort);
         listPopup.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, sortList));
+        listPopup.setContentWidth(400);
         listPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

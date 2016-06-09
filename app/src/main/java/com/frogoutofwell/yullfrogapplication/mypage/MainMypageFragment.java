@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.TypefaceManager;
 import com.frogoutofwell.yullfrogapplication.account.AccountActivity;
 import com.frogoutofwell.yullfrogapplication.data.MainMypageResult;
 import com.frogoutofwell.yullfrogapplication.history.MyHistoryActivity;
@@ -78,6 +79,7 @@ public class MainMypageFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
         listView.setLayoutManager(mLayoutManager);
+        pointView.setTypeface(TypefaceManager.getInstance().getTypeface(getContext(), TypefaceManager.FONT_NAME_NANUM));
 
         setData();
         Button btn_history = (Button)view.findViewById(R.id.btn_history);
@@ -114,7 +116,7 @@ public class MainMypageFragment extends Fragment {
             @Override
             public void onSuccess(Request request, MainMypageResult result) {
                 mAdapter.clear();
-                pointView.setText(" "+result.point);
+                pointView.setText(result.point+"개굴");
                 mAdapter.setLikeItem(result.activityDetails.activityDetails);
             }
 

@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -39,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView searchV;
     String[] nameList = {"aa","bb"};
     String keyword;
+    String type;
+    ListPopupWindow listPopup;
+    String[] noticeList = {"내가 찜한 대외활동이 시작되었습니다.","내가 찜한 대외활동의 활동후기가 추가되었습니다.","내가 찜한 대외활동이 만료되었습니다.","내가 작성한 활동후기가 추천받았습니다.","내가 찜한 대외활동의 활동후기가 추가되었습니다."};
+
+    public static final String EXTRA_TYPE = "type";
 
 /*
     private SearchView searchView = null;
@@ -52,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.main_bi);
+
+
+        type = (String)getIntent().getSerializableExtra(EXTRA_TYPE);
+        Log.i("mainnn","main : "+type);
 
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);
@@ -67,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, RegistrationIntentService.class);
         startService(intent);
+
 
 
     }
@@ -105,6 +116,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        MenuItem noticeItem = menu.findItem(R.id.main_notice);
+        Button btn_notice = (Button)noticeItem.getActionView().findViewById(R.id.user_notice);;
+        btn_notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listPopup.show();
+            }
+        });
+        listPopup = new ListPopupWindow(this);
+        //listPopup.setAnchorView(searchItem.getActionView());
+        listPopup.setAnchorView(btn_notice);
+        listPopup.setWidth(800);
+        listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
+        listPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listPopup.dismiss();
+            }
+        });
 
         return true;
 
@@ -118,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.search_item){
+            return false;
+        }
+        if (id == R.id.main_notice){
             return false;
         }
         return super.onOptionsItemSelected(item);
@@ -153,5 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setUserNotice(String type){
+
     }
 }

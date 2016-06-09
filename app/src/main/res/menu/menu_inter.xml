@@ -13,5 +13,6 @@
         android:title="@string/action_like"
         android:checkable="true"
         android:icon="@drawable/intermain_like"
+        android:actionLayout="@layout/view_inter_like_item"
         app:showAsAction="always"  />
 </menu>

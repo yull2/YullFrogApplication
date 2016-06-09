@@ -3,31 +3,51 @@ package com.frogoutofwell.yullfrogapplication;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.frogoutofwell.yullfrogapplication.data.UserNotice;
+import com.frogoutofwell.yullfrogapplication.login.MyResult;
+import com.frogoutofwell.yullfrogapplication.login.User;
+import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.google.android.gms.gcm.GcmListenerService;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Tacademy on 2016-06-08.
  */
 public class MyGcmListenerService extends GcmListenerService{
+
+    private static final String TAG = "MyGcmListenerService";
+
+    public static final String ACTION_CHAT = "com.begentgroup.miniapplication.action.chat";
+    public static final String EXTRA_SENDER_ID = "senderid";
+    public static final String EXTRA_RESULT = "result";
+
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String result = data.getString("data1");
-        String result2 = data.getString("data2");
-        Log.e("result",result+", "+result2);
-/*
+        String type = data.getString("data1");
+        String message = data.getString("data2");
+        Log.e("message",message+", "+type);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 */
-/* Request code *//*
-, intent,
+        sendNotification(message, type);
+
+    }
+
+    private void sendNotification(String message, String type) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.EXTRA_TYPE, type);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -35,7 +55,7 @@ public class MyGcmListenerService extends GcmListenerService{
                 .setTicker("GCM message")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("GCM ChatMessage")
-                .setContentText(result)
+                .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -43,11 +63,7 @@ public class MyGcmListenerService extends GcmListenerService{
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 */
-/* ID of notification *//*
-, notificationBuilder.build());
-
-*/
-
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
 }

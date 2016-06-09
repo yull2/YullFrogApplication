@@ -1,8 +1,10 @@
 package com.frogoutofwell.yullfrogapplication;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -61,6 +63,8 @@ public class InterMainActivity extends AppCompatActivity {
 
         nameView.setText("대외활동명");
         classView.setText("활동분류");
+
+        nameView.setTypeface(TypefaceManager.getInstance().getTypeface(getParent(), TypefaceManager.FONT_NAME_NANUM));
 
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);

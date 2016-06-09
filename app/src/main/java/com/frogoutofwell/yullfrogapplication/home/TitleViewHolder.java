@@ -1,5 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.home;
 
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;

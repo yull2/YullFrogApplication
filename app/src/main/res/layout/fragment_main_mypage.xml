@@ -20,11 +20,12 @@
             android:background="@color/colorWhite">
             <TextView
                 android:layout_width="328dp"
-                android:layout_height="100dp"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text=""
                 android:gravity="center"
                 android:paddingTop="8dp"
+                android:textSize="27dp"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/text_point" />
             <TextView

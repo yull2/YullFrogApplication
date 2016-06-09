@@ -10,10 +10,11 @@
         app:showAsAction="always"
         app:actionLayout="@layout/view_toolbar_item"/>
     <item
-        android:id="@+id/notice"
+        android:id="@+id/main_notice"
         android:icon="@drawable/main_point"
         android:title="@string/main_point"
-        app:showAsAction="always" />
+        app:actionLayout="@layout/view_main_notice_item"
+        app:showAsAction="always"/>
 
 
   <!--  <item
