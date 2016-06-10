@@ -17,7 +17,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
 
     ImageView logoView;
     TextView writeDateView, classView, termView, commentView, rateView;
-    ImageView ratingBar;
+    ImageView rateBar;
 
     DoDetail doDetail;
 
@@ -38,7 +38,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
         termView = (TextView)itemView.findViewById(R.id.text_term);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
-        ratingBar = (ImageView) itemView.findViewById(R.id.img_rate);
+        rateBar = (ImageView) itemView.findViewById(R.id.img_rate);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +56,32 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
         classView.setText(doDetail.getCompanyName());
         termView.setText(doDetail.getTerm());
         commentView.setText(doDetail.getComment());
-
         rateView.setText(doDetail.getRate() + " ");
+
+
+        if (doDetail.getRate() == 0){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 0.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 1){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 1.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 2){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 2.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 3){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 3.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 4){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 4.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else {
+            rateBar.setImageResource(R.drawable.star_on);
+        }
 
     }
 

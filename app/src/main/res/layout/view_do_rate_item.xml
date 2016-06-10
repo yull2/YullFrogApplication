@@ -56,7 +56,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_toEndOf="@+id/imageView3">
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -64,7 +64,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:background="@color/colorDoRatebar" />
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -72,7 +72,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:background="@color/colorDoRatebar" />
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -80,7 +80,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:background="@color/colorDoRatebar" />
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -88,7 +88,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
             android:background="@color/colorDoRatebar" />
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

@@ -1,10 +1,12 @@
 package com.frogoutofwell.yullfrogapplication.doreview;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,7 +37,7 @@ public class DoReviewFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
-    int seq;
+    int seq, tmpSeq;
 
     TextView countView;
     RecyclerView listView;
@@ -62,7 +64,6 @@ public class DoReviewFragment extends Fragment {
         }
 
         seq = getActivity().getIntent().getIntExtra("seq",1);
-        Log.i("doreviewf","seeeeeeeeeeeq : "+seq );
 
         mAdapter = new DoReviewAdapter();
         mAdapter.setOnItemClickListener(new DoFirstViewHolder.OnFirstItemClickListener() {
@@ -76,7 +77,8 @@ public class DoReviewFragment extends Fragment {
         mAdapter.setOnItemClickListener(new DoSecondViewHolder.OnSecondItemClickListener() {
             @Override
             public void onItemClick(View view, int seq) {
-                getPossible();
+                tmpSeq = seq;
+                getPossible(tmpSeq);
             }
         });
     }
@@ -92,8 +94,6 @@ public class DoReviewFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
         listView.setLayoutManager(mLayoutManager);
-        setData();
-
 
        /* Button btn = (Button)view.findViewById(R.id.btn_go);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +113,8 @@ public class DoReviewFragment extends Fragment {
                 mAdapter.clear();
                 countView.setText(result.totalPostCount+"");
                 mAdapter.setCountStar(result.totalPostCountStar);
+                mAdapter.setTotalStar(result.averageRate);
+                //Log.i("sdfadfa","adfasdfadsfadsf"+result.averageRate);
                 mAdapter.addAll(result.doDetails.doDetail);
             }
 
@@ -123,17 +125,32 @@ public class DoReviewFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setData();
+    }
 
-    private void getPossible(){
+    private void getPossible(int tmpSeq){
+        seq = tmpSeq;
         NetworkManager.getInstance().getMyPointCheck(getContext(), new NetworkManager.OnResultListener<PointCheckResult>() {
             @Override
             public void onSuccess(Request request, PointCheckResult result) {
-                if (!result.status.equals("OK")){
+                if (result.status.equals("OK")){
                     Intent intent = new Intent(getContext(), DoReviewDetailActivity.class);
                     intent.putExtra("seq",seq);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("개굴이 부족합니다.");
+                    alert.show();
                 }
 
             }

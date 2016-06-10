@@ -8,4 +8,5 @@ import com.google.gson.annotations.SerializedName;
 public class ActivityDetailResult {
     @SerializedName("activity")
     public ActivityDetail activityDetail;
+    public String status;
 }

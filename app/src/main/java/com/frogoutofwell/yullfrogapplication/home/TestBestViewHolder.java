@@ -18,6 +18,7 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
 
     TestDetail testDetail;
 
+    String[] level, result;
 
     public interface OnDetailClickListener{
         public void onItemClick(View view, int seq);
@@ -31,6 +32,9 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
 
     public TestBestViewHolder(View itemView) {
         super(itemView);
+        level = itemView.getContext().getResources().getStringArray(R.array.test_level);
+        result = itemView.getContext().getResources().getStringArray(R.array.test_result);
+
         logoImgView = (ImageView) itemView.findViewById(R.id.img_logo);
         nameView = (TextView)itemView.findViewById(R.id.text_name);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
@@ -53,8 +57,8 @@ public class TestBestViewHolder extends RecyclerView.ViewHolder {
     public void setTestBest(TestDetail testDetail){
         this.testDetail = testDetail;
         nameView.setText(testDetail.getActivityName());
-        levelView.setText(testDetail.getLevel()+" ");
-        resultView.setText(testDetail.getResult()+" ");
+        levelView.setText(level[testDetail.getLevel()]);
+        resultView.setText(result[testDetail.getResult()]);
         questionView.setText(testDetail.getQuestion());
         answerView.setText(testDetail.getAnswer());
     }

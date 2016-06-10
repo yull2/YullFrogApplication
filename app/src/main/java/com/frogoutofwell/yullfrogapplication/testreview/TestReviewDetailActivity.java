@@ -21,6 +21,8 @@ public class TestReviewDetailActivity extends AppCompatActivity {
 
     int seq;
 
+    String[] level, tresult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,9 @@ public class TestReviewDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         seq = intent.getIntExtra("seq",1);
+
+        level = getResources().getStringArray(R.array.test_level);
+        tresult = getResources().getStringArray(R.array.test_result);
 
         termView = (TextView)findViewById(R.id.text_term);
         levelView = (TextView)findViewById(R.id.text_level);
@@ -48,8 +53,8 @@ public class TestReviewDetailActivity extends AppCompatActivity {
             public void onSuccess(Request request, TestDetailResult result) {
                 getSupportActionBar().setTitle(result.testDetail.getActivityName());
                 termView.setText(result.testDetail.getTerm());
-                levelView.setText(result.testDetail.getLevel() +" ");
-                resultView.setText(result.testDetail.getResult() +" ");
+                levelView.setText(level[result.testDetail.getLevel()]);
+                resultView.setText(tresult[result.testDetail.getResult()]);
                 questionView.setText(result.testDetail.getQuestion());
                 answerView.setText(result.testDetail.getAnswer());
                 wayView.setText(result.testDetail.getWay());

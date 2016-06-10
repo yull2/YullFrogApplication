@@ -54,7 +54,7 @@ public class ActclassChangeActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new ActclassViewHolder.OnItemClickListener() {
             @Override
             public void onItemClick(View view, String str, int postion) {
-                Log.i("actclass", "actclass : "+str+", postion"+postion);
+                //Log.i("actclass", "actclass : "+str+", postion"+postion);
                 mAdapter.onItemClick(view, str,postion);
             }
         });
@@ -83,7 +83,7 @@ public class ActclassChangeActivity extends AppCompatActivity {
         if (id == R.id.save){
             SparseBooleanArray result = mAdapter.getCheckedItems();
             for (int i=0;i<12;i++){
-                Log.i("actclassact","과연??? 저장된 값 " +i+" = "+ result.get(i));
+                //Log.i("actclassact","과연??? 저장된 값 " +i+" = "+ result.get(i));
             }
             setActclassChange(result);
             return true;

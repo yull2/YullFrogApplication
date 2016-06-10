@@ -8,6 +8,8 @@
     <string name="action_save">저장하기</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="facebook_app_id">1714582038782629</string>
+
 
     <string name="font_name_nanumgothic">nanumgothic</string>
     <string name="font_name_light">light</string>

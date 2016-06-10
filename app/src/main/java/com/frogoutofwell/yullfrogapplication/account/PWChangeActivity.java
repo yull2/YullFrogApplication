@@ -47,8 +47,8 @@ public class PWChangeActivity extends AppCompatActivity {
                 String pw = newpwView.getText().toString();
                 String pwcheck = newpwcheckView.getText().toString();
                 if (pw.equals(pwcheck) && pw.length()>= 8){
-                    Toast.makeText(PWChangeActivity.this,"비밀번호 일치",Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(PWChangeActivity.this,"비밀번호 일치",Toast.LENGTH_SHORT).show();
+                    setNewPassword(current,pw);
                 }else if (pw.equals(pwcheck) && pw.length() < 8){
                     Toast.makeText(PWChangeActivity.this,"8자 이상 입력해주세요",Toast.LENGTH_SHORT).show();
                 }else {

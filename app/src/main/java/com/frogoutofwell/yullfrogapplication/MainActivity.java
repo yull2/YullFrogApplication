@@ -1,12 +1,14 @@
 package com.frogoutofwell.yullfrogapplication;
 
 import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.SearchView;
@@ -122,14 +124,16 @@ public class MainActivity extends AppCompatActivity {
         btn_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listPopup.show();
+                //listPopup.show();
+                setUserNotice();
             }
         });
         listPopup = new ListPopupWindow(this);
         //listPopup.setAnchorView(searchItem.getActionView());
         listPopup.setAnchorView(btn_notice);
         listPopup.setWidth(800);
-        listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
+        listPopup.setHeight(800);
+        //listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
         listPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -162,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, ActivityNameResult result) {
                 nameList = result.activityName;
-                searchV.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, nameList));
+                searchV.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, nameList));
             }
             @Override
             public void onFail(Request request, IOException exception) {
@@ -175,11 +179,23 @@ public class MainActivity extends AppCompatActivity {
         NetworkManager.getInstance().getActivitySearch(this, keyword, new NetworkManager.OnResultListener<ActivityDetailResult>() {
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
-                int seq = result.activityDetail.getSeq();
-                Intent intent = new Intent(MainActivity.this, InterMainActivity.class);
-                intent.putExtra("seq",seq);
-                //Log.i("mainactivity","seqqqqqqqqqqqq : "+seq);
-                startActivity(intent);
+                if (result.status.equals("OK")) {
+                    int seq = result.activityDetail.getSeq();
+                    Intent intent = new Intent(MainActivity.this, InterMainActivity.class);
+                    intent.putExtra("seq", seq);
+                    //Log.i("mainactivity","seqqqqqqqqqqqq : "+seq);
+                    startActivity(intent);
+                }else {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("일치하는 활동이 없습니다.");
+                    alert.show();
+                }
             }
 
             @Override
@@ -193,9 +209,21 @@ public class MainActivity extends AppCompatActivity {
         NetworkManager.getInstance().getUserNoticeList(this, new NetworkManager.OnResultListener<NotificationResult>() {
             @Override
             public void onSuccess(Request request, NotificationResult result) {
-                noticeList = result.contents;
-                if (noticeList.length>0) {
+
+                if (result.contents != null) {
+                    noticeList = result.contents;
                     listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
+                    listPopup.show();
+                }else {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("현재 알림내용이 없습니다.");
+                    alert.show();
                 }
             }
 
@@ -204,5 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 }

@@ -55,7 +55,7 @@ public class IndusChangeActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new IndusViewHolder.OnItemClickListener() {
             @Override
             public void onItemClick(View view, String str, int postion) {
-                Log.i("actclass", "actclass : "+str+", postion"+postion);
+                //Log.i("actclass", "actclass : "+str+", postion"+postion);
                 mAdapter.onItemClick(view, str,postion);
             }
         });
@@ -83,9 +83,9 @@ public class IndusChangeActivity extends AppCompatActivity {
         }
         if (id == R.id.save){
             SparseBooleanArray result = mAdapter.getCheckedItems();
-            for (int i=0;i<11;i++){
-                Log.i("induschanact","과연??? 저장된 값 " +i+" = "+ result.get(i));
-            }
+           /* for (int i=0;i<11;i++){
+               // Log.i("induschanact","과연??? 저장된 값 " +i+" = "+ result.get(i));
+            }*/
             setIndusChange(result);
             return true;
         }

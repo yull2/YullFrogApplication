@@ -19,6 +19,8 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
 
     TestDetail testDetail;
 
+    String[] level, result;
+
     public interface OnItemClickListener {
         public void onItemClick(View view, TestDetail testDetail);
     }
@@ -30,6 +32,9 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
 
     public MyTestViewHolder(View itemView) {
         super(itemView);
+        level = itemView.getContext().getResources().getStringArray(R.array.test_level);
+        result = itemView.getContext().getResources().getStringArray(R.array.test_result);
+
         logoView = (ImageView)itemView.findViewById(R.id.img_logo);
         writeDateView = (TextView)itemView.findViewById(R.id.text_writedate);
         classView = (TextView)itemView.findViewById(R.id.text_classinfo);
@@ -54,8 +59,8 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
         classView.setText(testDetail.getActivityName());
         termView.setText(testDetail.getTerm());
         questionView.setText(testDetail.getQuestion());
-        levelView.setText(" " + testDetail.getLevel());
-        resultView.setText(" " + testDetail.getResult());
+        levelView.setText(level[testDetail.getLevel()]);
+        resultView.setText(result[testDetail.getResult()]);
 
     }
 

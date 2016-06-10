@@ -1,10 +1,12 @@
 package com.frogoutofwell.yullfrogapplication.testreview;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,7 +36,7 @@ public class TestReviewFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
-    int seq;
+    int seq, tmpSeq;
 
     RecyclerView listView;
     TextView countView;
@@ -60,7 +62,7 @@ public class TestReviewFragment extends Fragment {
             mName = getArguments().getString(ARG_NAME);
         }
         seq = getActivity().getIntent().getIntExtra("seq",1);
-        Log.i("testreviewf","seeeeeeeeeeeq : "+seq );
+       // Log.i("testreviewf","seeeeeeeeeeeq : "+seq );
 
         mAdapter = new TestReviewAdapter();
         mAdapter.setOnItemClickListener(new TestFirstViewHolder.OnFirstItemClickListener() {
@@ -74,7 +76,8 @@ public class TestReviewFragment extends Fragment {
         mAdapter.setOnItemClickListener(new TestSecondViewHolder.OnSecondItemClickListener() {
             @Override
             public void onItemClick(View view, int seq) {
-                getPossible();
+                tmpSeq = seq;
+                getPossible(tmpSeq);
             }
         });
     }
@@ -89,7 +92,6 @@ public class TestReviewFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(getContext());
         listView.setLayoutManager(mLayoutManager);
-        setData();
 
      /*   Button btn = (Button)view.findViewById(R.id.btn_go);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +122,14 @@ public class TestReviewFragment extends Fragment {
         });
     }
 
-    private void getPossible(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        setData();
+    }
+
+    private void getPossible(int tmpSeq){
+        seq = tmpSeq;
         NetworkManager.getInstance().getMyPointCheck(getContext(), new NetworkManager.OnResultListener<PointCheckResult>() {
             @Override
             public void onSuccess(Request request, PointCheckResult result) {
@@ -129,7 +138,16 @@ public class TestReviewFragment extends Fragment {
                     intent.putExtra("seq",seq);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("개굴이 부족합니다.");
+                    alert.show();
                 }
 
             }

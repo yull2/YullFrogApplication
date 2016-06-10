@@ -9,6 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -108,7 +110,7 @@ public class WriteDoActivity extends AppCompatActivity {
                             finish();
                         }
                     });
-                    alert.setMessage("활동후기가 업로드 되었습니다. 20개굴이 적립됩니다.");
+                    alert.setMessage("활동후기가 업로드 되었습니다. 10개굴이 적립됩니다.");
                     alert.show();
 
                 }
@@ -137,5 +139,20 @@ public class WriteDoActivity extends AppCompatActivity {
                 Toast.makeText(WriteDoActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

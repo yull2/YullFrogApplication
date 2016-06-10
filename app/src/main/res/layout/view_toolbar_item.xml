@@ -16,6 +16,7 @@
             android:imeOptions="actionSearch"
             android:ems="10"
             android:text=""
+            android:popupBackground="@color/colorWhite"
             android:paddingStart="5dp"
             android:hint="활동명을 입력하세요"
             android:completionThreshold="2">

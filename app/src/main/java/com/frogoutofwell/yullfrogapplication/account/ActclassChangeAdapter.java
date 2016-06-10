@@ -54,7 +54,7 @@ public class ActclassChangeAdapter extends RecyclerView.Adapter<ActclassViewHold
     @Override
     public void onItemClick(View view, String str, int postion) {
         boolean checked = !checkedItems.get(postion);
-        Log.i("actclassadapter","과연??? " + postion);
+      // Log.i("actclassadapter","과연??? " + postion);
         checkedItems.put(postion,checked);
         notifyDataSetChanged();
     }

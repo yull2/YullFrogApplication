@@ -47,9 +47,11 @@ public class IndusViewHolder extends RecyclerView.ViewHolder {
     public void drawCheck(){
         if (isChecked){
             //Log.i("actclass","truetrue");
+            textView.setTextColor(Color.parseColor("#454545"));
             textView.setBackgroundColor(Color.parseColor("#bbdefb"));
         }else {
             // Log.i("actclass","falsefalse");
+            textView.setTextColor(Color.parseColor("#707070"));
             textView.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 

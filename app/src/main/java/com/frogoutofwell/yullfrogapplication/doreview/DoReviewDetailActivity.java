@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -20,7 +21,7 @@ import okhttp3.Request;
 public class DoReviewDetailActivity extends AppCompatActivity {
 
     TextView commentView, rateView, termView, writeDateView, commentGoodView, commentBadView;
-    ImageView ratebar;
+    ImageView rateBar;
 
     int seq;
 
@@ -42,7 +43,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         writeDateView = (TextView)findViewById(R.id.text_writedate);
         commentGoodView = (TextView)findViewById(R.id.text_commendgood);
         commentBadView = (TextView)findViewById(R.id.text_commentbad);
-        ratebar = (ImageView)findViewById(R.id.img_rate);
+        rateBar = (ImageView)findViewById(R.id.img_rate);
 
         setData();
     }
@@ -51,6 +52,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         NetworkManager.getInstance().getInterDoReviewDetail(this, seq, new NetworkManager.OnResultListener<DoDetailResult>() {
             @Override
             public void onSuccess(Request request, DoDetailResult result) {
+                //Log.i("search","search===================="+result.doDetail.getActivityName());
                 getSupportActionBar().setTitle(result.doDetail.getActivityName());
                 commentView.setText(result.doDetail.getComment());
                 rateView.setText(result.doDetail.getRate() +" ");
@@ -58,6 +60,30 @@ public class DoReviewDetailActivity extends AppCompatActivity {
                 writeDateView.setText(result.doDetail.getWriteDate());
                 commentGoodView.setText(result.doDetail.getCommentGood());
                 commentBadView.setText(result.doDetail.getCommentBad());
+
+                if (result.doDetail.getRate() == 0){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 0.5){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 1){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 1.5){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 2){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 2.5){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 3){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 3.5){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 4){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else if (result.doDetail.getRate() == 4.5){
+                    rateBar.setImageResource(R.drawable.star_on);
+                }else {
+                    rateBar.setImageResource(R.drawable.star_on);
+                }
 
             }
 

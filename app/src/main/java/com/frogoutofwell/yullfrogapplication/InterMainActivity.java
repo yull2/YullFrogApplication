@@ -1,5 +1,6 @@
 package com.frogoutofwell.yullfrogapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -159,6 +161,17 @@ public class InterMainActivity extends AppCompatActivity {
         }
         if (id == R.id.inter_like){
             return false;
+        }
+        if (id == R.id.inter_share){
+            AlertDialog.Builder alert = new AlertDialog.Builder(InterMainActivity.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage("아직 준비중인 서비스 입니다");
+            alert.show();
         }
         return super.onOptionsItemSelected(item);
     }

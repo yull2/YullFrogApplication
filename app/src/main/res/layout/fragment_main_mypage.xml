@@ -48,16 +48,18 @@
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:textSize="14dp"
+                android:gravity="center_vertical"
                 android:textColor="@color/colorBasicTextBlack"
                 android:text="@string/mypage_like"/>
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="5dp"
+                android:paddingStart="5dp"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/rv_list">
             </android.support.v7.widget.RecyclerView>

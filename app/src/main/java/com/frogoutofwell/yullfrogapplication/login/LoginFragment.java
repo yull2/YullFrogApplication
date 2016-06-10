@@ -13,6 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.frogoutofwell.yullfrogapplication.MainActivity;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
@@ -20,6 +26,7 @@ import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.manager.PropertyManager;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import okhttp3.Request;
 
@@ -34,6 +41,9 @@ public class LoginFragment extends Fragment {
 
     Button facebookLoginButton;
     EditText emailView,passwordView;
+
+    CallbackManager callbackManager;
+    LoginManager loginManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,12 +68,12 @@ public class LoginFragment extends Fragment {
         });
 
 
-
         facebookLoginButton = (Button)view.findViewById(R.id.btn_login_facebook);
         facebookLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //login();
+                login();
             }
         });
         Button btn_signup = (Button)view.findViewById(R.id.btn_signup);
@@ -74,8 +84,53 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        callbackManager = CallbackManager.Factory.create();
+        loginManager = LoginManager.getInstance();
 
         return view;
+    }
+
+    private void login() {
+        loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                AccessToken token = AccessToken.getCurrentAccessToken();
+                String resId = PropertyManager.getInstance().getRegistrationToken();
+                NetworkManager.getInstance().facebookLogin(getContext(), token.getToken(), resId, new NetworkManager.OnResultListener<StatusCheckResult>() {
+                    @Override
+                    public void onSuccess(Request request, StatusCheckResult result) {
+                        if (result.status.equals("OK")){
+                            Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFail(Request request, IOException exception) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+        loginManager.logInWithReadPermissions(this, Arrays.asList("email"));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void login(String id, String pw, String resId) {

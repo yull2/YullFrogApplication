@@ -9,6 +9,7 @@ import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.frogoutofwell.yullfrogapplication.MyApplication;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.ActivityNameResult;
@@ -189,7 +190,7 @@ public class NetworkManager {
     // 메인 USER 알림 lIST
     private static final String USER_NOTICE_LIST = FROG_SERVER+"/userNoticeList";
     public Request getUserNoticeList(Object tag, OnResultListener<NotificationResult> listener) {
-        String url = String.format(MAIN_ACTIVITY_LIST);
+        String url = String.format(USER_NOTICE_LIST);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<NotificationResult> result = new NetworkResult<>();
@@ -207,6 +208,7 @@ public class NetworkManager {
                 if (response.isSuccessful()) {
                     NotificationResult data = gson.fromJson(response.body().charStream(), NotificationResult.class);
                     result.result = data;
+                    Log.i("notice","notice"+data.contents.length);
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
                     throw new IOException(response.message());
@@ -239,6 +241,7 @@ public class NetworkManager {
                 if (response.isSuccessful()) {
                     ActivityDetailResult data = gson.fromJson(response.body().charStream(), ActivityDetailResult.class);
                     result.result = data;
+                    //Log.i("search","search===================="+data.activityDetail.getName());
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
                     throw new IOException(response.message());
@@ -1050,6 +1053,44 @@ public class NetworkManager {
 
         Request request = new Request.Builder()
                 .url(URL_SIGN_UP)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 페이스북 로그인
+    private static final String URL_FACEBOOK_LOGIN = FROG_SERVER + "/facebookLogin";
+    public Request facebookLogin(Object tag, String accessToken, String resId, OnResultListener<StatusCheckResult> listener) {
+        RequestBody body = new FormBody.Builder()
+                .add("accessToken", accessToken)
+                .add("gcmToken", resId)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(URL_FACEBOOK_LOGIN)
                 .post(body)
                 .build();
 

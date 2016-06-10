@@ -47,10 +47,10 @@ public class ActclassViewHolder extends RecyclerView.ViewHolder {
     public void drawCheck(){
         if (isChecked){
             //Log.i("actclass","truetrue");
-           textView.setTextColor(Color.WHITE);
+            textView.setTextColor(Color.parseColor("#0090e9"));
         }else {
-           // Log.i("actclass","falsefalse");
-            textView.setTextColor(Color.parseColor("#959595"));
+            // Log.i("actclass","falsefalse");
+            //textView.setTextColor(Color.parseColor("#959595"));
         }
 
     }

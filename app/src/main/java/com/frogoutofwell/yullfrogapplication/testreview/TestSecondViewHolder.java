@@ -17,6 +17,8 @@ public class TestSecondViewHolder extends RecyclerView.ViewHolder {
 
     TestDetail testDetail;
 
+    String[] level, result;
+
     public interface OnSecondItemClickListener {
         public void onItemClick(View view, int seq);
     }
@@ -28,6 +30,9 @@ public class TestSecondViewHolder extends RecyclerView.ViewHolder {
 
     public TestSecondViewHolder(View itemView) {
         super(itemView);
+        level = itemView.getContext().getResources().getStringArray(R.array.test_level);
+        result = itemView.getContext().getResources().getStringArray(R.array.test_result);
+
         classInfoView = (TextView)itemView.findViewById(R.id.text_classinfo);
         levelView = (TextView)itemView.findViewById(R.id.text_level);
         resultView = (TextView)itemView.findViewById(R.id.text_result);
@@ -49,8 +54,8 @@ public class TestSecondViewHolder extends RecyclerView.ViewHolder {
     public void setTestSecond(TestDetail testDetail){
         this.testDetail = testDetail;
         classInfoView.setText(testDetail.getTerm());
-        levelView.setText( " " + testDetail.getLevel());
-        resultView.setText(" " + testDetail.getResult());
+        levelView.setText(level[testDetail.getLevel()]);
+        resultView.setText(result[testDetail.getResult()]);
         questionView.setText(testDetail.getQuestion());
         answerView.setText(testDetail.getAnswer());
     }

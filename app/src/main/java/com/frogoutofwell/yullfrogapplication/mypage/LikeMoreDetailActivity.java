@@ -30,7 +30,6 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
         setTitle("찜 대외활동");
         setContentView(R.layout.activity_like_more_detail);
 
-
         mAdapter = new LikeMoreAdapter();
         mAdapter.setOnItemClickListener(new LikeMoreViewHolder.OnItemClickListener() {
             @Override
@@ -44,7 +43,7 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(this, 2);
         listView.setLayoutManager(mLayoutManager);
-        setData();
+
     }
 
     private void setData() {
@@ -60,7 +59,11 @@ public class LikeMoreDetailActivity extends AppCompatActivity {
                 Toast.makeText(LikeMoreDetailActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        setData();
+    }
 }

@@ -50,11 +50,34 @@ public class DoSecondViewHolder extends RecyclerView.ViewHolder {
 
     public void setDoSecond(DoDetail doDetail){
         this.doDetail = doDetail;
-
         rateView.setText(doDetail.getRate()+" ");
         commentView.setText(doDetail.getComment());
         commentGoodView.setText(doDetail.getCommentGood());
         commentBadView.setText(doDetail.getCommentBad());
+
+        if (doDetail.getRate() == 0){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 0.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 1){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 1.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 2){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 2.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 3){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 3.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 4){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else if (doDetail.getRate() == 4.5){
+            rateBar.setImageResource(R.drawable.star_on);
+        }else {
+            rateBar.setImageResource(R.drawable.star_on);
+        }
     }
 
 }

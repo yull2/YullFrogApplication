@@ -23,9 +23,14 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     List<DoDetail> items = new ArrayList<>();
     int[] counts;
-
+    int total;
     public void clear() {
         items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void setTotalStar(int star){
+        total = star;
         notifyDataSetChanged();
     }
 
@@ -85,18 +90,18 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0){
             DoRateViewHolder h = (DoRateViewHolder)holder;
-            h.setDoRate(new ActivityDetail());
+            h.setDoRate(total, counts);
             return;
         }
         if (position == 1){
             DoFirstViewHolder h = (DoFirstViewHolder)holder;
-            h.setDoFirst(items.get(position));
+            h.setDoFirst(items.get(position-1));
             h.setOnItemClickListener(mfListener);
             return;
         }
         if ( position > 1){
             DoSecondViewHolder h = (DoSecondViewHolder)holder;
-            h.setDoSecond(items.get(position));
+            h.setDoSecond(items.get(position-1));
             h.setOnItemClickListener(msListener);
             return;
         }
@@ -104,6 +109,9 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
+        if (items!= null){
+            return items.size()+1;
+        }
         return items.size();
     }
 }

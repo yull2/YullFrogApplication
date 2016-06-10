@@ -89,13 +89,13 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
         if (position == 1){
             TestFirstViewHolder h = (TestFirstViewHolder)holder;
-            h.setTestFirst(items.get(position));
+            h.setTestFirst(items.get(position-1));
             h.setOnItemClickListener(mfListener);
             return;
         }
-        if (position > 1){
+        if (position > 1 ){
             TestSecondViewHolder h = (TestSecondViewHolder)holder;
-            h.setTestSecond(items.get(position));
+            h.setTestSecond(items.get(position-1));
             h.setOnItemClickListener(msListener);
             return;
         }
@@ -103,6 +103,9 @@ public class TestReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
+        if (items.size() > 0){
+            return items.size()+1;
+        }
         return items.size();
     }
 }
