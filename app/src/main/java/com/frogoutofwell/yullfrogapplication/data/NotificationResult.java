@@ -6,5 +6,5 @@ import java.util.List;
  * Created by Tacademy on 2016-06-09.
  */
 public class NotificationResult {
-    public List<Notification> notification;
+    public String[] contents;
 }

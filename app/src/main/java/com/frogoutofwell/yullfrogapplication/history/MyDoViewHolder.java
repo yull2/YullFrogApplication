@@ -17,7 +17,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
 
     ImageView logoView;
     TextView writeDateView, classView, termView, commentView, rateView;
-    RatingBar ratingBar;
+    ImageView ratingBar;
 
     DoDetail doDetail;
 
@@ -38,7 +38,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
         termView = (TextView)itemView.findViewById(R.id.text_term);
         commentView = (TextView)itemView.findViewById(R.id.text_comment);
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
-        ratingBar = (RatingBar)itemView.findViewById(R.id.ratebar);
+        ratingBar = (ImageView) itemView.findViewById(R.id.img_rate);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +56,7 @@ public class MyDoViewHolder extends RecyclerView.ViewHolder {
         classView.setText(doDetail.getCompanyName());
         termView.setText(doDetail.getTerm());
         commentView.setText(doDetail.getComment());
-        ratingBar.setRating(doDetail.getRate());
+
         rateView.setText(doDetail.getRate() + " ");
 
     }

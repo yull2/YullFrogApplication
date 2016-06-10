@@ -123,7 +123,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
-            android:text="더보기>"
+            android:text="@string/inter_test_more"
             android:textSize="12dp"
             android:textColor="@color/colorMoreDetail"
             android:id="@+id/btn_detail"

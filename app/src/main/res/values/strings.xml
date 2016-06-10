@@ -95,8 +95,8 @@
     <string name="mypage_history">활동 내역</string>
     <string name="mypage_account">계정</string>
     <string name="mypage_setting">환경설정</string>
-    <string name="inter_test_more">더 보기></string>
-    <string name="inter_do_more">대외 활동 후기 더 보기></string>
+    <string name="inter_test_more">면접 후기 자세히 보기></string>
+    <string name="inter_do_more">대외 활동 후기 자세히 보기></string>
 
 
 </resources>

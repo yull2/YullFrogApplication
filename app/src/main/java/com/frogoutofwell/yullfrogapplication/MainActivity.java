@@ -193,7 +193,10 @@ public class MainActivity extends AppCompatActivity {
         NetworkManager.getInstance().getUserNoticeList(this, new NetworkManager.OnResultListener<NotificationResult>() {
             @Override
             public void onSuccess(Request request, NotificationResult result) {
-                listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
+                noticeList = result.contents;
+                if (noticeList.length>0) {
+                    listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
+                }
             }
 
             @Override

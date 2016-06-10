@@ -27,7 +27,7 @@
 
             <ImageView
                 android:layout_width="82dp"
-                android:layout_height="wrap_content"
+                android:layout_height="17dp"
                 android:id="@+id/img_rate"
                 android:src="@drawable/star_on"
                 android:layout_marginTop="3dp"
