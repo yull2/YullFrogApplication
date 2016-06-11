@@ -1,9 +1,12 @@
 package com.frogoutofwell.yullfrogapplication.testreview;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -69,10 +72,27 @@ public class TestReviewDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_share, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             finish();
+        }
+        if (id == R.id.inter_share){
+            AlertDialog.Builder alert = new AlertDialog.Builder(TestReviewDetailActivity.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage("아직 준비중인 서비스 입니다");
+            alert.show();
         }
         return super.onOptionsItemSelected(item);
     }

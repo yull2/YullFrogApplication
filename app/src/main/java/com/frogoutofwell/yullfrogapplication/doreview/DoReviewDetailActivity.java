@@ -1,10 +1,13 @@
 package com.frogoutofwell.yullfrogapplication.doreview;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -62,27 +65,27 @@ public class DoReviewDetailActivity extends AppCompatActivity {
                 commentBadView.setText(result.doDetail.getCommentBad());
 
                 if (result.doDetail.getRate() == 0){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star0);
                 }else if (result.doDetail.getRate() == 0.5){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star0_1);
                 }else if (result.doDetail.getRate() == 1){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star1);
                 }else if (result.doDetail.getRate() == 1.5){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star1_1);
                 }else if (result.doDetail.getRate() == 2){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star2);
                 }else if (result.doDetail.getRate() == 2.5){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star2_1);
                 }else if (result.doDetail.getRate() == 3){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star3);
                 }else if (result.doDetail.getRate() == 3.5){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star3_1);
                 }else if (result.doDetail.getRate() == 4){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star4);
                 }else if (result.doDetail.getRate() == 4.5){
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star4_1);
                 }else {
-                    rateBar.setImageResource(R.drawable.star_on);
+                    rateBar.setImageResource(R.drawable.activityreview_detail_ic_star5);
                 }
 
             }
@@ -96,10 +99,27 @@ public class DoReviewDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_share, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             finish();
+        }
+        if (id == R.id.inter_share){
+            AlertDialog.Builder alert = new AlertDialog.Builder(DoReviewDetailActivity.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage("아직 준비중인 서비스 입니다");
+            alert.show();
         }
         return super.onOptionsItemSelected(item);
     }

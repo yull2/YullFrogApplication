@@ -59,8 +59,8 @@ public class MyTestViewHolder extends RecyclerView.ViewHolder {
         classView.setText(testDetail.getActivityName());
         termView.setText(testDetail.getTerm());
         questionView.setText(testDetail.getQuestion());
-        levelView.setText(level[testDetail.getLevel()]);
-        resultView.setText(result[testDetail.getResult()]);
+        levelView.setText(level[testDetail.getLevel()]+"");
+        resultView.setText(result[testDetail.getResult()]+"");
 
     }
 

@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, NotificationResult result) {
 
-                if (result.contents != null) {
+                if (result.contents.length>0) {
                     noticeList = result.contents;
                     listPopup.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, noticeList));
                     listPopup.show();

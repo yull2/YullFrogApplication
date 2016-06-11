@@ -79,7 +79,6 @@ public class MainMypageFragment extends Fragment {
         listView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 2);
         listView.setLayoutManager(mLayoutManager);
-        pointView.setTypeface(TypefaceManager.getInstance().getTypeface(getContext(), TypefaceManager.FONT_NAME_NANUM));
 
         Button btn_history = (Button)view.findViewById(R.id.btn_history);
         btn_history.setOnClickListener(new View.OnClickListener() {
