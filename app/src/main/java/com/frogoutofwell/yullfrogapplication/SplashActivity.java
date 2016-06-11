@@ -12,9 +12,12 @@ import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.login.AgreementActivity;
 import com.frogoutofwell.yullfrogapplication.login.LoginActivity;
@@ -40,6 +43,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
 
+     /*   String userEmail = PropertyManager.getInstance().getEmail();
+        String userPwd = PropertyManager.getInstance().getPassword();
+        String resId = PropertyManager.getInstance().getRegistrationToken();
+*/
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -47,6 +54,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
         setUpIfNeeded();
+
 
     }
 
@@ -76,8 +84,7 @@ public class SplashActivity extends AppCompatActivity {
     private void setUpIfNeeded() {
         if (checkPlayServices()) {
             String regId = PropertyManager.getInstance().getRegistrationToken();
-            PropertyManager.getInstance().setRegistrationToken(regId);
-             //Log.i("splash","splashhhhhhhhhhhhhhhhhhhhhhhhhh : "+regId);
+
             if (!regId.equals("")) {
                 doRealStart();
             } else {
@@ -88,12 +95,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void doRealStart() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getAutoLogin();
-            }
-        }, 2000);
+        startSplash();
     }
 
     private boolean checkPlayServices() {
@@ -118,6 +120,78 @@ public class SplashActivity extends AppCompatActivity {
         return true;
     }
 
+    private void startSplash(){
+        String userEmail = PropertyManager.getInstance().getEmail();
+        if (!TextUtils.isEmpty(userEmail)) {
+            String userPwd = PropertyManager.getInstance().getPassword();
+            NetworkManager.getInstance().signIn(this, userEmail, userPwd, PropertyManager.getInstance().getRegistrationToken(), new NetworkManager.OnResultListener<StatusCheckResult>() {
+                @Override
+                public void onSuccess(Request request, StatusCheckResult result) {
+                    if (result.status.equals("OK")) {
+                        PropertyManager.getInstance().setLogin(true);
+                        goMainActivity();
+                    }
+                }
+
+                @Override
+                public void onFail(Request request, IOException exception) {
+                    goLoginActivity();
+                }
+            });
+        }else {
+            String facebookId = PropertyManager.getInstance().getFacebookId();
+            if (!TextUtils.isEmpty(facebookId)){
+                AccessToken token = AccessToken.getCurrentAccessToken();
+                if (token == null) {
+                    PropertyManager.getInstance().setFacebookId("");
+                    goLoginActivity();
+                }else {
+                    if (facebookId.equals(token.getUserId())){
+                        NetworkManager.getInstance().facebookLogin(this, token.getToken(), PropertyManager.getInstance().getRegistrationToken(), new NetworkManager.OnResultListener<StatusCheckResult>() {
+                            @Override
+                            public void onSuccess(Request request, StatusCheckResult result) {
+                                if (result.status.equals("OK")) {
+                                    PropertyManager.getInstance().setLogin(true);
+                                    goMainActivity();
+                                } else {
+                                    PropertyManager.getInstance().setFacebookId("");
+                                    LoginManager.getInstance().logOut();
+                                    goLoginActivity();
+                                }
+                            }
+
+                            @Override
+                            public void onFail(Request request, IOException exception) {
+                                PropertyManager.getInstance().setFacebookId("");
+                                LoginManager.getInstance().logOut();
+                                goLoginActivity();
+                            }
+                        });
+                    }else {
+                        PropertyManager.getInstance().setFacebookId("");
+                        LoginManager.getInstance().logOut();
+                        goLoginActivity();
+                    }
+                }
+            }else {
+                goLoginActivity();
+            }
+        }
+    }
+    private void goMainActivity() {
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        finish();
+    }
+
+    private void goLoginActivity() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                finish();
+            }
+        }, 2000);
+    }
 
     private void getAutoLogin(){
         NetworkManager.getInstance().getAutoUserLogin(this, new NetworkManager.OnResultListener<StatusCheckResult>() {

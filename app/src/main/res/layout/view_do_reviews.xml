@@ -25,12 +25,12 @@
                 android:id="@+id/text_rate" />
 
             <ImageView
-                android:layout_width="82dp"
-                android:layout_height="17dp"
+                android:layout_width="74dp"
+                android:layout_height="16dp"
                 android:id="@+id/img_rate"
                 android:src="@drawable/star_on"
-                android:layout_marginTop="3dp"
-                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="3dp"
                 android:layout_below="@+id/text_rate" />
 
             <TextView

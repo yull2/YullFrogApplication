@@ -39,6 +39,8 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
+    String userEmail, userPwd;
+
     Button facebookLoginButton;
     EditText emailView,passwordView;
 
@@ -63,6 +65,8 @@ public class LoginFragment extends Fragment {
                 String resId = PropertyManager.getInstance().getRegistrationToken();
                 Log.i("loggggggggggggggggi","loggggggggggggggggi : "+resId);
                 login(email, password, resId);
+                userEmail = email;
+                userPwd = password;
 
             }
         });
@@ -94,13 +98,15 @@ public class LoginFragment extends Fragment {
         loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                AccessToken token = AccessToken.getCurrentAccessToken();
+                final AccessToken token = AccessToken.getCurrentAccessToken();
                 String resId = PropertyManager.getInstance().getRegistrationToken();
                 NetworkManager.getInstance().facebookLogin(getContext(), token.getToken(), resId, new NetworkManager.OnResultListener<StatusCheckResult>() {
                     @Override
                     public void onSuccess(Request request, StatusCheckResult result) {
                         if (result.status.equals("OK")){
-                            Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
+                            PropertyManager.getInstance().setLogin(true);
+
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             startActivity(intent);
                             getActivity().finish();
@@ -133,13 +139,16 @@ public class LoginFragment extends Fragment {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void login(String id, String pw, String resId) {
+    private void login(final String id, String pw, String resId) {
         NetworkManager.getInstance().signIn(getContext(), id, pw, resId, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
                 if (result.status.equals("OK")){
-                    Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
+                    PropertyManager.getInstance().setEmail(userEmail);
+                    PropertyManager.getInstance().setPassword(userPwd);
+                    PropertyManager.getInstance().setLogin(true);
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     startActivity(intent);
                     getActivity().finish();

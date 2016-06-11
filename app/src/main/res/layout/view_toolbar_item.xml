@@ -13,7 +13,6 @@
             android:layout_height="48dp"
             android:id="@+id/auto_search"
             android:singleLine="true"
-            android:imeOptions="actionSearch"
             android:ems="10"
             android:text=""
             android:popupBackground="@color/colorWhite"
