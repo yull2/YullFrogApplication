@@ -9,7 +9,7 @@ public class ActivityDetail {
     public int seq;
     public String name;
     public String endDate;
-    public int averageRate;
+    public float averageRate;
     public String actClass;
     public String indus;
     public String term;
@@ -47,11 +47,11 @@ public class ActivityDetail {
         this.endDate = endDate;
     }
 
-    public int getAverageRate() {
+    public float getAverageRate() {
         return averageRate;
     }
 
-    public void setAverageRate(int averageRate) {
+    public void setAverageRate(float averageRate) {
         this.averageRate = averageRate;
     }
 

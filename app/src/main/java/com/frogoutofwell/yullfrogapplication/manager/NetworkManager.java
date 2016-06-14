@@ -438,7 +438,7 @@ public class NetworkManager {
     }
 
     // 추천
-    private static final String INTER_RECOMMEND = FROG_SERVER+"/activityPage";
+    private static final String INTER_RECOMMEND = FROG_SERVER+"/recommandList";
     public Request getInterRecommend(Object tag, OnResultListener<MainInterResult> listener) {
         String url = String.format(INTER_RECOMMEND);
         Request request = new Request.Builder().url(url).build();
@@ -498,10 +498,21 @@ public class NetworkManager {
     }
 
     // 대외활동 조건별 검색
-    private static final String FROG_MAIN_INTER_CONDITION = FROG_SERVER+"/conditionsActivity/%s/%s/%s/%s";
+    private static final String FROG_MAIN_INTER_CONDITION = FROG_SERVER+"/conditionsActivity";
     public Request getFrogMainInterCondition(Object tag, String actClass, String indus, String term, String local, OnResultListener<MainInterResult> listener) {
         String url = String.format(FROG_MAIN_INTER_CONDITION, actClass, indus, term, local);
-        Request request = new Request.Builder().url(url).build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("actClass", actClass+"")
+                .add("indus", indus+"")
+                .add("term", term+"")
+                .add("local", local+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
 
         final NetworkResult<MainInterResult> result = new NetworkResult<>();
         result.request = request;
@@ -529,10 +540,20 @@ public class NetworkManager {
 
     // 대외활동 리뷰 많은 순
     private static final String INTER_HIGH_RATE = FROG_SERVER+"/highRateActivity";
-    public Request getSortHighRate(Object tag, OnResultListener<MainInterResult> listener) {
+    public Request getSortHighRate(Object tag,String actClass, String indus, String term, String local, OnResultListener<MainInterResult> listener) {
         String url = String.format(INTER_HIGH_RATE);
-        Request request = new Request.Builder().url(url).build();
 
+        RequestBody body = new FormBody.Builder()
+                .add("actClass", actClass+"")
+                .add("indus", indus+"")
+                .add("term", term+"")
+                .add("local", local+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
         final NetworkResult<MainInterResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
@@ -559,9 +580,20 @@ public class NetworkManager {
 
     // 대외활동 리뷰 많은 순
     private static final String INTER_HIGH_STAR = FROG_SERVER+"/highStarActivity";
-    public Request getSortHighStar(Object tag, OnResultListener<MainInterResult> listener) {
+    public Request getSortHighStar(Object tag,String actClass, String indus, String term, String local, OnResultListener<MainInterResult> listener) {
         String url = String.format(INTER_HIGH_STAR);
-        Request request = new Request.Builder().url(url).build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("actClass", actClass+"")
+                .add("indus", indus+"")
+                .add("term", term+"")
+                .add("local", local+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
 
         final NetworkResult<MainInterResult> result = new NetworkResult<>();
         result.request = request;
@@ -841,9 +873,9 @@ public class NetworkManager {
     }
 
     // 나의 개굴 포인트 확인
-    private static final String FROG_POINT_CHECK = FROG_SERVER+"/myPointCheck";
-    public Request getMyPointCheck(Object tag, OnResultListener<PointCheckResult> listener) {
-        String url = String.format(FROG_POINT_CHECK);
+    private static final String FROG_POINT_CHECK = FROG_SERVER+"/myPointCheck/%s";
+    public Request getMyPointCheck(Object tag,int seq, OnResultListener<PointCheckResult> listener) {
+        String url = String.format(FROG_POINT_CHECK,seq);
         Request request = new Request.Builder().url(url).build();
 
         final NetworkResult<PointCheckResult> result = new NetworkResult<>();

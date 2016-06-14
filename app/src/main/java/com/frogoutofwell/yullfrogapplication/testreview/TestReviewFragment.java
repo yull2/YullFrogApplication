@@ -36,7 +36,7 @@ public class TestReviewFragment extends Fragment {
     private static final String ARG_NAME = "param1";
     private String mName;
 
-    int seq, tmpSeq;
+    int seq, detailSeq;
 
     RecyclerView listView;
     TextView countView;
@@ -69,15 +69,15 @@ public class TestReviewFragment extends Fragment {
             @Override
             public void onItemClick(View view, int seq) {
                 Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
-                intent.putExtra("seq",seq);
+                intent.putExtra("detailSeq",seq);
                 startActivity(intent);
             }
         });
         mAdapter.setOnItemClickListener(new TestSecondViewHolder.OnSecondItemClickListener() {
             @Override
             public void onItemClick(View view, int seq) {
-                tmpSeq = seq;
-                getPossible(tmpSeq);
+                detailSeq = seq;
+                getPossible(detailSeq);
             }
         });
     }
@@ -128,14 +128,13 @@ public class TestReviewFragment extends Fragment {
         setData();
     }
 
-    private void getPossible(int tmpSeq){
-        seq = tmpSeq;
-        NetworkManager.getInstance().getMyPointCheck(getContext(), new NetworkManager.OnResultListener<PointCheckResult>() {
+    private void getPossible(int detailSeq){
+        NetworkManager.getInstance().getMyPointCheck(getContext(),detailSeq, new NetworkManager.OnResultListener<PointCheckResult>() {
             @Override
             public void onSuccess(Request request, PointCheckResult result) {
                 if (result.status.equals("OK")){
                     Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
-                    intent.putExtra("seq",seq);
+                    intent.putExtra("detailSeq",result.seq);
                     startActivity(intent);
                 }else {
                     //Toast.makeText(getContext(), "개굴이 부족합니다 : "+result.status,Toast.LENGTH_SHORT).show();

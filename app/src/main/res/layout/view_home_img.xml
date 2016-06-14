@@ -28,7 +28,7 @@
                     android:layout_height="110dp"
                     android:src="@mipmap/ic_launcher"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitStart"
+                    android:scaleType="centerCrop"
                     android:layout_below="@+id/image_homemain"
                     android:layout_alignParentStart="true" />
 
@@ -36,7 +36,7 @@
                     android:id="@+id/image_homeend"
                     android:layout_width="160dp"
                     android:layout_height="110dp"
-                    android:scaleType="fitStart"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"

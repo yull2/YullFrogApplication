@@ -16,6 +16,7 @@ import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.login.LoginActivity;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
+import com.frogoutofwell.yullfrogapplication.manager.PropertyManager;
 
 import java.io.IOException;
 
@@ -97,6 +98,10 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
                 if (result.status.equals("OK")){
+                    PropertyManager.getInstance().setEmail(null);
+                    PropertyManager.getInstance().setPassword(null);
+                    PropertyManager.getInstance().setLogin(false);
+                    PropertyManager.getInstance().setUser(null);
                     Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();

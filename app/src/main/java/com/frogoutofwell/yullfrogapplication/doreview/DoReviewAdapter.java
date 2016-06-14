@@ -23,13 +23,13 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     List<DoDetail> items = new ArrayList<>();
     int[] counts;
-    int total;
+    float total;
     public void clear() {
         items.clear();
         notifyDataSetChanged();
     }
 
-    public void setTotalStar(int star){
+    public void setTotalStar(float star){
         total = star;
         notifyDataSetChanged();
     }

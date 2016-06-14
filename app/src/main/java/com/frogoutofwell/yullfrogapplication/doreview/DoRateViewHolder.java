@@ -20,7 +20,7 @@ public class DoRateViewHolder extends RecyclerView.ViewHolder {
     ImageView star1View, star2View, star3View, star4View, star5View;
     ImageView rateBar;
 
-    int total;
+    float total;
     int[] counts;
 
     int sum;
@@ -36,12 +36,13 @@ public class DoRateViewHolder extends RecyclerView.ViewHolder {
         star5View = (ImageView)itemView.findViewById(R.id.inter_rate5);
     }
 
-    public void setDoRate(int total, int[] star){
+    public void setDoRate(float total, int[] star){
         this.total = total;
         this.counts = star;
         rateView.setText(total+"");
 
-       // sum = (activityDetail.totalPostCountStar[0]+activityDetail.totalPostCountStar[1]+activityDetail.totalPostCountStar[2]+activityDetail.totalPostCountStar[3]+activityDetail.totalPostCountStar[4])/3;
+        //sum = counts[0] + counts[1] + counts[2] + counts[3] + counts[4];
+
         if (total == 0){
             rateBar.setImageResource(R.drawable.activityreview_detail_ic_star0);
         }else if (total == 0.5){
@@ -65,12 +66,12 @@ public class DoRateViewHolder extends RecyclerView.ViewHolder {
         }else {
             rateBar.setImageResource(R.drawable.activityreview_detail_ic_star5);
         }
-    /*    star1View.setMaxWidth(activityDetail.totalPostCountStar[0]);
-        star2View.setMaxWidth(activityDetail.totalPostCountStar[1]);
-        star3View.setMaxWidth(activityDetail.totalPostCountStar[2]);
-        star4View.setMaxWidth(activityDetail.totalPostCountStar[3]);
-        star5View.setMaxWidth(activityDetail.totalPostCountStar[4]);
-        */
+       /* star1View.setMaxWidth(counts[0]/sum*520);
+        star2View.setMaxWidth(counts[1]/sum*520);
+        star3View.setMaxWidth(counts[2]/sum*520);
+        star4View.setMaxWidth(counts[3]/sum*520);
+        star5View.setMaxWidth(counts[4]/sum*520);
+*/
 
     }
 }

@@ -16,6 +16,7 @@ public class TestDetail {
     public String companyName;
     public String companyLogo;
     public String activityName;
+    public int activitySeq;
 
     public int getSeq() {
         return seq;
@@ -111,5 +112,13 @@ public class TestDetail {
 
     public void setActivityName(String activityName) {
         this.activityName = activityName;
+    }
+
+    public int getActivitySeq() {
+        return activitySeq;
+    }
+
+    public void setActivitySeq(int activitySeq) {
+        this.activitySeq = activitySeq;
     }
 }

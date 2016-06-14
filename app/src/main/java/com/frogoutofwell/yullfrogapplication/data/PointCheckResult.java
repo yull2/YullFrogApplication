@@ -5,4 +5,5 @@ package com.frogoutofwell.yullfrogapplication.data;
  */
 public class PointCheckResult {
     public String status;
+    public int seq;
 }

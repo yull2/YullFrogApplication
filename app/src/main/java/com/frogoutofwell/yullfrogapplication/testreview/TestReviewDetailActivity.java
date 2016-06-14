@@ -22,7 +22,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
 
     TextView termView, levelView, resultView, questionView, answerView, wayView;
 
-    int seq;
+    int detailSeq;
 
     String[] level, tresult;
 
@@ -36,7 +36,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Intent intent = getIntent();
-        seq = intent.getIntExtra("seq",1);
+        detailSeq = intent.getIntExtra("detailSeq",1);
 
         level = getResources().getStringArray(R.array.test_level);
         tresult = getResources().getStringArray(R.array.test_result);
@@ -51,7 +51,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
         setData();
     }
     private void setData() {
-        NetworkManager.getInstance().getInterTestReviewDetail(this, seq, new NetworkManager.OnResultListener<TestDetailResult>() {
+        NetworkManager.getInstance().getInterTestReviewDetail(this, detailSeq, new NetworkManager.OnResultListener<TestDetailResult>() {
             @Override
             public void onSuccess(Request request, TestDetailResult result) {
                 getSupportActionBar().setTitle(result.testDetail.getActivityName());

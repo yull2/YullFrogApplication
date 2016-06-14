@@ -104,12 +104,21 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onSuccess(Request request, StatusCheckResult result) {
                         if (result.status.equals("OK")){
-                           // Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
                             PropertyManager.getInstance().setLogin(true);
-
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             startActivity(intent);
                             getActivity().finish();
+                        }else if (result.status.equals("notApproval")){
+                            Toast.makeText(getContext(),"약관동의가 필요합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(), AgreementActivity.class);
+                            startActivity(intent);
+                        }else if (result.status.equals("notConfirm")){
+                            Toast.makeText(getContext(),"대학생 인증이 필요합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(), StudentConfirmActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Toast.makeText(getContext(),"회원 가입이 필요합니다. : "+result.status,Toast.LENGTH_SHORT).show();
                         }
                     }
 

@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.home;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -53,6 +54,7 @@ public class DoBestViewHolder extends RecyclerView.ViewHolder {
     public void setDoBest(DoDetail doDetail){
         this.doDetail = doDetail;
         Glide.with(logoImgView.getContext()).load(doDetail.getCompanyLogo()).into(logoImgView);
+        Log.i("logoglgoglgo","home logogogogogog"+doDetail.getCompanyLogo());
         nameView.setText(doDetail.getActivityName());
         rateView.setText(""+doDetail.getRate());
         classView.setText(doDetail.getCompanyName());

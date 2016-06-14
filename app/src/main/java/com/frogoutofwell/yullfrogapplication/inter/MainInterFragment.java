@@ -200,11 +200,11 @@ public class MainInterFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
-                    setSortRate();
+                    setSortRate(key_act, key_indus, key_term, key_local);
                     listPopup.dismiss();
                 }
                 if (position == 1){
-                    setSortStar();
+                    setSortStar(key_act, key_indus, key_term, key_local);
                     listPopup.dismiss();
                 }
             }
@@ -244,9 +244,9 @@ public class MainInterFragment extends Fragment {
         });
     }
 
-    private void setSortRate(){
+    private void setSortRate(String key_act, String key_indus, String key_term, String key_local){
         Toast.makeText(getContext(),"후기 많은순",Toast.LENGTH_SHORT).show();
-        NetworkManager.getInstance().getSortHighRate(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+        NetworkManager.getInstance().getSortHighRate(getContext(), key_act, key_indus, key_term, key_local, new NetworkManager.OnResultListener<MainInterResult>() {
             @Override
             public void onSuccess(Request request, MainInterResult result) {
                 mAdapter.clear();
@@ -260,9 +260,9 @@ public class MainInterFragment extends Fragment {
         });
     }
 
-    private void setSortStar(){
+    private void setSortStar(String key_act, String key_indus, String key_term, String key_local){
         Toast.makeText(getContext(),"별점높은순 ",Toast.LENGTH_SHORT).show();
-        NetworkManager.getInstance().getSortHighStar(getContext(), new NetworkManager.OnResultListener<MainInterResult>() {
+        NetworkManager.getInstance().getSortHighStar(getContext(),key_act, key_indus, key_term, key_local,  new NetworkManager.OnResultListener<MainInterResult>() {
             @Override
             public void onSuccess(Request request, MainInterResult result) {
                 mAdapter.clear();

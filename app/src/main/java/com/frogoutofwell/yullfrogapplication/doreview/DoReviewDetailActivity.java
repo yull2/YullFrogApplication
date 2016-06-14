@@ -38,7 +38,7 @@ public class DoReviewDetailActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Intent intent = getIntent();
-        seq = intent.getIntExtra("seq",1);
+        seq = intent.getIntExtra("detailSeq",1);
 
         commentView = (TextView)findViewById(R.id.text_comment);
         rateView = (TextView)findViewById(R.id.text_rate);
@@ -87,7 +87,6 @@ public class DoReviewDetailActivity extends AppCompatActivity {
                 }else {
                     rateBar.setImageResource(R.drawable.activityreview_detail_ic_star5);
                 }
-
             }
 
             @Override
