@@ -74,7 +74,7 @@ public class MainHomeFragment extends Fragment {
             public void onItemClick(View view, int seq) {
                 //Log.i("btn","djafkldjlkfa벝ㄴ 22222");
                 Intent intent = new Intent(getContext(), DoReviewDetailActivity.class);
-                intent.putExtra("seq", seq);
+                intent.putExtra("detailSeq", seq);
                 startActivity(intent);
             }
         });
@@ -83,7 +83,7 @@ public class MainHomeFragment extends Fragment {
             public void onItemClick(View view, int seq) {
                 //Log.i("btn","djafkldjlkfa벝ㄴ 22222");
                 Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
-                intent.putExtra("seq", seq);
+                intent.putExtra("detailSeq", seq);
                 startActivity(intent);
             }
         });

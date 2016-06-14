@@ -83,6 +83,8 @@
                 android:text="Large Text"
                 android:textColor="@color/colorBasicTextBlack"
                 android:textSize="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:id="@+id/text_comment"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="12dp"

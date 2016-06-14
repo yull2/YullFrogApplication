@@ -113,7 +113,7 @@ public class IndusChangeActivity extends AppCompatActivity {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(IndusChangeActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

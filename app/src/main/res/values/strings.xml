@@ -100,5 +100,15 @@
     <string name="inter_test_more">면접 후기 자세히 보기></string>
     <string name="inter_do_more">대외 활동 후기 자세히 보기></string>
 
+    <string name="write_preview_comment">예) 국내에서 가장 큰 봉사 대외활동 답게 다양한 활동을
+    할 수 있었고, 규모 있는 행사에 여러 번 참여해서 많은 사람들을 만날 수 있었다.</string>
+    <string name="write_preview_commentgood">예) 봉사활동을 할 수 있는 종류가 다양하고
+        (아동교육, 장애인, 노인, 복지관, 사회적 기업)사전 교육의 강의가 교육적</string>
+    <string name="write_preview_commentbad">예) 학생들간 교류를 할 기회가 공식적으로 별로 없어서
+     자발적으로 모이지 않으면 친구를 사귀기가 어려웠다</string>
+    <string name="write_preview_question">예) 해당 활동을 지원한 동기와 기자단을 통해서 얻고자 하는 것이 무엇입니까?</string>
+    <string name="write_preview_answer">예) 올바른 정보를 제공하는 일에 대한 동경이 있어 지원을 하게 되었고,
+    해당 기자단을 통하여 실제 활동을 겪어 실무 경험을 해보고 싶어 지원</string>
+    <string name="write_preview_way">예) 그룹/pt/영어/케이스/토론/개인 (중복 가능)</string>
 
 </resources>

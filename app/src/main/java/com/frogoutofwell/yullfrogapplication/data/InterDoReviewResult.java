@@ -2,12 +2,14 @@ package com.frogoutofwell.yullfrogapplication.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by Tacademy on 2016-05-24.
  */
 public class InterDoReviewResult {
     public int averageRate;
-    public int[] totalPostCountStar;
+    public List<Integer> totalPostCountStar;
     public int totalPostCount;
 
     @SerializedName("postscripts")

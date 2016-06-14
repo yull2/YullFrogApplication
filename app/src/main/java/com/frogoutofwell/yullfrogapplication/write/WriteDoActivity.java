@@ -127,6 +127,7 @@ public class WriteDoActivity extends AppCompatActivity {
         NetworkManager.getInstance().getInterClassInfo(this, seq, new NetworkManager.OnResultListener<ActivityDetailResult>() {
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
+                Log.i("writedo","result"+result.activityDetail.companyName);
                 String actName = result.activityDetail.getName();
                 String actClass = result.activityDetail.getActClass();
                 String comName = result.activityDetail.getCompanyName();

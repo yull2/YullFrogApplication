@@ -59,7 +59,7 @@ public class MyTestHistoryFragment extends Fragment {
             @Override
             public void onItemClick(View view, TestDetail testDetail) {
                 Intent intent = new Intent(getContext(), TestReviewDetailActivity.class);
-                intent.putExtra("seq",testDetail.getSeq());
+                intent.putExtra("detailSeq",testDetail.getSeq());
                 startActivity(intent);
             }
         });

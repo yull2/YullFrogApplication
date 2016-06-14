@@ -95,14 +95,6 @@ public class DoReviewFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         listView.setLayoutManager(mLayoutManager);
 
-       /* Button btn = (Button)view.findViewById(R.id.btn_go);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), WriteDoActivity.class);
-                startActivity(intent);
-            }
-        });*/
         return view;
     }
 
@@ -112,10 +104,11 @@ public class DoReviewFragment extends Fragment {
             public void onSuccess(Request request, InterDoReviewResult result) {
                 mAdapter.clear();
                 countView.setText(result.totalPostCount+"");
-                mAdapter.setCountStar(result.totalPostCountStar);
+                Log.i("doreview","count : "+result.totalPostCountStar);
+               /* mAdapter.setCountStar(result.totalPostCountStar);
                 mAdapter.setTotalStar(result.averageRate);
-                //Log.i("sdfadfa","adfasdfadsfadsf"+result.averageRate);
-                mAdapter.addAll(result.doDetails.doDetail);
+                mAdapter.addAll(result.doDetails.doDetail);*/
+                mAdapter.addAllItem(result);
             }
 
             @Override
@@ -156,7 +149,7 @@ public class DoReviewFragment extends Fragment {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

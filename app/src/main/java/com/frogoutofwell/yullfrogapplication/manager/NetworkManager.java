@@ -28,6 +28,7 @@ import com.frogoutofwell.yullfrogapplication.data.PointCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.ReviewUploadResult;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
+import com.frogoutofwell.yullfrogapplication.data.UserAlarmResult;
 import com.frogoutofwell.yullfrogapplication.login.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -1326,5 +1327,77 @@ public class NetworkManager {
         return request;
     }
 
+    // 알람 체크 정보 가져오기
+    private static final String URL_USER_ALARM = FROG_SERVER + "/alramCheck";
+    public Request getUserAlarm(Object tag, OnResultListener<UserAlarmResult> listener) {
+        String url = String.format(URL_USER_ALARM);
+
+        Request request = new Request.Builder()
+                .url(URL_USER_ALARM)
+                .build();
+
+        final NetworkResult<UserAlarmResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    UserAlarmResult data = gson.fromJson(text, UserAlarmResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
+    // 알람 체크 설정
+    public Request getUserAlarm(Object tag, int mobile, int notice, int likeact, OnResultListener<StatusCheckResult> listener) {
+
+        RequestBody body = new FormBody.Builder()
+                .add("mobile", mobile+"")
+                .add("notice", notice+"")
+                .add("likeAct", likeact+"")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(URL_USER_ALARM)
+                .post(body)
+                .build();
+
+        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
 
 }

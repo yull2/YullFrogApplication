@@ -28,6 +28,9 @@
 
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>
+        <item name="colorControlNormal">@color/colorTextPriview</item>
+        <item name="colorControlActivated">@color/colorTextPriview</item>
+        <item name="colorControlHighlight">@color/colorTextPriview</item>
     </style>
 
     <style name="CustomActionBarStyle" parent="@style/Widget.AppCompat.ActionBar">

@@ -124,7 +124,7 @@ public class LoginFragment extends Fragment {
 
                     @Override
                     public void onFail(Request request, IOException exception) {
-
+                        Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -176,7 +176,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(getContext(), "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

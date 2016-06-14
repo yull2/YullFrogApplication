@@ -51,7 +51,7 @@
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/imageView3"
         android:id="@+id/linearLayout7">
         <ImageView
@@ -59,9 +59,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/inter_rate5"
-            android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:background="@color/colorDoRatebar" />
+            android:background="@color/colorWhite" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -69,30 +68,28 @@
             android:id="@+id/inter_rate4"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:background="@color/colorDoRatebar" />
+            android:background="@color/colorWhite" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/inter_rate3"
-            android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:background="@color/colorDoRatebar" />
+            android:background="@color/colorWhite" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/inter_rate2"
-            android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:background="@color/colorDoRatebar" />
+            android:background="@color/colorWhite" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/inter_rate1"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:background="@color/colorDoRatebar" />
+            android:background="@color/colorWhite" />
+
     </LinearLayout>
+
 </RelativeLayout>

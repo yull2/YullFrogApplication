@@ -1,14 +1,19 @@
 package com.frogoutofwell.yullfrogapplication.doreview;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -21,12 +26,17 @@ public class DoRateViewHolder extends RecyclerView.ViewHolder {
     ImageView rateBar;
 
     float total;
-    int[] counts;
+    List<Integer> counts = new ArrayList<>();
+    int[] arr = new int[] {R.drawable.ratebar0, R.drawable.ratebar1, R.drawable.ratebar2, R.drawable.ratebar3, R.drawable.ratebar4,
+            R.drawable.ratebar5, R.drawable.ratebar6, R.drawable.ratebar7, R.drawable.ratebar8, R.drawable.ratebar8, R.drawable.ratebar9,
+            R.drawable.ratebar10, R.drawable.ratebarfull};
 
+    Resources res ;
     int sum;
 
     public DoRateViewHolder(View itemView) {
         super(itemView);
+        res = itemView.getResources();
         rateView = (TextView)itemView.findViewById(R.id.text_rate);
         rateBar = (ImageView)itemView.findViewById(R.id.img_rate);
         star1View = (ImageView)itemView.findViewById(R.id.inter_rate1);
@@ -34,9 +44,10 @@ public class DoRateViewHolder extends RecyclerView.ViewHolder {
         star3View = (ImageView)itemView.findViewById(R.id.inter_rate3);
         star4View = (ImageView)itemView.findViewById(R.id.inter_rate4);
         star5View = (ImageView)itemView.findViewById(R.id.inter_rate5);
+
     }
 
-    public void setDoRate(float total, int[] star){
+    public void setDoRate(float total, List<Integer> star){
         this.total = total;
         this.counts = star;
         rateView.setText(total+"");
@@ -66,12 +77,14 @@ public class DoRateViewHolder extends RecyclerView.ViewHolder {
         }else {
             rateBar.setImageResource(R.drawable.activityreview_detail_ic_star5);
         }
-       /* star1View.setMaxWidth(counts[0]/sum*520);
-        star2View.setMaxWidth(counts[1]/sum*520);
-        star3View.setMaxWidth(counts[2]/sum*520);
-        star4View.setMaxWidth(counts[3]/sum*520);
-        star5View.setMaxWidth(counts[4]/sum*520);
-*/
+
+        star1View.setImageResource(arr[counts.get(0)]);
+        star2View.setImageResource(arr[counts.get(1)]);
+        star3View.setImageResource(arr[counts.get(2)]);
+        star4View.setImageResource(arr[counts.get(3)]);
+        star5View.setImageResource(arr[counts.get(4)]);
 
     }
+
+
 }

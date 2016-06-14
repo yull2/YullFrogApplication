@@ -89,7 +89,7 @@ public class StudentConfirmActivity extends AppCompatActivity {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(StudentConfirmActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

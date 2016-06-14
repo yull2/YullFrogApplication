@@ -26,7 +26,7 @@ public class CategoryDialogAdapter extends RecyclerView.Adapter<CategoryDialogVi
 
     @Override
     public CategoryDialogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_dialog_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_dialog_item, parent, false);
         return new CategoryDialogViewHolder(view);
     }
 

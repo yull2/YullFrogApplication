@@ -1,6 +1,7 @@
 package com.frogoutofwell.yullfrogapplication.doreview;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetail;
 import com.frogoutofwell.yullfrogapplication.data.DoDetail;
+import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int VIEW_TYPE_DO_SECONDREVIEW = 3;
 
     List<DoDetail> items = new ArrayList<>();
-    int[] counts;
+    List<Integer> counts = new ArrayList<>();
     float total;
     public void clear() {
         items.clear();
@@ -34,7 +36,7 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public void setCountStar(int[] star){
+    public void setCountStar(List<Integer> star){
         counts = star;
         notifyDataSetChanged();
     }
@@ -46,6 +48,12 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void addAll(List<DoDetail> items) {
         this.items.addAll(items);
+        notifyDataSetChanged();
+    }
+    public void addAllItem(InterDoReviewResult res){
+        this.items.addAll(res.doDetails.doDetail);
+        this.counts = res.totalPostCountStar;
+        this.total = res.averageRate;
         notifyDataSetChanged();
     }
 
@@ -109,7 +117,7 @@ public class DoReviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        if (items!= null){
+        if (items.size() > 0){
             return items.size()+1;
         }
         return items.size();

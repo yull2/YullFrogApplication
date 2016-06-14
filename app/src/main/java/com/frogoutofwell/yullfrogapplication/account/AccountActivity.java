@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
@@ -102,7 +103,10 @@ public class AccountActivity extends AppCompatActivity {
                     PropertyManager.getInstance().setPassword(null);
                     PropertyManager.getInstance().setLogin(false);
                     PropertyManager.getInstance().setUser(null);
+
                     Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 }
@@ -110,7 +114,7 @@ public class AccountActivity extends AppCompatActivity {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(AccountActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -27,6 +27,7 @@
             android:paddingStart="21dp"
             android:hint="ID"
             android:ems="10"
+            android:imeOptions="actionNext"
             android:id="@+id/edit_email"
             android:background="@color/colorWhite"
             android:layout_gravity="center_horizontal" />

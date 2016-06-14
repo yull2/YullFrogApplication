@@ -72,7 +72,7 @@ public class GuideFragment extends Fragment {
             @Override
             public void onSuccess(Request request, ActivityDetailResult result) {
                 String srcImg = result.activityDetail.guideImg;
-                Log.i("Guide Image Url", "Guide Image Urllllllllllllllllllll :"+srcImg);
+               // Log.i("Guide Image Url", "Guide Image Urllllllllllllllllllll :"+srcImg);
                 Glide.with(guideView.getContext()).load(srcImg).into(guideView);
        }
 

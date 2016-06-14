@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frogoutofwell.yullfrogapplication.R;
 import com.frogoutofwell.yullfrogapplication.data.TestDetailResult;
@@ -65,7 +66,7 @@ public class TestReviewDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(TestReviewDetailActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -212,7 +212,7 @@ public class InterMainActivity extends AppCompatActivity {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(InterMainActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

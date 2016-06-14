@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         type = (String)getIntent().getSerializableExtra(EXTRA_TYPE);
-        Log.i("mainnn","main data ========================== "+type);
-
         tabs = (TabLayout)findViewById(R.id.tabs);
         pager = (ViewPager)findViewById(R.id.pager);
         pager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
@@ -166,11 +164,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Request request, ActivityNameResult result) {
                 nameList = result.activityName;
-                searchV.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, nameList));
+                searchV.setAdapter(new ArrayAdapter<String>(MainActivity.this, R.layout.notification_list_item, nameList));
             }
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(MainActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -229,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFail(Request request, IOException exception) {
-
+                Toast.makeText(MainActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
