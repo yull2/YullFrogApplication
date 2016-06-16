@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.frogoutofwell.yullfrogapplication.MyApplication;
+import com.frogoutofwell.yullfrogapplication.data.AccountInfoResult;
 import com.frogoutofwell.yullfrogapplication.data.ActivityDetailResult;
 import com.frogoutofwell.yullfrogapplication.data.ActivityNameResult;
 import com.frogoutofwell.yullfrogapplication.data.DoDetailResult;
+import com.frogoutofwell.yullfrogapplication.data.FacebookUserResult;
 import com.frogoutofwell.yullfrogapplication.data.InterDoReviewResult;
 import com.frogoutofwell.yullfrogapplication.data.InterInfoResult;
 import com.frogoutofwell.yullfrogapplication.data.InterTestReviewResult;
@@ -1116,7 +1118,7 @@ public class NetworkManager {
 
     // 페이스북 로그인
     private static final String URL_FACEBOOK_LOGIN = FROG_SERVER + "/facebookLogin";
-    public Request facebookLogin(Object tag, String accessToken, String resId, OnResultListener<StatusCheckResult> listener) {
+    public Request facebookLogin(Object tag, String accessToken, String resId, OnResultListener<FacebookUserResult> listener) {
         RequestBody body = new FormBody.Builder()
                 .add("accessToken", accessToken)
                 .add("gcmToken", resId)
@@ -1127,7 +1129,7 @@ public class NetworkManager {
                 .post(body)
                 .build();
 
-        final NetworkResult<StatusCheckResult> result = new NetworkResult<>();
+        final NetworkResult<FacebookUserResult> result = new NetworkResult<>();
         result.request = request;
         result.listener = listener;
         mClient.newCall(request).enqueue(new Callback() {
@@ -1141,7 +1143,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String text = response.body().string();
-                    StatusCheckResult data = gson.fromJson(text, StatusCheckResult.class);
+                    FacebookUserResult data = gson.fromJson(text, FacebookUserResult.class);
                     result.result = data;
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
                 } else {
@@ -1399,5 +1401,40 @@ public class NetworkManager {
         });
         return request;
     }
+
+    // 계정 정보 가져오기
+    private static final String ACCOUNT_USER_INFO = FROG_SERVER + "/accountInfo";
+    public Request getAccountUserInfo(Object tag, OnResultListener<AccountInfoResult> listener) {
+        String url = String.format(ACCOUNT_USER_INFO);
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        final NetworkResult<AccountInfoResult> result = new NetworkResult<>();
+        result.request = request;
+        result.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                result.excpetion = e;
+                mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_FAIL, result));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String text = response.body().string();
+                    AccountInfoResult data = gson.fromJson(text, AccountInfoResult.class);
+                    result.result = data;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SUCCESS, result));
+                } else {
+                    throw new IOException(response.message());
+                }
+            }
+        });
+        return request;
+    }
+
 
 }

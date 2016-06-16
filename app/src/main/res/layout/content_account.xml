@@ -17,18 +17,21 @@
         android:gravity="center_vertical"
         android:paddingStart="13dp"
         android:text="email"
+        android:textColor="@color/colorBasicTextGray"
         android:layout_marginTop="48dp"
         android:background="@color/colorWhite"
         android:id="@+id/btn_email" />
 
-    <Button
+    <CheckBox
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:gravity="center_vertical"
         android:paddingStart="13dp"
         android:layout_below="@+id/btn_email"
         android:text="@string/account_confirm"
-        android:background="@drawable/individual_bg_bar_check_on"
+        android:clickable="false"
+        android:button="@null"
+        android:background="@drawable/agreement_check_selector"
         android:id="@+id/btn_confirm" />
 
     <Button

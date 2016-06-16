@@ -21,6 +21,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.frogoutofwell.yullfrogapplication.MainActivity;
 import com.frogoutofwell.yullfrogapplication.R;
+import com.frogoutofwell.yullfrogapplication.data.FacebookUserResult;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.manager.NetworkManager;
 import com.frogoutofwell.yullfrogapplication.manager.PropertyManager;
@@ -100,21 +101,26 @@ public class LoginFragment extends Fragment {
             public void onSuccess(LoginResult loginResult) {
                 final AccessToken token = AccessToken.getCurrentAccessToken();
                 String resId = PropertyManager.getInstance().getRegistrationToken();
-                NetworkManager.getInstance().facebookLogin(getContext(), token.getToken(), resId, new NetworkManager.OnResultListener<StatusCheckResult>() {
+                NetworkManager.getInstance().facebookLogin(getContext(), token.getToken(), resId, new NetworkManager.OnResultListener<FacebookUserResult>() {
                     @Override
-                    public void onSuccess(Request request, StatusCheckResult result) {
+                    public void onSuccess(Request request, FacebookUserResult result) {
                         if (result.status.equals("OK")){
                             // Toast.makeText(getContext(),"로그인 : "+result.status,Toast.LENGTH_SHORT).show();
                             PropertyManager.getInstance().setLogin(true);
+                            PropertyManager.getInstance().setFacebookId(result.facebookId);
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             startActivity(intent);
                             getActivity().finish();
                         }else if (result.status.equals("notApproval")){
                             Toast.makeText(getContext(),"약관동의가 필요합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                            PropertyManager.getInstance().setLogin(true);
+                            PropertyManager.getInstance().setFacebookId(result.facebookId);
                             Intent intent = new Intent(getContext(), AgreementActivity.class);
                             startActivity(intent);
                         }else if (result.status.equals("notConfirm")){
                             Toast.makeText(getContext(),"대학생 인증이 필요합니다 : "+result.status,Toast.LENGTH_SHORT).show();
+                            PropertyManager.getInstance().setLogin(true);
+                            PropertyManager.getInstance().setFacebookId(result.facebookId);
                             Intent intent = new Intent(getContext(), StudentConfirmActivity.class);
                             startActivity(intent);
                         }else {

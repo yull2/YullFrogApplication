@@ -82,6 +82,7 @@ public class RecommendFragment extends Fragment {
             public void onSuccess(Request request, MainInterResult result) {
                 mAdapter.clear();
                 mAdapter.addAll(result.activityDetails.activityDetails);
+
             }
 
             @Override

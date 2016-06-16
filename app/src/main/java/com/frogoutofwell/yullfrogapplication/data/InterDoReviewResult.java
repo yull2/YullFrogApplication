@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Tacademy on 2016-05-24.
  */
 public class InterDoReviewResult {
-    public int averageRate;
+    public float averageRate;
     public List<Integer> totalPostCountStar;
     public int totalPostCount;
 

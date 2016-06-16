@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
+import com.frogoutofwell.yullfrogapplication.data.FacebookUserResult;
 import com.frogoutofwell.yullfrogapplication.data.StatusCheckResult;
 import com.frogoutofwell.yullfrogapplication.login.AgreementActivity;
 import com.frogoutofwell.yullfrogapplication.login.LoginActivity;
@@ -147,11 +148,12 @@ public class SplashActivity extends AppCompatActivity {
                     goLoginActivity();
                 }else {
                     if (facebookId.equals(token.getUserId())){
-                        NetworkManager.getInstance().facebookLogin(this, token.getToken(), PropertyManager.getInstance().getRegistrationToken(), new NetworkManager.OnResultListener<StatusCheckResult>() {
+                        NetworkManager.getInstance().facebookLogin(this, token.getToken(), PropertyManager.getInstance().getRegistrationToken(), new NetworkManager.OnResultListener<FacebookUserResult>() {
                             @Override
-                            public void onSuccess(Request request, StatusCheckResult result) {
+                            public void onSuccess(Request request, FacebookUserResult result) {
                                 if (result.status.equals("OK")) {
                                     PropertyManager.getInstance().setLogin(true);
+                                    PropertyManager.getInstance().setFacebookId(result.facebookId);
                                     goMainActivity();
                                 } else {
                                     PropertyManager.getInstance().setFacebookId("");
@@ -199,7 +201,7 @@ public class SplashActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    private void getAutoLogin(){
+ /*   private void getAutoLogin(){
         NetworkManager.getInstance().getAutoUserLogin(this, new NetworkManager.OnResultListener<StatusCheckResult>() {
             @Override
             public void onSuccess(Request request, StatusCheckResult result) {
@@ -219,5 +221,5 @@ public class SplashActivity extends AppCompatActivity {
                 Toast.makeText(SplashActivity.this,"회원가입 실패 : "+exception,Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 }
